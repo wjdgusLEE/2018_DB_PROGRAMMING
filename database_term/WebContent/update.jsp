@@ -14,8 +14,8 @@
 	try {
 		Class.forName(dbdriver); 
 		String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String user = "db1515386";
-		String passwd = "ss3";
+		String user = "db1512602";
+		String passwd = "oracle";
 		myConn =  DriverManager.getConnection (dburl, user, passwd);
 		stmt = myConn.createStatement();
 		String mySQL = "select s_id, s_pwd from student where s_id='" + session_id + "'" ;

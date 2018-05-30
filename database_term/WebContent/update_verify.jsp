@@ -13,8 +13,8 @@ String userPassword = request.getParameter("userPassword");
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
 
 String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-String user = "db1515386";
-String passwd = "ss3";
+String user = "db1512602";
+String passwd = "oracle";
 
 Connection myConn = null;
 Statement stmt = null;
