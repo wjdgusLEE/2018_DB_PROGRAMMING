@@ -1,14 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*" %> 
 <%@ include file="session.jsp" %>
+
 <html>
 <head><title> 수강신청 사용자 정보 수정 </title></head>
 <body>
 <%
+
 String userName = request.getParameter("userName"); 
 String userPassword = request.getParameter("userPassword");
 String userEmail = request.getParameter("userEmail"); 
 String userMajor = request.getParameter("userMajor");
+
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
 
 String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
@@ -17,6 +20,7 @@ String passwd = "ss3";
 
 Connection myConn = null;
 Statement stmt = null;
+
 String sMessage = "수정되었습니다.";
 String location = "main.jsp";
 try { 
@@ -44,6 +48,5 @@ response.sendRedirect("main.jsp");
    	//response.sendRedirect("update.jsp");
  }
 %>
-
 
 </body></html>

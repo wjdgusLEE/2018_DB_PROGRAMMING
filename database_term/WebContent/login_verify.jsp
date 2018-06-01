@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
+
 <% 
 String userID = request.getParameter("userID"); 
 String userPassword = request.getParameter("userPassword");
@@ -10,6 +11,7 @@ String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
 String user = "db1515386";
 String passwd = "ss3";
 Connection myConn =  DriverManager.getConnection (dburl, user, passwd);
+
 
 
 String [] sql = {"{ ? = call CheckStudent(?,?)}","{ ? = call CheckProfessor(?,?)}", "{ ? = call CheckManager(?,?)}"};
@@ -42,6 +44,7 @@ if(isExist != NOTMEMBER) {
 	</script>
 	<%
 }
+
 cstmt.close(); 
 myConn.close();
 %>

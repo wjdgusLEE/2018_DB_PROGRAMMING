@@ -3,6 +3,7 @@
 <html>
 <head><title>수강신청 사용자 정보 수정</title></head>
 <body>
+
 <%@ include file="session.jsp" %>
 <% 
 	if (session_id==null||type == null) response.sendRedirect("login.jsp");
@@ -16,6 +17,7 @@
 		String passwd = "ss3";
 		myConn =  DriverManager.getConnection (dburl, user, passwd);
 		stmt = myConn.createStatement();
+
 		String mySQL;
 		// out.write(type);
 		if (isManager)
@@ -42,6 +44,7 @@
 	myConn.close();}
 %>
 <form method="post" action="update_verify.jsp">
+
   <table width="75%" align="center">   
 
 	<tr>
@@ -66,6 +69,7 @@
   </table>
   <div class="clearfix">
 	        		<input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;">
+
 	      		</div>
   </FORM>
   </BODY></HTML>
