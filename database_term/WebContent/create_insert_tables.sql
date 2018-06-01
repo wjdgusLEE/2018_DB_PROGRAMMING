@@ -71,6 +71,7 @@ CREATE TABLE enroll
 (
     s_id VARCHAR2(10) CONSTRAINT e_s_fk REFERENCES student(s_id),
     c_id VARCHAR2(10) CONSTRAINT e_c_fk REFERENCES course(c_id),
+    s_number NUMBER DEFUALT 0;
     CONSTRAINT e_uk UNIQUE (s_id, c_id)
 );
 
