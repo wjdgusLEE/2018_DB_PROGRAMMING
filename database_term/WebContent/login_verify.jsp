@@ -12,7 +12,7 @@ String passwd = "ss3";
 Connection myConn =  DriverManager.getConnection (dburl, user, passwd);
 
 
-String [] sql = {"{ ? = call CheckStudent(?)}","{ ? = call CheckProfessor(?)}", "{ ? = call CheckManager(?)}"};
+String [] sql = {"{ ? = call CheckStudent(?,?)}","{ ? = call CheckProfessor(?,?)}", "{ ? = call CheckManager(?,?)}"};
 int [] type = {-1,-1,-1};
 
 String [] category = {"student", "professor", "manager"};
@@ -23,6 +23,7 @@ for(int i=0; i<3; i++){
 		cstmt = myConn.prepareCall(sql[i]);
 		cstmt.registerOutParameter(1, Types.INTEGER);
 		cstmt.setString(2, userID);
+		cstmt.setString(3, userPassword);
 		cstmt.execute();
 		type[i] = cstmt.getInt(1);
 		if(type[i]!=NOTMEMBER){
