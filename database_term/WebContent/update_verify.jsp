@@ -1,15 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*" %> 
+<%@ include file="session.jsp" %>
 
 <html>
 <head><title> 수강신청 사용자 정보 수정 </title></head>
 <body>
 <%
-String session_id = (String)session.getAttribute("user");
-String log; if (session_id==null)    log="<a href=\"login.jsp\">로그인</a>"; else log="<a href=logout.jsp>로그아웃</a>";
-String userID = request.getParameter("userID"); 
+
+String userName = request.getParameter("userName"); 
 String userPassword = request.getParameter("userPassword");
+String userEmail = request.getParameter("userEmail"); 
+String userMajor = request.getParameter("userMajor");
+
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
 
 String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
@@ -18,27 +20,33 @@ String passwd = "oracle";
 
 Connection myConn = null;
 Statement stmt = null;
+
+String sMessage = "수정되었습니다.";
+String location = "main.jsp";
 try { 
 Class.forName(dbdriver); 
 myConn =  DriverManager.getConnection (dburl, user, passwd);
-String mySQL = "update student set s_id='" +userID+"', s_pwd='"+userPassword+"' where s_id = '"+session_id +"'";  
+String mySQL;
+out.write(type+" "+session_id+" "+userPassword+" "+userName+" "+userEmail);
+if (isManager)
+ 	mySQL = "update "+ type +" set m_pwd='" +userPassword+"', m_name='"+userName+"', m_email='"+userEmail+"' where m_id = '"+session_id +"'";
+else if (isStudent)
+ 	mySQL = "update "+ type +" set s_pwd='" +userPassword+"', s_name='"+userName+"', s_email='"+userEmail+"', s_major='"+userMajor+"' where s_id = '"+session_id +"'";
+else
+ 	mySQL = "update "+ type +" set p_pwd='" +userPassword+"', p_name='"+userName+"', p_email='"+userEmail+"', p_major='"+userMajor+"' where p_id = '"+session_id +"'";
+
+out.write(mySQL);
 stmt = myConn.createStatement();
 stmt.executeUpdate(mySQL);
-%>
-<script>
-alert('수정되었습니다.');
-location.href="main.jsp";
-</script>
-<%
+response.sendRedirect("main.jsp");
  } catch(SQLException ex) {
-  	   String sMessage;
-   	   if (ex.getErrorCode() == 20002) sMessage="암호는 4자리 이상이어야 합니다";
+	  out.write(ex.toString());
+   	  if (ex.getErrorCode() == 20002) sMessage="암호는 4자리 이상이어야 합니다.";
 	  else if (ex.getErrorCode() == 20003) sMessage="암호에 공란은 입력되지 않습니다.";
-	  else sMessage="잠시 후 다시 시도하십시오";	
+	  else sMessage="잠시 후 다시 시도하십시오";	 ;
+	  
+   	//response.sendRedirect("update.jsp");
  }
 %>
-<script>
-alert('잘못된 입력 값입니다.');
-location.href="update.jsp";
-</script>
+
 </body></html>
