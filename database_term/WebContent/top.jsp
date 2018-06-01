@@ -1,27 +1,30 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="session.jsp" %> 
 <%
-request.setCharacterEncoding("UTF-8");
-
-String session_id = (String)session.getAttribute("user");
-String type = (String)session.getAttribute("type");
-String log; 
-if (session_id==null||type==null)  log="<a href=\"login.jsp\">로그인</a>"; else log="<a href=logout.jsp>로그아웃</a>";
-boolean isStudent = false;
-boolean  isProfessor = false;
-boolean isManager = false;
-try {
-isStudent = type.equals("student");
-isProfessor = type.equals("professor");
-isManager = type.equals("manager");
-}catch (Exception ex){
- ex.printStackTrace();
-}
-
+if(isStudent){
 %>
-<table width="75%" align="center" bgcolor="#FFFF99" border> 
-<tr> <td align="center"><b><%=log%></b></td> 
-<td align="center"><b><a href="update.jsp">사용자 정보 수정</b></td> 
-<td align="center"><b><a href="insert.jsp">수강신청 입력</b></td>
-<td align="center"><b><a href="delete.jsp">수강신청 삭제</b></td> 
-<td align="center"><b><a href="select.jsp">수강신청 조회</b></td>
-</tr> </table>
+	<table width="75%" align="center" bgcolor="#FFFF99" border> 
+	<tr> <td align="center"><b><%=log%></b></td> 
+	<td align="center"><b><a href="update.jsp">개인 정보 수정</b></td> 
+	<td align="center"><b><a href="course_enroll.jsp">수강신청 입력</b></td>
+	<td align="center"><b><a href="course_drop.jsp">수강신청 삭제</b></td> 
+	<td align="center"><b><a href="student_all.jsp">수강신청 조회</b></td>
+	</tr> </table>
+<%} else if (isProfessor) { %>
+	<table width="75%" align="center" bgcolor="#FFFF99" border> 
+	<tr> <td align="center"><b><%=log%></b></td> 
+	<td align="center"><b><a href="update.jsp">개인 정보 수정</b></td> 
+	<td align="center"><b><a href="course_insert.jsp">수업 개설</b></td>
+	<td align="center"><b><a href="course_delete.jsp">수업 삭제</b></td> 
+	<td align="center"><b><a href="course_update.jsp">수업 업데이트</b></td>
+	<td align="center"><b><a href="professor_all.jsp">수업 신청 상태 </b></td>
+	</tr> </table>
+<%} else { %>
+	<table width="75%" align="center" bgcolor="#FFFF99" border> 
+	<tr> <td align="center"><b><%=log%></b></td> 
+	<td align="center"><b><a href="update.jsp">개인 정보 수정</b></td> 
+	<td align="center"><b><a href="delete.jsp">수업 삭제</b></td> 
+	<td align="center"><b><a href="select.jsp">수업 신청 상태 </b></td>
+	<td align="center"><b><a href="select.jsp">계정 생성 </b></td>
+	</tr> </table>
+<%} %>

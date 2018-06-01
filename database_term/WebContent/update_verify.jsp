@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*" %> 
-<%@ include file="top.jsp" %>
+<%@ include file="session.jsp" %>
 <html>
 <head><title> 수강신청 사용자 정보 수정 </title></head>
 <body>
