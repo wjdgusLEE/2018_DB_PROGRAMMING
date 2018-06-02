@@ -1,6 +1,6 @@
 package conn;
 
-public class Course {
+public class Teach {
 	private String c_id;
 	private int c_id_no;
 	private String c_name;
@@ -11,7 +11,14 @@ public class Course {
 	private String c_day;
 	private int c_time;
 	private int c_max;
+	private int s_number;
 
+	public int getS_number() {
+		return s_number;
+	}
+	public void setS_number(int s_number) {
+		this.s_number = s_number;
+	}
 	public String getC_id() {
 		return c_id;
 	}
