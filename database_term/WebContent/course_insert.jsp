@@ -20,27 +20,46 @@
 	<td><div align="center">강의명</div></td>
 	<td><div align="center"><input type="text" name="c_name" ></div></td>
 	</tr>
+	<td><div align="center">분반</div></td>
+	<td><div align="center"><input type="text" name="c_id_no" ></div></td>
+	</tr>
 	<tr>
 	<td><div align="center">전공</div></td>
 	<td><div align="center"><input type="text" name="c_major"></div></td>
 	</tr>
 	<tr>
+	<td><div align="center">시간</div></td>
+	<td><div align="center"><input type="text" name="t_time"></div></td>	
+	</tr>
+	<tr>
+	<td><div align="center">요일</div></td>
+	<td><div align="center"><input type="text" name="t_day"></div></td>	
+	</tr>	
+	<tr>
 	<td><div align="center">학년</div></td>
 	<td><div align="center"><input type="text" name="c_grade"></div></td>
 	</tr>		
 	<tr>
+	<td><div align="center">연도</div></td>
+	<td><div align="center"><input type="text" name="t_year"></div></td>
+	</tr>			
+	<tr>
 	<td><div align="center">학기</div></td>
-	<td><div align="center"><input type="text" name="c_semester"></div></td>
+	<td><div align="center"><input type="text" name="t_semester"></div></td>
 	</tr>		
 	<tr>
 	<td><div align="center">학점</div></td>
 	<td><div align="center"><input type="text" name="c_unit"></div></td>
 	</tr>
+	<tr>
+	<td><div align="center">정원</div></td>
+	<td><div align="center"><input type="text" name="t_max"></div></td>
+	</tr>
   </table>
+  <input type="hidden" name="p_id" value="<%session.getId(); %>>">
   <div class="clearfix">
-	        		<input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;">
-
-	      		</div>
+  <input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;">
+  </div>
   </FORM>
 
 </body>
