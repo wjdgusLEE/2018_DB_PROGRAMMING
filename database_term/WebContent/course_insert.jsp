@@ -56,7 +56,6 @@
 	<td><div align="center"><input type="text" name="t_max"></div></td>
 	</tr>
   </table>
-  <input type="hidden" name="p_id" value="<%session.getId(); %>>">
   <div class="clearfix">
   <input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;">
   </div>
