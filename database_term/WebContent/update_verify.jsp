@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*" %> 
 <%@ include file="session.jsp" %>
-
+<%@ page import="conn.ConnectionManager" %>
 <html>
 <head><title> 수강신청 사용자 정보 수정 </title></head>
 <body>
@@ -12,20 +12,14 @@ String userPassword = request.getParameter("userPassword");
 String userEmail = request.getParameter("userEmail"); 
 String userMajor = request.getParameter("userMajor");
 
-String dbdriver = "oracle.jdbc.driver.OracleDriver";
+ConnectionManager conn_manager = new ConnectionManager();
+Connection myConn = conn_manager.getConnection();
 
-String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-String user = "db1512602";
-String passwd = "oracle";
-
-Connection myConn = null;
 Statement stmt = null;
 
 String sMessage = "수정되었습니다.";
 String location = "main.jsp";
 try { 
-Class.forName(dbdriver); 
-myConn =  DriverManager.getConnection (dburl, user, passwd);
 String mySQL;
 out.write(type+" "+session_id+" "+userPassword+" "+userName+" "+userEmail);
 if (isManager)
@@ -43,9 +37,7 @@ response.sendRedirect("main.jsp");
 	  out.write(ex.toString());
    	  if (ex.getErrorCode() == 20002) sMessage="암호는 4자리 이상이어야 합니다.";
 	  else if (ex.getErrorCode() == 20003) sMessage="암호에 공란은 입력되지 않습니다.";
-	  else sMessage="잠시 후 다시 시도하십시오";	 ;
-	  
-   	//response.sendRedirect("update.jsp");
+	  else sMessage="잠시 후 다시 시도하십시오";
  }
 %>
 

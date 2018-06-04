@@ -7,7 +7,7 @@ DECLARE
     empty_pwd EXCEPTION;
     pwd_length NUMBER;
 BEGIN
-  -- DBMS_OUTPUT.PUT_LINE('변경 후 컬럼 값 : ' || new);
+
   SELECT LENGTH(:new.s_pwd)
   INTO pwd_length
   FROM dual;
@@ -22,9 +22,9 @@ BEGIN
   END IF;
 EXCEPTION
   WHEN empty_pwd THEN
-    RAISE_APPLICATION_ERROR(-20003, '암호에 공란은 입력되지 않습니다.');
+    RAISE_APPLICATION_ERROR(-20003, '��й�ȣ 4�ڸ� �̻�');
   WHEN uncorrect_length THEN
-    RAISE_APPLICATION_ERROR(-20002, '암호는 4자리 이상이어야 합니다');
+    RAISE_APPLICATION_ERROR(-20002, '��ȣ�� ������ �Էµ��� �ʽ��ϴ�.');
   WHEN OTHERS THEN
      DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQLCODE) || SQLERRM);
 END;
@@ -39,7 +39,6 @@ DECLARE
     empty_pwd EXCEPTION;
     pwd_length NUMBER;
 BEGIN
-  -- DBMS_OUTPUT.PUT_LINE('변경 후 컬럼 값 : ' || new);
   SELECT LENGTH(:new.p_pwd)
   INTO pwd_length
   FROM dual;
@@ -54,9 +53,9 @@ BEGIN
   END IF;
 EXCEPTION
   WHEN empty_pwd THEN
-    RAISE_APPLICATION_ERROR(-20003, '암호에 공란은 입력되지 않습니다.');
+    RAISE_APPLICATION_ERROR(-20003, '��й�ȣ 4�ڸ� �̻�');
   WHEN uncorrect_length THEN
-    RAISE_APPLICATION_ERROR(-20002, '암호는 4자리 이상이어야 합니다');
+    RAISE_APPLICATION_ERROR(-20002, '��ȣ�� ������ �Էµ��� �ʽ��ϴ�.');
   WHEN OTHERS THEN
      DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQLCODE) || SQLERRM);
 END;
@@ -71,7 +70,6 @@ DECLARE
     empty_pwd EXCEPTION;
     pwd_length NUMBER;
 BEGIN
-  -- DBMS_OUTPUT.PUT_LINE('변경 후 컬럼 값 : ' || new);
   SELECT LENGTH(:new.m_pwd)
   INTO pwd_length
   FROM dual;
@@ -86,9 +84,9 @@ BEGIN
   END IF;
 EXCEPTION
   WHEN empty_pwd THEN
-    RAISE_APPLICATION_ERROR(-20003, '암호에 공란은 입력되지 않습니다.');
+    RAISE_APPLICATION_ERROR(-20003, '��й�ȣ 4�ڸ� �̻�');
   WHEN uncorrect_length THEN
-    RAISE_APPLICATION_ERROR(-20002, '암호는 4자리 이상이어야 합니다');
+    RAISE_APPLICATION_ERROR(-20002, '��ȣ�� ������ �Էµ��� �ʽ��ϴ�.');
   WHEN OTHERS THEN
      DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQLCODE) || SQLERRM);
 END;

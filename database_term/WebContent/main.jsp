@@ -9,4 +9,4 @@
 <%=session_id%>님 방문을 환영합니다.</td> </tr> 
 <% }
 else {  %> <tr> <td align="center">로그인한 후 사용하세요.</td></tr> <% } %>
- </table> </body> </html>
+ </table> </bodcheck_user_type.sqly> </html>
