@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="conn.ConnectionManager"%>
 <html>
 <head>
 <title>수강신청 사용자 정보 수정</title>
@@ -11,15 +12,10 @@
 		if (session_id == null || type == null)
 			response.sendRedirect("login.jsp");
 
-		String dbdriver = "oracle.jdbc.driver.OracleDriver";
-		Connection myConn = null;
-		Statement stmt = null;
-		Class.forName(dbdriver);
-		String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String user = "db1515386";
-		String passwd = "ss3";
-		myConn = DriverManager.getConnection(dburl, user, passwd);
-		stmt = myConn.createStatement();
+		ConnectionManager conn_manager = new ConnectionManager();
+		Connection myConn = conn_manager.getConnection();
+
+		Statement stmt = myConn.createStatement();
 
 		String mySQL;
 		// out.write(type);
