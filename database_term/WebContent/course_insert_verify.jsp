@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ include file="session.jsp"%>
+<%@ page import="conn.ConnectionManager" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,20 +22,13 @@ int c_unit = Integer.parseInt(request.getParameter("c_unit"));
 int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
 String p_id = session_id;
 
-String dbdriver = "oracle.jdbc.driver.OracleDriver";
-
-String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-String user = "db1512602";
-String passwd = "oracle";
-
-Connection myConn = null;
 Statement stmt = null;
 
 String sMessage = "수정되었습니다.";
 String location = "main.jsp";
 try { 
-	Class.forName(dbdriver); 
-	myConn =  DriverManager.getConnection (dburl, user, passwd);
+	ConnectionManager conn_manager = new ConnectionManager();
+	Connection myConn = conn_manager.getConnection();
 	String mySQL;
 	mySQL = "insert into course values(?, ?, ?, ?, ?, ?)";
 	PreparedStatement pstmt = myConn.prepareStatement(mySQL);
