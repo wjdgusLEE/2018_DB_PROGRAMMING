@@ -26,6 +26,6 @@ if(isStudent){
 	<td align="center"><b><a href="update.jsp">개인 정보 수정</b></td> 
 	<td align="center"><b><a href="delete.jsp">수업 삭제</b></td> 
 	<td align="center"><b><a href="select.jsp">수업 신청 상태 </b></td>
-	<td align="center"><b><a href="select.jsp">계정 생성 </b></td>
+	<td align="center"><b><a href="create_user.jsp">계정 생성 </b></td>
 	</tr> </table>
 <%} %>

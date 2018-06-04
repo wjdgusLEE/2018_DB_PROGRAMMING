@@ -39,7 +39,6 @@ mySQL += "( select c.c_id as id, c.c_id_no as no_id , count(*) as cnt ";
 mySQL += "from enroll e, course c where c.c_id = e.c_id and c.c_id_no = e.c_id_no and e.c_id in ( ";
 mySQL += "select c_id from teach where p_id = '"+session_id+"') group by c.c_id, c.c_id_no), course cmp where cmp.c_id = id and cmp.c_id_no = no_id";
 Statement stmt=conn.createStatement();
-System.out.println(mySQL);
 
 ResultSet result = stmt.executeQuery(mySQL);
 try { 
