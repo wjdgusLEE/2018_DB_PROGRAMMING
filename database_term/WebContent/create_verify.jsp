@@ -12,8 +12,6 @@ String user = "db1515386";
 String passwd = "ss3";
 Connection myConn =  DriverManager.getConnection (dburl, user, passwd);
 
-
-
 String [] sql = {"{ ? = call CheckStudent(?,?)}","{ ? = call CheckProfessor(?,?)}", "{ ? = call CheckManager(?,?)}"};
 int [] type = {-1,-1,-1};
 

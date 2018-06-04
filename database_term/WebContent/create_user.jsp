@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*"  %>
 <%@ include file="top.jsp" %> 
+<%@ page import="conn.ConnectionManager" %>
 <html>
 <head><title>계정 생성</title></head>
 <body>
@@ -19,15 +20,8 @@
 <td>
 <select>
 <% 
-	
-	String dbdriver = "oracle.jdbc.driver.OracleDriver";
-	Connection myConn = null;
-	
-	Class.forName(dbdriver); 
-	String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-	String user = "db1515386";
-	String passwd = "ss3";
-	myConn =  DriverManager.getConnection (dburl, user, passwd);
+	ConnectionManager conn_manager = new ConnectionManager();
+	Connection myConn = conn_manager.getConnection();
 	String mySQL = "select * from major" ;
 	Statement stmt = myConn.createStatement();
 	ResultSet rs = stmt.executeQuery(mySQL);
