@@ -3,9 +3,11 @@ CREATE OR REPLACE TRIGGER TriggerStudent
   UPDATE OR INSERT ON student
   FOR EACH ROW
 DECLARE
-    uncorrect_length EXCEPTION;
+    uncorrect_password_len EXCEPTION;
+    uncorrect_id_len EXCEPTION;
     empty_pwd EXCEPTION;
     pwd_length NUMBER;
+    id_length NUMBER;
 BEGIN
 
   SELECT LENGTH(:new.s_pwd)
@@ -18,13 +20,24 @@ BEGIN
   ELSIF pwd_length = 0 THEN
       RAISE empty_pwd;
   ELSE
-      RAISE uncorrect_length;
+      RAISE uncorrect_password_len;
   END IF;
+  
+  SELECT LENGTH(:new.s_id) 
+  INTO id_length
+  FROM DUAL;
+  
+  IF id_length != 7 THEN
+  	RAISE uncorrect_id_len;
+  END IF;
+ 
 EXCEPTION
   WHEN empty_pwd THEN
     RAISE_APPLICATION_ERROR(-20003, '비밀번호 4자리 이상');
-  WHEN uncorrect_length THEN
+  WHEN uncorrect_password_len THEN
     RAISE_APPLICATION_ERROR(-20002, '암호에 공란은 입력되지 않습니다.');
+  WHEN uncorrect_id_len THEN
+  	RAISE_APPLICATION_ERROR(-20004, '아이디는 숫자 7자리입니다.');
   WHEN OTHERS THEN
      DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQLCODE) || SQLERRM);
 END;
@@ -35,7 +48,8 @@ CREATE OR REPLACE TRIGGER TriggerProfessor
   UPDATE OR INSERT ON  professor
   FOR EACH ROW
 DECLARE
-    uncorrect_length EXCEPTION;
+ 	uncorrect_password_len EXCEPTION;
+    uncorrect_id_len EXCEPTION;
     empty_pwd EXCEPTION;
     pwd_length NUMBER;
 BEGIN
