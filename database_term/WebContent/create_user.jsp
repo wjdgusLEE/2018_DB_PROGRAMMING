@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*"  %>
 <%@ include file="top.jsp" %> 
 <%@ page import="conn.ConnectionManager" %>
+
 <html>
 <head><title>계정 생성</title></head>
 <body>

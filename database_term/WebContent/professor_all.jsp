@@ -4,6 +4,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="conn.ConnectionManager" %>
 
 <!doctype html>
 <html lang="en">
@@ -27,12 +28,8 @@
 	<th><div align="center">신청 상황 </div></th>
 	</tr>  
 <%
-String dbdriver = "oracle.jdbc.driver.OracleDriver";
-Class.forName(dbdriver); 
-String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-String user = "db1515386";
-String passwd = "ss3";
-Connection conn =  DriverManager.getConnection (dburl, user, passwd);
+ConnectionManager conn_manager = new ConnectionManager();
+Connection conn = conn_manager.getConnection();
 
 String mySQL = "select * from ";
 mySQL += "( select c.c_id as id, c.c_id_no as no_id , count(*) as cnt ";
