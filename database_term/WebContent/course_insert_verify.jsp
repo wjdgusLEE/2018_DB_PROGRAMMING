@@ -44,9 +44,21 @@ try {
 	pstmt.setInt(5, c_grade);
 	pstmt.setString(6, c_major);
 	pstmt.executeUpdate();
-	myConn.commit();
+	pstmt.close();
 	
-	
+	mySQL = "insert into teach values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	pstmt = myConn.prepareStatement(mySQL);
+	pstmt.setString(1, p_id);
+	pstmt.setString(2, c_id);
+	pstmt.setInt(3, c_id_no);
+	pstmt.setInt(4, t_year);
+	pstmt.setInt(5, t_semester);
+	pstmt.setString(6, t_day);
+	pstmt.setString(7, t_room);
+	pstmt.setString(8, t_time);
+	pstmt.setInt(9, t_max);
+	pstmt.executeUpdate();
+	pstmt.close();
 	
 	response.sendRedirect("main.jsp");
  } catch(SQLException ex) {
