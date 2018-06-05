@@ -32,6 +32,10 @@
 	<td><div align="center"><input type="text" name="t_time"></div></td>	
 	</tr>
 	<tr>
+	<td><div align="center">강의실</div></td>
+	<td><div align="center"><input type="text" name="t_room"></div></td>	
+	</tr>
+	<tr>
 	<td><div align="center">요일</div></td>
 	<td><div align="center"><input type="text" name="t_day"></div></td>	
 	</tr>	
