@@ -21,8 +21,13 @@ int c_grade = Integer.parseInt(request.getParameter("c_grade"));
 int c_unit = Integer.parseInt(request.getParameter("c_unit"));
 int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
 String p_id = session_id;
-
+String t_time = request.getParameter("t_time");
+String t_day = request.getParameter("t_day");
+int t_year = Integer.parseInt(request.getParameter("t_year"));
+int t_semester = Integer.parseInt(request.getParameter("t_semester"));
+int t_max = Integer.parseInt(request.getParameter("t_max"));
 Statement stmt = null;
+String t_room = request.getParameter("t_room");
 
 String sMessage = "수정되었습니다.";
 String location = "main.jsp";
@@ -38,7 +43,11 @@ try {
 	pstmt.setInt(4, c_unit);
 	pstmt.setInt(5, c_grade);
 	pstmt.setString(6, c_major);
- 
+	pstmt.executeUpdate();
+	myConn.commit();
+	
+	
+	
 	response.sendRedirect("main.jsp");
  } catch(SQLException ex) {
 	  out.write(ex.toString());
