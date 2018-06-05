@@ -27,30 +27,9 @@ FROM course c
 WHERE c.c_id = p_cid AND c.c_id_no = p_cid_no;
 
 IF v_count > 0 THEN
-  
-
-end if;
-
-SELECT c_unit
-INTO nCourseUnit
-FROM course
-WHERE c_id = sCourseId and c_id_no = nCourseIdNo;
-IF (nSumCourseUnit + nCourseUnit > 18)
-THEN
-RAISE too_many_sumCourseUnit;
+  RAISE duplicate_course;
 END IF;
-사용자 정의 예외
-함수 사용
-저장 프로시저 프로그래밍(3) 34
-/* 에러 처리 2 : 동일한 과목 신청
-SELECT COUNT(*)
-INTO nCnt
-FROM enroll
-WHERE s_id = sStudentId and c_id = sCourseId;
-IF (nCnt > 0)
-THEN
-RAISE too_many_courses;
-END IF;
+
 /* 에러 처리 3 : 수강신청 인원 초과 여부 */
 SELECT t_max
 INTO nTeachMax
