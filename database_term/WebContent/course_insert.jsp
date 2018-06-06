@@ -9,6 +9,15 @@
 <title>강의 개설</title>
 </head>
 <body>
+<%
+if (session_id == null) 
+	response.sendRedirect("login.jsp");
+else if (!isProfessor) {
+	%> <script> alert("권한이 없습니다.");  
+		location.href="main.jsp";	</script> <%
+}
+%>
+
 <form method="post" action="course_insert_verify.jsp">
 
   <table width="75%" align="center">   

@@ -11,8 +11,12 @@
 </head>
 <body>
 	<%
-if (session_id == null || type == null) 
+if (session_id == null) 
 	response.sendRedirect("login.jsp");
+else if (!isProfessor) {
+	%> <script> alert("권한이 없습니다.");  
+		location.href="main.jsp";	</script> <%
+}
 
 String c_id = request.getParameter("c_cid");
 String c_name = request.getParameter("c_name"); 
@@ -34,32 +38,17 @@ String location = "main.jsp";
 try { 
 	ConnectionManager conn_manager = new ConnectionManager();
 	Connection myConn = conn_manager.getConnection();
-	String mySQL;
-	mySQL = "insert into course values(?, ?, ?, ?, ?, ?)";
-	PreparedStatement pstmt = myConn.prepareStatement(mySQL);
-	pstmt.setString(1, c_id);
-	pstmt.setInt(2, c_id_no);
-	pstmt.setString(3, c_name);
-	pstmt.setInt(4, c_unit);
-	pstmt.setInt(5, c_grade);
-	pstmt.setString(6, c_major);
-	pstmt.executeUpdate();
-	pstmt.close();
-	
-	mySQL = "insert into teach values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	pstmt = myConn.prepareStatement(mySQL);
-	pstmt.setString(1, p_id);
-	pstmt.setString(2, c_id);
-	pstmt.setInt(3, c_id_no);
-	pstmt.setInt(4, t_year);
-	pstmt.setInt(5, t_semester);
-	pstmt.setString(6, t_day);
-	pstmt.setString(7, t_room);
-	pstmt.setString(8, t_time);
-	pstmt.setInt(9, t_max);
-	pstmt.executeUpdate();
-	pstmt.close();
-	
+	String mySQL = "{? = call checkCourse(?, ?, ?, ?, ?, ?)}";
+	CallableStatement cstmt = myConn.prepareCall(mySQL);
+	cstmt.registerOutParameter(1, Types.INTEGER);
+	cstmt.setString(2, c_id);
+	cstmt.setInt(3, c_id_no);
+	cstmt.setString(4, c_name);
+	cstmt.setInt(5, c_unit);
+	cstmt.setInt(6, c_grade);
+	cstmt.setString(7, c_major);
+	cstmt.execute();
+		
 	response.sendRedirect("main.jsp");
  } catch(SQLException ex) {
 	  out.write(ex.toString());
