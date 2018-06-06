@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
+<%@ page import="java.io.PrintWriter" %>
 <%@ page import="conn.ConnectionManager" %>
-
 <% 
 String userName = request.getParameter("userName"); 
 String userID = request.getParameter("userID"); 
@@ -42,6 +42,10 @@ response.sendRedirect("main.jsp");
   	  else if (ex.getErrorCode() ==20004) sMessage="아이디는 숫자 7자리입니다.";
 	  else sMessage="잠시 후 다시 시도하십시오";
   	  response.sendRedirect("create_user.jsp");
-  	  out.println("<script>alert('"+sMessage+"');</script>");
+	  	PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert(\""+sMessage+"\")");
+		script.println("location.href='create_user.jsp'");
+		script.println("</script>");	 	
 }%>
 </body></html>
