@@ -3,7 +3,7 @@
 <%@ include file="session.jsp"%>
 <%@ page import="conn.ConnectionManager" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,7 +18,7 @@ else if (!isProfessor) {
 		location.href="main.jsp";	</script> <%
 }
 
-String c_id = request.getParameter("c_cid");
+String c_id = request.getParameter("c_id");
 String c_name = request.getParameter("c_name"); 
 String c_major = request.getParameter("c_major");
 int c_grade = Integer.parseInt(request.getParameter("c_grade"));
@@ -38,7 +38,7 @@ String location = "main.jsp";
 try { 
 	ConnectionManager conn_manager = new ConnectionManager();
 	Connection myConn = conn_manager.getConnection();
-	String mySQL = "{? = call checkCourse(?, ?, ?, ?, ?, ?)}";
+	String mySQL = "{? = call checkCourse(?, ?, ?, ?, ?, ?)}";	
 	CallableStatement cstmt = myConn.prepareCall(mySQL);
 	cstmt.registerOutParameter(1, Types.INTEGER);
 	cstmt.setString(2, c_id);
@@ -48,12 +48,28 @@ try {
 	cstmt.setInt(6, c_grade);
 	cstmt.setString(7, c_major);
 	cstmt.execute();
+	int result = cstmt.getInt(1);
+	if (result == 1) {
+		%> <script> alert("개설이 완료되었습니다."); </script> <%
+		response.sendRedirect("professor_all.jsp");
+	}			
+	else if (result == -1) {
+		%> <script> alert("같은 과목이 이미 있습니다."); 
+		history.go(-1);
+		</script>  
+		<%
+	}
+	else {
+		System.out.println(result);
+	}
+	
+	cstmt.close();
 		
-	response.sendRedirect("main.jsp");
  } catch(SQLException ex) {
 	  out.write(ex.toString());
 	  sMessage="잠시 후 다시 시도하십시오";	 ;	  
  }
+
 %>
 
 </body>
