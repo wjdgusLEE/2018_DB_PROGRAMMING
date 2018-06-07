@@ -1,12 +1,12 @@
 
 CREATE OR REPLACE FUNCTION checkCourse(
-p_pid IN VARCHAR2,
 p_cid IN VARCHAR2,
 p_cid_no IN NUMBER,
 p_cname IN VARCHAR2,
 p_cunit IN NUMBER,
 p_cgrade IN NUMBER,
-p_cmajor IN VARCHAR2
+p_cmajor IN VARCHAR2,
+p_pid IN VARCHAR2
 )
 RETURN NUMBER
 IS
@@ -31,12 +31,15 @@ INSERT INTO course values(p_cid, p_cid_no, p_cname, p_cunit, p_cgrade, p_cmajor)
 COMMIT;
 
 result := 1;
+RETURN result;
 
 EXCEPTION
 WHEN duplicate_course THEN
   result := -1;
+  RETURN result;
 WHEN OTHERS THEN
   ROLLBACK;
   result := -1;
+  RETURN result;
 END;
 /
