@@ -33,7 +33,7 @@ int t_max = Integer.parseInt(request.getParameter("t_max"));
 Statement stmt = null;
 String t_room = request.getParameter("t_room");
 
-String sMessage = "수정되었습니다.";
+String message = "개설이 완료되었습니다.";
 String location = "main.jsp";
 try { 
 	ConnectionManager conn_manager = new ConnectionManager();
@@ -50,7 +50,7 @@ try {
 	cstmt.execute();
 	int result = cstmt.getInt(1);
 	if (result == 1) {
-		%> <script> alert("개설이 완료되었습니다."); </script> <%
+		out.println("<script language=javascript>alert('"+ message + "');" + "</script>");
 		response.sendRedirect("professor_all.jsp");
 	}			
 	else if (result == -1) {
@@ -67,7 +67,7 @@ try {
 		
  } catch(SQLException ex) {
 	  out.write(ex.toString());
-	  sMessage="잠시 후 다시 시도하십시오";	 ;	  
+	  message="잠시 후 다시 시도하십시오";
  }
 
 %>
