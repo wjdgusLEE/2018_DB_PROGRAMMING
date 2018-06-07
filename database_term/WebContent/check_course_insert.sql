@@ -5,8 +5,7 @@ p_cid_no IN NUMBER,
 p_cname IN VARCHAR2,
 p_cunit IN NUMBER,
 p_cgrade IN NUMBER,
-p_cmajor IN VARCHAR2,
-p_pid IN VARCHAR2
+p_cmajor IN VARCHAR2
 )
 RETURN NUMBER
 IS
@@ -39,7 +38,7 @@ WHEN duplicate_course THEN
   RETURN result;
 WHEN OTHERS THEN
   ROLLBACK;
-  result :=  -2;
+  result := SQLCODE;
   RETURN result;
 END;
 /
