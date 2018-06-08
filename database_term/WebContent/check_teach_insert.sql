@@ -14,7 +14,7 @@ RETURN RESULT NUMBER
 
 IS
 duplicate_time EXCEPTION; /*같은 pid에 시간 겹침 tsemester tday tyear ttime pid*/
-duplicate_class EXCEPTION; /*시간 강의실 겹침 tsemester tday tyear ttime troom*/
+duplicate_room EXCEPTION; /*시간 강의실 겹침 tsemester tday tyear ttime troom*/
 duplicate_course EXCEPTION; /* 연도 학기 과목번호 분반  tsemester tyear cid cidno*/
 
 v_count NUMBER;
@@ -24,11 +24,11 @@ result := 0;
 
 SELECT COUNT(*)
 INTO v_count
-FROM course c
-WHERE c.c_id = p_cid AND c.c_id_no = p_cid_no;
+FROM teach t
+WHERE t.p_id=p_pid AND t.t_semester=p_tsemester AND t.t_day=p_tday AND t.t_tme=p_ttime;
 
 IF v_count > 0 THEN
-  RAISE duplicate_course;
+  RAISE duplicate_time;
 
 SELECT c_unit
 INTO nCourseUnit
