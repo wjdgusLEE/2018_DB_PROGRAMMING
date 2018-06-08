@@ -23,19 +23,19 @@
 		}
 
 		String c_id = request.getParameter("c_id");
-		String c_name = request.getParameter("c_name");
-		String c_major = request.getParameter("c_major");
-		int c_grade = Integer.parseInt(request.getParameter("c_grade"));
-		int c_unit = Integer.parseInt(request.getParameter("c_unit"));
 		int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
+		String c_name = request.getParameter("c_name");
+		int c_unit = Integer.parseInt(request.getParameter("c_unit"));
+		int c_grade = Integer.parseInt(request.getParameter("c_grade"));
+		String c_major = request.getParameter("c_major");
+
 		String p_id = session_id;
-		String t_time = request.getParameter("t_time");
-		String t_day = request.getParameter("t_day");
 		int t_year = Integer.parseInt(request.getParameter("t_year"));
-		int t_semester = Integer.parseInt(request
-				.getParameter("t_semester"));
-		int t_max = Integer.parseInt(request.getParameter("t_max"));
+		int t_semester = Integer.parseInt(request.getParameter("t_semester"));
+		String t_day = request.getParameter("t_day");
 		String t_room = request.getParameter("t_room");
+		String t_time = request.getParameter("t_time");
+		int t_max = Integer.parseInt(request.getParameter("t_max"));
 
 		final int OK = 1;
 		final int DUP_COURSE = -1;
