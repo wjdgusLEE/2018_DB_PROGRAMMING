@@ -10,7 +10,7 @@ p_troom IN VARCHAR2,
 p_ttime IN VARCHAR2,
 p_tmax IN NUMBER
 )
-RETURN RESULT NUMBER
+RETURN NUMBER
 
 IS
 duplicate_time EXCEPTION; /*같은 pid에 시간 겹침 tsemester tday tyear ttime pid*/
@@ -18,6 +18,7 @@ duplicate_room EXCEPTION; /*시간 강의실 겹침 tsemester tday tyear ttime t
 duplicate_course EXCEPTION; /* 연도 학기 과목번호 분반  tsemester tyear cid cidno*/
 
 v_count NUMBER;
+result NUMBER;
 
 BEGIN
 result := 0;
@@ -26,7 +27,7 @@ result := 0;
 SELECT COUNT(*)
 INTO v_count
 FROM teach
-WHERE p_id=p_pid AND t_semester=p_tsemester AND t_day=p_tday AND t_tme=p_ttime;
+WHERE p_id=p_pid AND t_semester=p_tsemester AND t_day=p_tday AND t_time=p_ttime;
 
 IF v_count > 0 THEN
   RAISE duplicate_time;
@@ -52,7 +53,7 @@ INSERT INTO teach VALUES (p_pid, p_cid, p_cid_no, p_tyear, p_tsemester, p_tday, 
 COMMIT;
 
 result := 1;
-RETRUN result;
+RETURN result;
 
 EXCEPTION
 WHEN duplicate_time THEN
