@@ -46,15 +46,11 @@
 		try {
 			ConnectionManager conn_manager = new ConnectionManager();
 			Connection myConn = conn_manager.getConnection();
-			String mySQL = "{? = call checkCourse(?, ?, ?, ?, ?, ?)}";
+			String mySQL = "{? = call checkCourse(?, ?)}";
 			CallableStatement cstmt = myConn.prepareCall(mySQL);
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.setString(2, c_id);
 			cstmt.setInt(3, c_id_no);
-			cstmt.setString(4, c_name);
-			cstmt.setInt(5, c_unit);
-			cstmt.setInt(6, c_grade);
-			cstmt.setString(7, c_major);
 			cstmt.execute();
 			result = cstmt.getInt(1);
 
@@ -69,7 +65,7 @@
 			}
 			cstmt.close();
 
-			mySQL = "{? = call checkTeach(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			mySQL = "{? = call checkTeach(?, ?, ?, ?, ?, ?, ?, ?)}";
 			cstmt = myConn.prepareCall(mySQL);
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.setString(2, p_id);
@@ -80,14 +76,37 @@
 			cstmt.setString(7, t_day);
 			cstmt.setString(8, t_room);
 			cstmt.setString(9, t_time);
-			cstmt.setInt(10, t_max);
 			cstmt.execute();
 			result = cstmt.getInt(1);
+			cstmt.close();
+
 			if (result == OK) {
-				%>	<script> alert("개설이 완료되었습니다."); window.history.back(); </script>	<%				response.sendRedirect("professor_all.jsp");
-			}
-			else if (result == DUP_COURSE) {
-				%>	<script> alert("같은 과목이 있습니다."); window.history.back(); </script>	<%
+				String sql = "insert into course values(?, ?, ?, ?, ?, ?)";
+				PreparedStatement pstmt = myConn.prepareStatement(sql);
+				pstmt.setString(1, c_id);
+				pstmt.setInt(2, c_id_no);
+				pstmt.setString(3, c_name);
+				pstmt.setInt(4, c_unit);
+				pstmt.setInt(5, c_grade);
+				pstmt.setString(6, c_major);
+				pstmt.executeUpdate();
+				pstmt.close();
+				
+				sql = "insert into teach values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				pstmt = myConn.prepareStatement(sql);
+				pstmt.setString(1, p_id);
+				pstmt.setString(2, c_id);
+				pstmt.setInt(3, c_id_no);
+				pstmt.setInt(4, t_year);
+				pstmt.setInt(5, t_semester);
+				pstmt.setString(6, t_day);
+				pstmt.setString(7, t_room);
+				pstmt.setString(8, t_time);
+				pstmt.setInt(9, t_max);
+				pstmt.executeUpdate();
+				pstmt.close();
+				%>	<script> alert("개설이 완료되었습니다."); </script>	<%
+				response.sendRedirect("professor_all.jsp");
 			}
 			else if (result == DUP_ROOM) {
 				%>	<script> alert("사용되고 있는 강의실입니다."); window.history.back(); </script>	<%
