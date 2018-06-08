@@ -42,8 +42,6 @@
 		final int DUP_ROOM = -2;
 		final int DUP_TIME = -3;
 
-		String message = "개설이 완료되었습니다.";
-		String location = "main.jsp";
 		int result;
 		try {
 			ConnectionManager conn_manager = new ConnectionManager();
@@ -86,9 +84,7 @@
 			cstmt.execute();
 			result = cstmt.getInt(1);
 			if (result == OK) {
-				out.println("<script>alert('"+message+"');</script>");
-//				out.println("<script language=javascript>alert('" + message+ "');" + "</script>");
-				response.sendRedirect("professor_all.jsp");
+				%>	<script> alert("개설이 완료되었습니다."); window.history.back(); </script>	<%				response.sendRedirect("professor_all.jsp");
 			}
 			else if (result == DUP_COURSE) {
 				%>	<script> alert("같은 과목이 있습니다."); window.history.back(); </script>	<%
@@ -102,7 +98,6 @@
 
 		} catch (SQLException ex) {
 			out.write(ex.toString());
-			message = "잠시 후 다시 시도하십시오";
 		}
 	%>
 
