@@ -18,8 +18,8 @@ result := 0;
 
 SELECT COUNT(*)
 INTO v_count
-FROM course c
-WHERE c.c_id = p_cid AND c.c_id_no = p_cid_no;
+FROM course
+WHERE c_id = p_cid AND c_id_no = p_cid_no;
 
 IF v_count > 0 THEN
   RAISE duplicate_course;
