@@ -43,12 +43,6 @@ IF (v_count > 0) THEN
   RAISE duplicate_room;
 END IF;
 
-/* dup course */
-SELECT COUNT(*)
-INTO v_count
-FROM teach
-WHERE t_year=p_tyear AND t_semester=p_tsemester AND c_id=p_cid AND c_id_no=p_cid_no;
-
 INSERT INTO teach VALUES (p_pid, p_cid, p_cid_no, p_tyear, p_tsemester, p_tday, p_troom, p_ttime, p_tmax);
 COMMIT;
 
@@ -56,10 +50,6 @@ result := 1;
 RETURN result;
 
 EXCEPTION
-WHEN duplicate_course THEN
-  ROLLBACK;
-  result := -1;
-  RETURN result;
 WHEN duplicate_room THEN
   ROLLBACK;
   result := -2;
