@@ -7,8 +7,7 @@ p_tyear IN NUMBER,
 p_tsemester IN NUMBER,
 p_tday IN VARCHAR2,
 p_troom IN VARCHAR2,
-p_ttime IN VARCHAR2,
-p_tmax IN NUMBER
+p_ttime IN VARCHAR2
 )
 RETURN NUMBER
 
@@ -42,9 +41,6 @@ WHERE t_semester=p_tsemester AND t_day=p_tday AND t_year=p_tyear AND t_time=p_tt
 IF (v_count > 0) THEN
   RAISE duplicate_room;
 END IF;
-
-INSERT INTO teach VALUES (p_pid, p_cid, p_cid_no, p_tyear, p_tsemester, p_tday, p_troom, p_ttime, p_tmax);
-COMMIT;
 
 result := 1;
 RETURN result;
