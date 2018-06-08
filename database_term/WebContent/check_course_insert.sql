@@ -35,6 +35,7 @@ RETURN result;
 EXCEPTION
 WHEN duplicate_course THEN
   result :=  -1;
+  ROLLBACK;
   RETURN result;
 WHEN OTHERS THEN
   ROLLBACK;
