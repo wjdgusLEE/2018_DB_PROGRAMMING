@@ -22,35 +22,27 @@ v_count NUMBER;
 BEGIN
 result := 0;
 
+/* dup time */
 SELECT COUNT(*)
 INTO v_count
-FROM teach t
-WHERE t.p_id=p_pid AND t.t_semester=p_tsemester AND t.t_day=p_tday AND t.t_tme=p_ttime;
+FROM teach
+WHERE p_id=p_pid AND t_semester=p_tsemester AND t_day=p_tday AND t_tme=p_ttime;
 
 IF v_count > 0 THEN
   RAISE duplicate_time;
+END IF;
 
-SELECT c_unit
-INTO nCourseUnit
-FROM course
-WHERE c_id = sCourseId and c_id_no = nCourseIdNo;
-IF (nSumCourseUnit + nCourseUnit > 18)
-THEN
-RAISE too_many_sumCourseUnit;
-END IF;
-사용자 정의 예외
-함수 사용
-저장 프로시저 프로그래밍(3) 34
-/* 에러 처리 2 : 동일한 과목 신청
+/* dup room*/
 SELECT COUNT(*)
-INTO nCnt
-FROM enroll
-WHERE s_id = sStudentId and c_id = sCourseId;
-IF (nCnt > 0)
-THEN
-RAISE too_many_courses;
+INTO v_count
+FROM teach
+WHERE t_semester=p_tsemester AND t_day=p_tday AND t_year=p_tyear AND t_time=p_ttime AND t_room=p_troom;
+
+IF (v_count > 0) THEN
+  RAISE duplicate_room;
 END IF;
-/* 에러 처리 3 : 수강신청 인원 초과 여부 */
+
+/* dup course */
 SELECT t_max
 INTO nTeachMax
 FROM teach
