@@ -43,45 +43,16 @@ IF (v_count > 0) THEN
 END IF;
 
 /* dup course */
-SELECT t_max
-INTO nTeachMax
-FROM teach
-WHERE t_year= nYear and t_semester = nSemester
-and c_id = sCourseId and c_id_no= nCourseIdNo;
 SELECT COUNT(*)
-INTO nCnt
-FROM enroll
-WHERE e_year = nYear and e_semester = nSemester
-and c_id = sCourseId and c_id_no = nCourseIdNo;
-IF (nCnt >= nTeachMax)
-THEN
-RAISE too_many_students;
-END IF;
-/* 에러 처리 4 : 신청한 과목들 시간 중복 여부 */
-SELECT COUNT(*)
-INTO nCnt
-FROM
-(
-SELECT t_time
+INTO v_count
 FROM teach
-WHERE t_year=nYear and t_semester = nSemester and
-c_id = sCourseId and c_id_no = nCourseIdNo
-INTERSECT
-SELECT t.t_time
-FROM teach t, enroll e
-WHERE e.s_id=sStudentId and e.e_year=nYear and e.e_semester = nSemester
-and
-t.t_year=nYear and t.t_semester = nSemester and
-e.c_id=t.c_id and e.c_id_no=t.c_id_no
-);
-IF (nCnt > 0)
-THEN
-RAISE duplicate_time;
-END IF;
-INSERT INTO enroll(S_ID,C_ID,C_ID_NO,E_YEAR,E_SEMESTER)
-VALUES (sStudentId, sCourseId, nCourseIdNo, nYear, nSemester);
+WHERE t_year=p_tyear AND t_semester=p_tsemester AND c_id=p_cid AND c_id_no=p_cid_no;
+
+INSERT INTO teach VALUES (p_pid, p_cid, p_cid_no, p_tyear, p_tsemester, p_tday, p_troom, p_ttime, p_tmax);
 COMMIT;
-result := '수강신청 등록이 완료되었습니다.';
+
+result := 1;
+
 EXCEPTION
 WHEN too_many_sumCourseUnit THEN
 result := '최대학점을 초과하였습니다';
