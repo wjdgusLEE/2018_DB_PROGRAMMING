@@ -56,11 +56,11 @@ result := 1;
 RETURN result;
 
 EXCEPTION
-WHEN duplicate_time THEN
+WHEN duplicate_course THEN
   result := -1;
 WHEN duplicate_room THEN
   result := -2;
-WHEN duplicate_course THEN
+WHEN duplicate_time THEN
   result := -3;
 WHEN OTHERS THEN
   ROLLBACK;
