@@ -69,7 +69,7 @@
 			}
 			cstmt.close();
 
-			mySQL = "{? = call checkCourse(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			mySQL = "{? = call checkTeach(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 			cstmt = myConn.prepareCall(mySQL);
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.setString(2, p_id);
