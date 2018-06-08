@@ -63,13 +63,8 @@
 			if (result == OK)
 				;
 			else if (result == DUP_COURSE) {
-	%>
-	<script>
-		alert("같은 과목이 이미 있습니다.");
-		history.go(-1);
-	</script>
-	<%
-		return;
+			%>	<script> alert("같은 과목이 있습니다."); history.go(-1); </script>	<%
+				return;
 			} else {
 				System.out.println(result);
 				return;
@@ -91,9 +86,17 @@
 			cstmt.execute();
 			result = cstmt.getInt(1);
 			if (result == OK) {
-				out.println("<script language=javascript>alert('" + message
-						+ "');" + "</script>");
+				out.println("<script language=javascript>alert('" + message+ "');" + "</script>");
 				response.sendRedirect("professor_all.jsp");
+			}
+			else if (result == DUP_COURSE) {
+				%>	<script> alert("같은 과목이 있습니다."); history.go(-1); </script>	<%
+			}
+			else if (result == DUP_ROOM) {
+				%>	<script> alert("사용되고 있는 강의실입니다."); history.go(-1); </script>	<%
+			}
+			else if (result == DUP_TIME) {
+				%>	<script> alert("이 시간에 강의가 있습니다."); history.go(-1); </script>	<%
 			}
 
 		} catch (SQLException ex) {
