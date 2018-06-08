@@ -58,10 +58,13 @@ RETURN result;
 EXCEPTION
 WHEN duplicate_course THEN
   result := -1;
+  ROLLBACK;
 WHEN duplicate_room THEN
   result := -2;
+  ROLLBACK;
 WHEN duplicate_time THEN
   result := -3;
+  ROLLBACK;
 WHEN OTHERS THEN
   ROLLBACK;
   result := SQLCODE;
