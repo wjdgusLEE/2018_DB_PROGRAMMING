@@ -26,7 +26,7 @@ result := 0;
 SELECT COUNT(*)
 INTO v_count
 FROM teach
-WHERE p_id=p_pid AND t_semester=p_tsemester AND t_day=p_tday AND t_time=p_ttime;
+WHERE p_id=p_pid AND t_year=p_tyear AND t_semester=p_tsemester AND t_day=p_tday AND t_time=p_ttime;
 
 IF v_count > 0 THEN
   RAISE duplicate_time;
