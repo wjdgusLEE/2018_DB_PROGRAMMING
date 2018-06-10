@@ -21,6 +21,6 @@
 		<%
 			}
 		%>
-	</table>
-	</bodcheck_user_type.sqly>
+	</table> 
+</body> 
 </html>
