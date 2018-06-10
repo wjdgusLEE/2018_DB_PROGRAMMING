@@ -11,7 +11,7 @@ int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
 ConnectionManager conn_manager = new ConnectionManager();
 Connection conn = conn_manager.getConnection();
 
-String sql = "{? = call checkDelete(?, ?)}";
+String sql = "{? = call checkCourseDelete(?, ?)}";
 CallableStatement cstmt = conn.prepareCall(sql);
 cstmt.registerOutParameter(1, Types.INTEGER);
 cstmt.setString(2, c_id);
