@@ -26,60 +26,62 @@ sql += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no"
 
 Statement stmt = conn.createStatement();
 
-ResultSet result = stmt.executeQuery(sql);
+ResultSet rs = stmt.executeQuery(sql);
 
+try {
+	if (rs!=null && rs.next()) {
 %>
 
-<form method="post" action="course_insert_verify.jsp">
+<form method="post" action="course_update_verify.jsp">
 
   <table width="75%" align="center">   
   	<tr>
 	<td><div align="center">과목번호</div></td>
-	<td><div align="center"><input type="text" name="c_id" required></div></td>
+	<td><div align="center"><input type="text" name="c_id" value=<%= rs.getString("id") %> required></div></td>
 	</tr>	
 	<tr>
 	<td><div align="center">강의명</div></td>
-	<td><div align="center"><input type="text" name="c_name" required></div></td>
+	<td><div align="center"><input type="text" name="c_name" value=<%= rs.getString("name") %> required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">분반</div></td>
-	<td><div align="center"><input type="text" name="c_id_no" required></div></td>
+	<td><div align="center"><input type="text" name="c_id_no" value=<%= rs.getInt("id_no") %> required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">전공</div></td>
-	<td><div align="center"><input type="text" name="c_major" required></div></td>
+	<td><div align="center"><input type="text" name="c_major" value=<%= rs.getString("major") %> required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">시간</div></td>
-	<td><div align="center"><input type="text" name="t_time" required></div></td>	
+	<td><div align="center"><input type="text" name="t_time" value=<%= rs.getString("time") %> required></div></td>	
 	</tr>
 	<tr>
 	<td><div align="center">강의실</div></td>
-	<td><div align="center"><input type="text" name="t_room" required></div></td>	
+	<td><div align="center"><input type="text" name="t_room" value=<%= rs.getString("room") %> required></div></td>	
 	</tr>
 	<tr>
 	<td><div align="center">요일</div></td>
-	<td><div align="center"><input type="text" name="t_day" required></div></td>	
+	<td><div align="center"><input type="text" name="t_day" value=<%= rs.getString("day") %> required></div></td>	
 	</tr>	
 	<tr>
 	<td><div align="center">학년</div></td>
-	<td><div align="center"><input type="text" name="c_grade" required></div></td>
+	<td><div align="center"><input type="text" name="c_grade" value=<%= rs.getInt("grade") %> required></div></td>
 	</tr>		
 	<tr>
 	<td><div align="center">연도</div></td>
-	<td><div align="center"><input type="text" name="t_year" required></div></td>
+	<td><div align="center"><input type="text" name="t_year" value=<%= rs.getInt("year") %> required></div></td>
 	</tr>			
 	<tr>
 	<td><div align="center">학기</div></td>
-	<td><div align="center"><input type="text" name="t_semester" required></div></td>
+	<td><div align="center"><input type="text" name="t_semester" value=<%= rs.getString("semester") %> required></div></td>
 	</tr>		
 	<tr>
 	<td><div align="center">학점</div></td>
-	<td><div align="center"><input type="text" name="c_unit" required></div></td>
+	<td><div align="center"><input type="text" name="c_unit" value=<%= rs.getInt("unit") %> required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">정원</div></td>
-	<td><div align="center"><input type="text" name="t_max"></div></td>
+	<td><div align="center"><input type="text" value=<%= rs.getInt("max") %> name="t_max"></div></td>
 	</tr>
   </table>
   <div class="clearfix" align="center">
@@ -88,6 +90,13 @@ ResultSet result = stmt.executeQuery(sql);
  
   </div>
   </FORM>
-
+<%	}
+} catch (SQLException ex) {
+	System.out.print(ex);
+} finally {
+	rs.close();
+	stmt.close();
+}
+%>
 </body>
 </html>
