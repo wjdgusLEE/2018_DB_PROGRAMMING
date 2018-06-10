@@ -26,6 +26,8 @@ ELSE
   WHERE c_id = p_cid AND c_id_no=p_cid_no;
 END IF;
 
+COMMIT;
+
 result := 1;
 RETURN result;
 
