@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="top.jsp" %>
  <HTML>
   <head><title>수강신청 시스템 로그인</title></head> 
   <BODY> 
