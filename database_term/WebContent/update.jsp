@@ -83,5 +83,7 @@
 	        		<input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;"/>
 
 	      		</div>
+	 <input type="hidden" name="userType" value=<%=searchType%>>
+	 <input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
   </BODY></HTML>

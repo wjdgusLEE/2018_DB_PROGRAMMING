@@ -11,6 +11,8 @@ String userName = request.getParameter("userName");
 String userPassword = request.getParameter("userPassword");
 String userEmail = request.getParameter("userEmail"); 
 String userMajor = request.getParameter("userMajor");
+String userType = request.getParameter("userType");
+String userID = request.getParameter("userID");
 
 ConnectionManager conn_manager = new ConnectionManager();
 Connection myConn = conn_manager.getConnection();
@@ -23,11 +25,11 @@ try {
 String mySQL;
 out.write(type+" "+session_id+" "+userPassword+" "+userName+" "+userEmail);
 if (isManager)
- 	mySQL = "update "+ type +" set m_pwd='" +userPassword+"', m_name='"+userName+"', m_email='"+userEmail+"' where m_id = '"+session_id +"'";
+ 	mySQL = "update "+ userType +" set m_pwd='" +userPassword+"', m_name='"+userName+"', m_email='"+userEmail+"' where m_id = '"+userID +"'";
 else if (isStudent)
- 	mySQL = "update "+ type +" set s_pwd='" +userPassword+"', s_name='"+userName+"', s_email='"+userEmail+"', s_major='"+userMajor+"' where s_id = '"+session_id +"'";
+ 	mySQL = "update "+ userType +" set s_pwd='" +userPassword+"', s_name='"+userName+"', s_email='"+userEmail+"', s_major='"+userMajor+"' where s_id = '"+userID +"'";
 else
- 	mySQL = "update "+ type +" set p_pwd='" +userPassword+"', p_name='"+userName+"', p_email='"+userEmail+"', p_major='"+userMajor+"' where p_id = '"+session_id +"'";
+ 	mySQL = "update "+ userType +" set p_pwd='" +userPassword+"', p_name='"+userName+"', p_email='"+userEmail+"', p_major='"+userMajor+"' where p_id = '"+userID +"'";
 
 out.write(mySQL);
 stmt = myConn.createStatement();
@@ -42,7 +44,7 @@ response.sendRedirect("main.jsp");
 <script>
 	alert(<%=sMessage%>);
 </script>
-<%response.sendRedirect("create_user.jsp");
+<%response.sendRedirect("update.jsp");
  }
 %>
 </body></html>

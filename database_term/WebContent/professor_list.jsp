@@ -17,7 +17,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
   </head>
-  <body>d
+  <body>
+  
+   <button id="deleteBttn" onclick="location.href='professor_delete.jsp'">삭제</button> 
+ <button id="editBttn" onclick="location.href='professor_edit.jsp'">수정</button> 
 <table width="75%" align="center" border>   
 	<tr>
 	<th><div align="center">아이디</div></th><th><div align="center">이름</div></th>
