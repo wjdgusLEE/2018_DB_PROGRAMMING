@@ -115,6 +115,8 @@
 				%>	<script> alert("이 시간에 강의가 있습니다."); window.history.back(); </script>	<%
 			}
 
+
+			myConn.close();
 		} catch (SQLException ex) {
 			out.write(ex.toString());
 		}
