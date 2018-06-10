@@ -89,7 +89,7 @@ try {
 					<%=result.getString("day")%>
 				</div></td>
 			<td><div align="center">
-					<%=result.getInt("time")%>
+					<%=result.getString("time")%>
 				</div></td>
 			<td><div align="center">
 					<%=result.getInt("grade")%>
