@@ -21,6 +21,8 @@ int result = cstmt.getInt(1);
 if (result != 1)
 	System.out.print(result);
 
+cstmt.close();
+conn.close();
 response.sendRedirect("professor_all.jsp");
 
 %>
