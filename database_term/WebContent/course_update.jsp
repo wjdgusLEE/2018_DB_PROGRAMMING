@@ -20,9 +20,12 @@ else if (!isProfessor) {
 ConnectionManager conn_manager = new ConnectionManager();
 Connection conn = conn_manager.getConnection();
 
+String c_id = request.getParameter("c_id");
+int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
+
 String sql = "select t.c_id as id, t.c_id_no as id_no, c.c_name as name, c.c_unit as unit, c.c_grade as grade, c.c_major as major, t.t_year as year, t.t_semester as semester, t.t_day as day, t.t_room as room, t.t_time as time, t.t_max as max ";
 sql += "from course c, teach t ";
-sql += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no";
+sql += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no AND c.c_id='"+c_id+"' AND c.c_id_no="+c_id_no;
 
 Statement stmt = conn.createStatement();
 
@@ -38,10 +41,6 @@ try {
 	<tr>
 	<td><div align="center">강의명</div></td>
 	<td><div align="center"><input type="text" name="c_name" value=<%= rs.getString("name") %> required></div></td>
-	</tr>
-	<tr>
-	<td><div align="center">분반</div></td>
-	<td><div align="center"><input type="text" name="c_id_no" value=<%= rs.getInt("id_no") %> required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">전공</div></td>
@@ -81,6 +80,7 @@ try {
 	</tr>
   </table>
   <input type="hidden" value=<%= rs.getString("id")%> name="c_id">
+  <input type="hidden" name="c_id_no" value=<%= rs.getInt("id_no") %> required>
   <div class="clearfix" align="center">
   <input type="reset" value="취소">
   <input type="submit"  value="등록"> 
