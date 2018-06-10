@@ -71,8 +71,8 @@ else if (!isProfessor) {
 	</tr>
   </table>
   <div class="clearfix" align="center">
-  <input type="submit"  value="등록">
   <input type="reset" value="취소">
+  <input type="submit"  value="등록">
  
   </div>
   </FORM>

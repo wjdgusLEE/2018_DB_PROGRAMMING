@@ -20,7 +20,7 @@ else if (!isProfessor) {
 ConnectionManager conn_manager = new ConnectionManager();
 Connection conn = conn_manager.getConnection();
 
-String sql = "select t.c_id as id, t.c_id_no as id_no, c.c_name as name, c.c_unit as unit, c.c_grade as grade, c.c_major as major, t.t_year as year, t.t_semester as semester, t.t_day as day, t.t_room as room, t.t_time as time, t.t_max as max ";
+String sql = "select t.c_id_no as id_no, c.c_name as name, c.c_unit as unit, c.c_grade as grade, c.c_major as major, t.t_year as year, t.t_semester as semester, t.t_day as day, t.t_room as room, t.t_time as time, t.t_max as max ";
 sql += "from course c, teach t ";
 sql += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no";
 
@@ -35,10 +35,6 @@ try {
 <form method="post" action="course_update_verify.jsp">
 
   <table width="75%" align="center">   
-  	<tr>
-	<td><div align="center">과목번호</div></td>
-	<td><div align="center"><input type="text" name="c_id" value=<%= rs.getString("id") %> required></div></td>
-	</tr>	
 	<tr>
 	<td><div align="center">강의명</div></td>
 	<td><div align="center"><input type="text" name="c_name" value=<%= rs.getString("name") %> required></div></td>
@@ -85,9 +81,8 @@ try {
 	</tr>
   </table>
   <div class="clearfix" align="center">
-  <input type="submit"  value="등록">
   <input type="reset" value="취소">
- 
+  <input type="submit"  value="등록"> 
   </div>
   </FORM>
 <%	}
@@ -96,6 +91,7 @@ try {
 } finally {
 	rs.close();
 	stmt.close();
+	conn.close();
 }
 %>
 </body>
