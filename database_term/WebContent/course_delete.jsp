@@ -11,6 +11,18 @@ int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
 ConnectionManager conn_manager = new ConnectionManager();
 Connection conn = conn_manager.getConnection();
 
+String sql = "{? = call checkDelete(?, ?)}";
+CallableStatement cstmt = conn.prepareCall(sql);
+cstmt.registerOutParameter(1, Types.INTEGER);
+cstmt.setString(2, c_id);
+cstmt.setInt(3, c_id_no);
+cstmt.execute();
+int result = cstmt.getInt(1);
+if (result != 1)
+	System.out.print(result);
+
+response.sendRedirect("professor_all.jsp");
+
 %>
 
 <%= c_id%>
