@@ -47,6 +47,7 @@
 		<th><div align="center">요일</div></th>
 		<th><div align="center">시간</div></th>
 		<th><div align="center">정원</div></th>
+		<th colspan="2"><div align="center">관리</div></th>
 	</tr>  
 <%
 ConnectionManager conn_manager = new ConnectionManager();
@@ -93,6 +94,11 @@ try {
 			<td><div align="center">
 					<%=result.getInt("grade")%>
 				</div></td>
+			<td><div align="center">
+			<a href="course_delete.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">삭제</a>
+			</td>
+			<td><div align="center">
+			<a href="course_update.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">수정</a>
 			</td>
 		</tr>
 		<% }	
