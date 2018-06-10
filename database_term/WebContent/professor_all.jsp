@@ -111,7 +111,13 @@ try {
 	script.println("</script>");	 		
 }catch(Exception ex) {
 	System.out.println(ex.toString());
-} %>
+} finally {
+	result.close();
+	stmt.close();
+	conn.close();
+}
+
+%>
   </table>
 </body>
 </html>
