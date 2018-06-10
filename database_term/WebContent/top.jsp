@@ -16,8 +16,6 @@ if(isStudent){
 	<tr> <td align="center"><b><%=log%></b></td> 
 	<td align="center"><b><a href="update.jsp">개인 정보 수정</b></td> 
 	<td align="center"><b><a href="course_insert.jsp">강의 개설</b></td>
-	<td align="center"><b><a href="course_delete.jsp">강의 삭제</b></td> 
-	<td align="center"><b><a href="course_update.jsp">강의 정보 수정</b></td>
 	<td align="center"><b><a href="professor_all.jsp">강의 개설 현황 </b></td>
 	</tr> </table>
 <%} else { %>
