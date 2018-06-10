@@ -15,10 +15,10 @@ if(isStudent){
 	<table width="75%" align="center" bgcolor="#FFFF99" border> 
 	<tr> <td align="center"><b><%=log%></b></td> 
 	<td align="center"><b><a href="update.jsp">개인 정보 수정</b></td> 
-	<td align="center"><b><a href="course_insert.jsp">수업 개설</b></td>
-	<td align="center"><b><a href="course_delete.jsp">수업 삭제</b></td> 
-	<td align="center"><b><a href="course_update.jsp">수업 업데이트</b></td>
-	<td align="center"><b><a href="professor_all.jsp">수업 개설 상태 </b></td>
+	<td align="center"><b><a href="course_insert.jsp">강의 개설</b></td>
+	<td align="center"><b><a href="course_delete.jsp">강의 삭제</b></td> 
+	<td align="center"><b><a href="course_update.jsp">강의 정보 수정</b></td>
+	<td align="center"><b><a href="professor_all.jsp">강의 개설 상태 </b></td>
 	</tr> </table>
 <%} else { %>
 	<table width="75%" align="center" bgcolor="#FFFF99" border> 

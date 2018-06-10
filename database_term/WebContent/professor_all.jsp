@@ -33,7 +33,7 @@
   
 <table width="75%" align="center" border>   
 	<tr>
-	<th><div align="center">강의 번호</div></th><th><div align="center">분반 번호</div></th>
+	<th><div align="center">과목번호</div></th><th><div align="center">분반</div></th>
 	<th><div align="center">강의명</div></th><th><div align="center">전공</div></th>
 	<th><div align="center">학점</div></th><th><div align="center">학년</div></th>
 	<th><div align="center">학기</div></th><th><div align="center">요일</div></th>
