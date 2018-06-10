@@ -1,5 +1,5 @@
 
-CREATE OR REPLACE FUNCTION checkDelete(
+CREATE OR REPLACE FUNCTION checkCourseDelete(
 p_cid IN VARCHAR2,
 p_cid_no IN NUMBER
 )
