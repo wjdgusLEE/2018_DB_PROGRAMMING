@@ -1,36 +1,44 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*"  %>
+<%@ page import="conn.ConnectionManager" %> 
+<%@ page import="java.io.PrintWriter" %>
+
+<%@ include file="session.jsp" %>
 <html>
 <head><title>수강신청 사용자 정보 수정</title></head>
 <body>
 
-<%@ include file="session.jsp" %>
 <% 
-	if (session_id==null||type == null) response.sendRedirect("login.jsp");
+	if (session_id==null||type == null){ 
+		PrintWriter script = response.getWriter();
+		script.println("location.href='main.jsp'");
+	}
 
-	String dbdriver = "oracle.jdbc.driver.OracleDriver";
-	Connection myConn = null;
-	Statement stmt = null;
-		Class.forName(dbdriver); 
-		String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String user = "db1515386";
-		String passwd = "ss3";
-		myConn =  DriverManager.getConnection (dburl, user, passwd);
-		stmt = myConn.createStatement();
+	String searchId = request.getParameter("editID");
+	String searchType = request.getParameter("editType");
+	searchId = searchId.substring(0, searchId.length()-1);
+	if (searchId==null) {
+		searchId = session_id;
+		searchType = type;
+		//out.write(type);
+	}
 
-		String mySQL;
-		// out.write(type);
-		if (isManager)
-		 	mySQL = "select m_name, m_pwd, m_email from "+ type +" where m_id='" + session_id + "'" ;
-		else if (isStudent)
-		 	mySQL = "select s_name, s_pwd, s_email, s_major from "+ type +" where s_id='" + session_id + "'" ;
-		else
-		 	mySQL = "select p_name, p_pwd, p_email, p_major from "+ type +" where p_id='" + session_id + "'" ;
+	out.write(searchId);
+	ConnectionManager conn_manager = new ConnectionManager();
+	Connection conn = conn_manager.getConnection();
+	Statement stmt = conn.createStatement();
+	String [] userInfo = null;
+	try {
+		String mySQL = null;
+		if(searchType.equals("manager"))
+			mySQL = "select m_name, m_pwd, m_email from "+ searchType +" where m_id='" + searchId + "'" ; 
+		else if(searchType.equals("student"))
+				 mySQL = "select s_name, s_pwd, s_email, s_major from "+ searchType +" where s_id='" + searchId + "'" ; 
+		else if(searchType.equals("professor")) 
+			mySQL = "select p_name, p_pwd, p_email, p_major from "+ searchType +" where p_id='" + searchId + "'" ; 
 		
 		ResultSet result = stmt.executeQuery(mySQL);
-
-		String [] userInfo = new String[4];
-		try {
+		userInfo = new String[4];
 		if( result!=null && result.next()) {
 			userInfo[0] = result.getString(1);
 			userInfo[1] = result.getString(2);
@@ -41,7 +49,8 @@
 	}catch(Exception ex) {
 		System.out.println(ex.toString());
 	}finally {stmt.close();
-	myConn.close();}
+	conn.close();
+}
 %>
 <form method="post" action="update_verify.jsp">
 
@@ -67,8 +76,11 @@
 	</tr>		
 	
   </table>
+  
   <div class="clearfix">
-	        		<input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;">
+  					<button type="cancel"  value="update" onclick="location.href='main.jsp'"> 취소 </button> 
+  					
+	        		<input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;"/>
 
 	      		</div>
   </FORM>
