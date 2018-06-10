@@ -61,9 +61,8 @@ Statement stmt = conn.createStatement();
 ResultSet result = stmt.executeQuery(mySQL);
 try { 
 	while (result != null && result.next())  {
-		System.out.println(result.getString("id"));
 		%>
-				<tr>
+			<tr>
 			<td><div align="center">
 					<%=result.getString("id")%>
 				</div></td>
@@ -103,7 +102,6 @@ try {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert(\"개설한 강의가 없습니다.\")");
-		//script.println("location.href='main.jsp'");
 	script.println("</script>");	 		
 }catch(Exception ex) {
 	System.out.println(ex.toString());
