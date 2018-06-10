@@ -40,8 +40,10 @@
 		<th><div align="center">과목번호</div></th>
 		<th><div align="center">분반</div></th>
 		<th><div align="center">강의명</div></th>
+		<th><div align="center">강의실</div></th>
 		<th><div align="center">전공</div></th>
 		<th><div align="center">학점</div></th>
+		<th><div align="center">연도</div></th>
 		<th><div align="center">학년</div></th>
 		<th><div align="center">학기</div></th>
 		<th><div align="center">요일</div></th>
@@ -74,11 +76,17 @@ try {
 					<%=result.getString("name")%>
 				</div></td>
 			<td><div align="center">
+					<%=result.getString("room")%>
+				</div></td>
+			<td><div align="center">
 					<%=result.getString("major")%>
 				</div></td>
 			<td><div align="center">
 					<%=result.getInt("unit")%>
 				</div></td>
+			<td><div align="center">
+					<%=result.getInt("year")%>
+				</div></td>				
 			<td><div align="center">
 					<%=result.getInt("grade")%>
 				</div></td>
@@ -92,7 +100,7 @@ try {
 					<%=result.getString("time")%>
 				</div></td>
 			<td><div align="center">
-					<%=result.getInt("grade")%>
+					<%=result.getInt("max")%>
 				</div></td>
 			<td><div align="center">
 			<a href="course_delete.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">삭제</a>
