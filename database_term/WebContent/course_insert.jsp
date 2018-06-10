@@ -2,7 +2,7 @@
 <%@ page import="java.sql.*" %> 
 <%@ include file="session.jsp" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -23,54 +23,57 @@ else if (!isProfessor) {
   <table width="75%" align="center">   
   	<tr>
 	<td><div align="center">과목번호</div></td>
-	<td><div align="center"><input type="text" name="c_id"></div></td>
+	<td><div align="center"><input type="text" name="c_id" required></div></td>
 	</tr>	
 	<tr>
 	<td><div align="center">강의명</div></td>
-	<td><div align="center"><input type="text" name="c_name" ></div></td>
+	<td><div align="center"><input type="text" name="c_name" required></div></td>
 	</tr>
+	<tr>
 	<td><div align="center">분반</div></td>
-	<td><div align="center"><input type="text" name="c_id_no" ></div></td>
+	<td><div align="center"><input type="text" name="c_id_no" required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">전공</div></td>
-	<td><div align="center"><input type="text" name="c_major"></div></td>
+	<td><div align="center"><input type="text" name="c_major" required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">시간</div></td>
-	<td><div align="center"><input type="text" name="t_time"></div></td>	
+	<td><div align="center"><input type="text" name="t_time" required></div></td>	
 	</tr>
 	<tr>
 	<td><div align="center">강의실</div></td>
-	<td><div align="center"><input type="text" name="t_room"></div></td>	
+	<td><div align="center"><input type="text" name="t_room" required></div></td>	
 	</tr>
 	<tr>
 	<td><div align="center">요일</div></td>
-	<td><div align="center"><input type="text" name="t_day"></div></td>	
+	<td><div align="center"><input type="text" name="t_day" required></div></td>	
 	</tr>	
 	<tr>
 	<td><div align="center">학년</div></td>
-	<td><div align="center"><input type="text" name="c_grade"></div></td>
+	<td><div align="center"><input type="text" name="c_grade" required></div></td>
 	</tr>		
 	<tr>
 	<td><div align="center">연도</div></td>
-	<td><div align="center"><input type="text" name="t_year"></div></td>
+	<td><div align="center"><input type="text" name="t_year" required></div></td>
 	</tr>			
 	<tr>
 	<td><div align="center">학기</div></td>
-	<td><div align="center"><input type="text" name="t_semester"></div></td>
+	<td><div align="center"><input type="text" name="t_semester" required></div></td>
 	</tr>		
 	<tr>
 	<td><div align="center">학점</div></td>
-	<td><div align="center"><input type="text" name="c_unit"></div></td>
+	<td><div align="center"><input type="text" name="c_unit" required></div></td>
 	</tr>
 	<tr>
 	<td><div align="center">정원</div></td>
 	<td><div align="center"><input type="text" name="t_max"></div></td>
 	</tr>
   </table>
-  <div class="clearfix">
-  <input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;">
+  <div class="clearfix" align="center">
+  <input type="submit"  value="등록">
+  <input type="reset" value="취소">
+ 
   </div>
   </FORM>
 
