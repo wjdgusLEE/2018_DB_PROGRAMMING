@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*"  %>
 <%@ include file="../top.jsp" %> 
 <%@ page import="conn.ConnectionManager" %>
@@ -25,7 +25,7 @@
 
 <tr id="hidden" style="display:table-row">
 <td>학년</td>
-<td> <select name="grade">
+<td> <select name="userGrade">
 <option value="1">1</option>
 <option value="2">2</option>
 <option value="3">3</option>
@@ -56,9 +56,9 @@
 <tr><td>이메일</td><td><input type="text" name="userEmail" placeholder="xxxx@xxxxx.com "></td></tr>
 </table>
 
-<input type="submit" value="create"  style="width:100%; margin-top : 10px; height : 3em;">
+<input type="submit" value="create">
 </form>
-
+<button onclick="location.href='main.jsp'">cancel</button> 
 <script>
 function doDisplay(radio) {
 	var hidden = document.getElementById('hidden');
