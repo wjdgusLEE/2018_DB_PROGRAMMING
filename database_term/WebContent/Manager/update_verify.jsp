@@ -63,7 +63,7 @@ conn.commit();
 } finally{
 	pstmt.close();
 	conn.close();
-	//response.sendRedirect(direction);
+	response.sendRedirect(direction);
  }
 %>
 </body></html>
