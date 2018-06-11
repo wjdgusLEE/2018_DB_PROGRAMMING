@@ -19,37 +19,51 @@ String userID = request.getParameter("userID");
 ConnectionManager conn_manager = new ConnectionManager();
 Connection conn = conn_manager.getConnection();
 
-Statement stmt = null;
+PreparedStatement pstmt = null;
 
 String sMessage = "수정되었습니다.";
-String location = "main.jsp";
-out.write(userName);
-try { 
-String mySQL;
-if (userType.equals("manager"))
- 	mySQL = "update "+ userType +" set m_pwd='" +userPassword+"', m_name='"+userName+"', m_email='"+userEmail+"' where m_id = '"+userID +"'";
-else if (userType.equals("student"))
- 	mySQL = "update "+ userType +" set s_pwd='" +userPassword+"', s_name='"+userName+"', s_email='"+userEmail+"', s_major='"+userMajor+"' where s_id = '"+userID +"'";
-else
- 	mySQL = "update "+ userType +" set p_pwd='" +userPassword+"', p_name='"+userName+"', p_email='"+userEmail+"', p_major='"+userMajor+"' where p_id = '"+userID +"'";
+String direction = null; 
 
-//out.write(mySQL);
-stmt = conn.createStatement();
-stmt.executeUpdate(mySQL);
-String loc_list = "../"+userType+"_list.jsp";
-//response.sendRedirect(loc_list);
+
+try { 
+String mySQL = null;
+if (userType.equals("manager"))
+ 	mySQL = "update "+ userType +" set m_pwd=?, m_name=?, m_email=? where m_id = ?";
+
+else if (userType.equals("student"))
+	mySQL ="update "+ userType +" set s_pwd=?, s_name=?, s_email=?, s_major=? where s_id = ?";
+
+ else 
+	mySQL ="update "+ userType +" set p_pwd=?, p_name=?, p_email=?, p_major=? where p_id = ?";
+
+
+pstmt = conn.prepareStatement(mySQL);
+pstmt.setString(1, userPassword);
+pstmt.setString(2, userName);
+pstmt.setString(3, userEmail);
+if(!userType.equals("manager")){
+	pstmt.setString(4, userMajor);
+	pstmt.setString(5, userID);
+}
+else 
+	pstmt.setString(4, userID);
+
+pstmt.executeUpdate();
+out.write(pstmt.toString());
+direction = "../"+userType+"_list.jsp";
 conn.commit();
+
  } catch(SQLException ex) {
 	  out.write(ex.toString());
    	  if (ex.getErrorCode() == 20002) sMessage="암호는 4자리 이상이어야 합니다.";
 	  else if (ex.getErrorCode() == 20003) sMessage="암호에 공란은 입력되지 않습니다.";
 	  else sMessage="잠시 후 다시 시도하십시오";
    	  conn.rollback();
-%>
-<script>
-	alert(<%=sMessage%>);
-</script>
-<%response.sendRedirect("update.jsp");
+   	  direction = "update.jsp";
+} finally{
+	pstmt.close();
+	conn.close();
+	//response.sendRedirect(direction);
  }
 %>
 </body></html>

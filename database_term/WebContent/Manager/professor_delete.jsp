@@ -12,10 +12,10 @@
 
 </head>
 <body>
-<button id="cancelBttn" onclick="location.href='../student_list.jsp'">cancel</button> 
+<button id="cancelBttn" onclick="location.href='../professor_list.jsp'">cancel</button> 
 
 <form method="post" action="delete_verify.jsp">
-<input type="submit"  value="delete" />
+<input type="submit"  value="delete" >
 <table width="75%" align="center" border>   
 	<tr>
 	<th><div align="center">아이디</div></th><th><div align="center">이름</div></th>
@@ -27,7 +27,7 @@
 ConnectionManager conn_manager = new ConnectionManager();
 Connection conn = conn_manager.getConnection();
 
-String mySQL = "select s_id, s_name, s_pwd, s_major, s_grade, s_email from student";
+String mySQL = "select p_id, p_name, p_pwd, p_major, p_grade, p_email from professor";
 Statement stmt=conn.createStatement();
 
 ResultSet result = stmt.executeQuery(mySQL);
@@ -35,10 +35,10 @@ try {
 	while (result != null && result.next())  {
 		%>
 		  <tr>
-		   <td><div align="center"><%=result.getString("s_id") %></div></td><td><div align="center"><%=result.getString("s_name") %></div></td>
-			<td><div align="center"><%=result.getString("s_pwd") %></div></td><td><%=result.getString("s_major") %></div></td>
-			<td><div align="center"><%=result.getString("s_grade") %></div></td><td><div align="center"><%=result.getString("s_email") %></div></td>
-		  	<td><input type="radio" name="deleteID" value=<%=result.getString("s_id") %>/></td>
+		   <td><div align="center"><%=result.getString("p_id") %></div></td><td><div align="center"><%=result.getString("p_name") %></div></td>
+			<td><div align="center"><%=result.getString("p_pwd") %></div></td><td><%=result.getString("p_major") %></div></td>
+			<td><div align="center"><%=result.getString("p_grade") %></div></td><td><div align="center"><%=result.getString("p_email") %></div></td>
+		  	<td><input type="radio" name="deleteID" value=<%=result.getString("p_id") %>/></td>
 		  </tr>
 		  
 		<% }	
@@ -52,9 +52,8 @@ try {
 }catch(Exception ex) {
 	System.out.println(ex.toString());
 } %>
-
-  </table>
-  <input type="hidden" name="deleteType" value="student"/>
+</table>
+<input type="hidden" name="deleteType" value="professor"/>
 </form>
 </body>
 </html>

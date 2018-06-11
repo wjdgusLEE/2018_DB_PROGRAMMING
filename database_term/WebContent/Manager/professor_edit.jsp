@@ -35,7 +35,8 @@ try {
 		  <tr>
 		   <td><div align="center"><%=result.getString("p_id") %></div></td><td><div align="center"><%=result.getString("p_name") %></div></td>
 			<td><div align="center"><%=result.getString("p_pwd") %></div></td><td><%=result.getString("p_major") %></div></td>
-			<td><div align="center"><%=result.getString("p_email") %></div></td><td><input type="radio" name="editID" value=<%=result.getString("p_id") %>/></td>
+			<td><div align="center"><%=result.getString("p_email") %></div></td>
+			<td><input type="radio" name="editID" value=<%=result.getString("p_id") %>/></td>
 		  </tr>
 		  
 		<% }	
@@ -50,9 +51,8 @@ try {
 	System.out.println(ex.toString());
 } %>
 
-  </table>
-  <input type="hidden" name="editType" value="professor"/>
+</table>
+<input type="hidden" name="editType" value="professor"/>
 </form>
-
 </body>
 </html>

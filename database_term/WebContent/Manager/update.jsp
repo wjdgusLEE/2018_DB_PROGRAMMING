@@ -8,9 +8,10 @@
 
 <% 
 	String searchId = request.getParameter("editID");
+
 	String searchType = request.getParameter("editType");
 	searchId = searchId.substring(0, searchId.length()-1);
-	
+
 	ConnectionManager conn_manager = new ConnectionManager();
 	Connection conn = conn_manager.getConnection();
 	
@@ -41,9 +42,8 @@
 		stmt.close();
 		conn.close();
 }
-	String location = "location.href="+searchType +"_list.jsp";
 %>
-<form method="post" action="update_verify.jsp">
+<FORM method="post" action="update_verify.jsp">
 
   <table width="75%" align="center">   
 	<tr>
@@ -64,10 +64,10 @@
 	</tr>		
   </table>
 
-	<input type="submit"  value="update" />
+	<input type="submit"  value="update"/>
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
   
- 	<button value="cancel" onclick=<%=location%>> cancel </button> 
+ 	<button value="cancel" onclick="'main.jsp'"> cancel </button> 
   </BODY></HTML>

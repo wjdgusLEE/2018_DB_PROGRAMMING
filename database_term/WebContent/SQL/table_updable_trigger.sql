@@ -58,22 +58,26 @@ BEGIN
   INTO pwd_length
   FROM dual;
 
+  
+  DBMS_OUTPUT.PUT_LINE(pwd_length);
+  	
   IF pwd_length = 0 THEN
-      RAISE empty_pwd;
+      RAISE empty_pwd;  
   ELSIF pwd_length >= 4 THEN
-     RAISE uncorrect_password_len;
+      RAISE uncorrect_password_len;
   END IF;
   
   SELECT LENGTH(:new.p_id) 
   INTO id_length
   FROM DUAL;
   
-  IF id_length != 7 THEN
+  IF id_length != 6 THEN
   	RAISE uncorrect_id_len;
   END IF;
- 
-   UPDATE professor
-   SET p_pwd = :new.p_pwd, p_email = :new.p_email, p_major = :new.p_major;
+  
+  UPDATE professor
+  SET p_pwd = :new.p_pwd, p_email = :new.p_email, p_major = :new.p_major; 
+  
 EXCEPTION
   WHEN empty_pwd THEN
     RAISE_APPLICATION_ERROR(-20003, '비밀번호 4자리 이상');
