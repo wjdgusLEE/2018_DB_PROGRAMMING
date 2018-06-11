@@ -5,7 +5,6 @@
 
 <html>
 <head><title>계정 생성</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
@@ -17,12 +16,14 @@
 <tr>
 <td>타입</td>
 <td>
-<input type="radio"  name="userType" value="student"  onclick="return false;" checked="checked">학생
-<input type="radio"  name="userType"  onclick="return false;" value="professor">교수
+<input type="radio"  name="userType"  id="student" value="student"  onclick="doDisplay(this);"checked="checked">학생
+<input type="radio"  name="userType" id="professor" onclick="doDisplay(this);" value="professor">교수
 </td>
+
 </tr>
 
-<tr id="hidden" style="display:none;">
+
+<tr id="hidden" style="display:table-row">
 <td>학년</td>
 <td> <select name="grade">
 <option value="1">1</option>
@@ -55,23 +56,19 @@
 <tr><td>이메일</td><td><input type="text" name="userEmail" placeholder="xxxx@xxxxx.com "></td></tr>
 </table>
 
-<input type="submit"  value="create"  style="width:100%; margin-top : 10px; height : 3em;">
+<input type="submit" value="create"  style="width:100%; margin-top : 10px; height : 3em;">
 </form>
 
 <script>
-var radio = document.getElementById("userType");
-var grade_tr = document.getElementById("grade_tr");
-$(document).ready(function() {
-    $('input[type=radio][name=userType]').change(function() {
-        if (this.value == 'student') {
-            radio.style.display="";
-        }
-        else if (this.value == 'professor') {
-           radio.style.display="None";
-        }
-    });
-});
-
+function doDisplay(radio) {
+	var hidden = document.getElementById('hidden');
+	if(radio.id == 'student') {
+		hidden.style.display = "table-row";
+	}
+	else {
+		hidden.style.display = "none";
+	}
+}
 </script>
 </body>
 </html>
