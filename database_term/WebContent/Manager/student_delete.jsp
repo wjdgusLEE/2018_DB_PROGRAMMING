@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="../top.jsp" %>    
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.*" %>
@@ -11,14 +12,16 @@
 
 </head>
 <body>
- <button id="deleteBttn" onclick="location.href='Manager/student_delete.jsp'">삭제</button> 
- <button id="editBttn" onclick="location.href='Manager/student_edit.jsp'">수정</button> 
+<button id="cancelBttn" onclick="location.href='../student_list.jsp'">cancel</button> 
 
+<form method="post" action="delete.jsp">
+<input type="submit"  value="delete" >
 <table width="75%" align="center" border>   
 	<tr>
 	<th><div align="center">아이디</div></th><th><div align="center">이름</div></th>
 	<th><div align="center">비밀번호</div></th><th><div align="center">전공</div></th>
 	<th><div align="center">학년</div></th><th><div align="center">이메일</div></th>
+	<th><div align="center"></div></th>
 	</tr>  
 <%
 ConnectionManager conn_manager = new ConnectionManager();
@@ -35,7 +38,9 @@ try {
 		   <td><div align="center"><%=result.getString("s_id") %></div></td><td><div align="center"><%=result.getString("s_name") %></div></td>
 			<td><div align="center"><%=result.getString("s_pwd") %></div></td><td><%=result.getString("s_major") %></div></td>
 			<td><div align="center"><%=result.getString("s_grade") %></div></td><td><div align="center"><%=result.getString("s_email") %></div></td>
+		  	<td><input type="radio" name="deleteID" value=<%=result.getString("s_id") %>/></td>
 		  </tr>
+		  
 		<% }	
 	
 } catch (SQLException ex) {
@@ -47,7 +52,16 @@ try {
 }catch(Exception ex) {
 	System.out.println(ex.toString());
 } %>
+
   </table>
+  <input type="hidden" name="deleteType" value="student"/>
+</form>
+<script>
+$('input[type="checkbox"]').on('change', function() {
+	   $(this).siblings('input[type="checkbox"]').prop('checked', false);
+	});
+</script>
+
 
 </body>
 </html>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../top.jsp" %>    
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.*" %>
@@ -19,8 +18,8 @@
   </head>
   <body>
   
-   <button id="deleteBttn" onclick="location.href='professor_delete.jsp'">삭제</button> 
- <button id="editBttn" onclick="location.href='professor_edit.jsp'">수정</button> 
+   <button id="deleteBttn" onclick="location.href='Manager/professor_delete.jsp'">삭제</button> 
+ <button id="editBttn" onclick="location.href='Manager/professor_edit.jsp'">수정</button> 
 <table width="75%" align="center" border>   
 	<tr>
 	<th><div align="center">아이디</div></th><th><div align="center">이름</div></th>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../top.jsp" %>    
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.*" %>
@@ -12,10 +11,10 @@
 
 </head>
 <body>
- <button id="cancelBttn" onclick="location.href='student_list.jsp'">cancel</button> 
+ <button id="cancelBttn" onclick="location.href='professor_list.jsp'">cancel</button> 
 
 <form method="post" action="update.jsp">
-<input type="submit"  value="update"  style="width:100%; margin-top : 10px; height : 3em;">
+<input type="submit"  value="update" >
 <table width="75%" align="center" border>   
 	<tr>
 	<th><div align="center">아이디</div></th><th><div align="center">이름</div></th>
@@ -54,12 +53,6 @@ try {
   </table>
   <input type="hidden" name="editType" value="professor"/>
 </form>
-<script>
-$('input[type="checkbox"]').on('change', function() {
-	   $(this).siblings('input[type="checkbox"]').prop('checked', false);
-	});
-</script>
-
 
 </body>
 </html>
