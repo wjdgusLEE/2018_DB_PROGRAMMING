@@ -22,7 +22,6 @@
 
 </tr>
 
-
 <tr id="hidden" style="display:table-row">
 <td>학년</td>
 <td> <select name="userGrade">
@@ -33,7 +32,20 @@
 </select>
 </td>
 </tr>
-
+<tr id="hidden_prof" style="display:none">
+<td>강의실</td>
+<td> <select name="userLab">
+<option value="새힘관 403">새힘관 403</option>
+<option value="새힘관 404">새힘관 404</option>
+<option value="새힘관 405">새힘관 405</option>
+<option value="새힘관 406">새힘관 406</option>
+<option value="새힘관 406">새힘관 406</option>
+<option value="순헌관 406">순헌관 406</option>
+<option value="순헌관 406">순헌관 407</option>
+<option value="음악대학206">음악대학206</option>
+</select>
+</td>
+</tr>
 <tr>
 <td>전공</td>
 <td>
@@ -62,11 +74,14 @@
 <script>
 function doDisplay(radio) {
 	var hidden = document.getElementById('hidden');
+	var hidden_prof = document.getElementById('hidden_prof');
 	if(radio.id == 'student') {
 		hidden.style.display = "table-row";
+		hidden_prof.style.display = "none";
 	}
 	else {
 		hidden.style.display = "none";
+		hidden_prof.style.display = "table-row";
 	}
 }
 </script>

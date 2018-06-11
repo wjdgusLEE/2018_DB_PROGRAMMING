@@ -11,9 +11,11 @@ String userEmail = request.getParameter("userEmail");
 String userMajor = request.getParameter("userMajor");
 String userType = request.getParameter("userType");
 
-String userGrade = null;
+String userGrade = null, userLab=null;
 if(userType.equals("student"))
 	userGrade = request.getParameter("userGrade");
+else 
+	userLab = request.getParameter("userLab");
 
 ConnectionManager conn_manager = new ConnectionManager();
 Connection myConn = conn_manager.getConnection();
@@ -22,7 +24,7 @@ String sMessage = "";
 String sql = "INSERT INTO " + userType;
 try{
 if(userType.equals("professor"))
-	sql += " (p_id, p_pwd, p_name, p_major, p_email) VALUES ( ?, ?, ?, ?, ?)";
+	sql += " (p_id, p_pwd, p_name, p_major, p_email, p_room) VALUES ( ?, ?, ?, ?, ?, ?)";
 else 
 	sql += " (s_id, s_pwd, s_name, s_major, s_email, s_grade) VALUES ( ?, ?, ?, ?, ?, ?)";
 
@@ -35,6 +37,8 @@ stmt.setString(4,userMajor);
 stmt.setString(5,userEmail);
 if(userType.equals("student"))
 	stmt.setString(6, userGrade);
+else 
+	stmt.setString(6, userLab);
 
 stmt.executeUpdate();
 myConn.commit();
