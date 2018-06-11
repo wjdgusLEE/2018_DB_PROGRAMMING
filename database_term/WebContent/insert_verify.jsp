@@ -36,8 +36,7 @@
 			result = cstmt.getString(4);
 	%>
 	<script>	
-		alert("<%=result%>
-		");
+		alert("<%=result%>");
 		location.href = "insert.jsp";
 	</script>
 	<%
