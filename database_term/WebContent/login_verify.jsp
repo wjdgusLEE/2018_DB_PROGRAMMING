@@ -1,18 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
+<%@ page import="conn.ConnectionManager" %>
 
 <% 
 String userID = request.getParameter("userID"); 
 String userPassword = request.getParameter("userPassword");
-String dbdriver = "oracle.jdbc.driver.OracleDriver";
-Class.forName(dbdriver); 
-String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-String user = "db1515386";
-String passwd = "ss3";
-Connection myConn =  DriverManager.getConnection (dburl, user, passwd);
-
-
+ConnectionManager conn_manager = new ConnectionManager();
+Connection myConn = conn_manager.getConnection();
 
 String [] sql = {"{ ? = call CheckStudent(?,?)}","{ ? = call CheckProfessor(?,?)}", "{ ? = call CheckManager(?,?)}"};
 int [] type = {-1,-1,-1};

@@ -83,15 +83,15 @@ EXECUTE :check_type := CheckProfessor('001', '100');
 PRINT check_type;
 
 VAR check_type NUMBER;
-EXECUTE :check_type := CheckManager('m01', '1111');
+EXECUTE :check_type := CheckManager('m01', '0000');
 PRINT check_type;
 
 VAR check_type NUMBER;
-EXECUTE :check_type := CheckManager('m01', '10000');
+EXECUTE :check_type := CheckManager('m01', '2222');
 PRINT check_type;
 
-drop function manager;
-drop function student;
-drop function professor;
+--drop function manager;
+--drop function student;
+--drop function professor;
 -- show error;
 -- cl scr
