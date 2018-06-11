@@ -9,8 +9,8 @@ public class ConnectionManager {
 		try {
 		Class.forName(dbdriver);
 		String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String user = "db1512602";
-		String passwd = "oracle";
+		String user = USER_ID;
+		String passwd = USER_PASSWORD;
 		conn =  DriverManager.getConnection (dburl, user, passwd);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
