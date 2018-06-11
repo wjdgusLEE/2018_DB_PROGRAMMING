@@ -46,13 +46,12 @@
 		final int DUP_TIME = -3;
 
 		int result;
-		try {
-			ConnectionManager conn_manager = new ConnectionManager();
-			Connection myConn = conn_manager.getConnection();
-			
+		ConnectionManager conn_manager = new ConnectionManager();
+		Connection myConn = conn_manager.getConnection();
+		try {			
 			String mySQL = "select c.c_name as name, c.c_unit as unit, c.c_grade as grade, c.c_major as major, t.t_year as year, t.t_semester as semester, t.t_day as day, t.t_room as room, t.t_time as time, t.t_max as max ";
 			mySQL += "from course c, teach t ";
-			mySQL += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no";
+			mySQL += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no AND c.c_id='"+c_id+"' AND c.c_id_no="+c_id_no;
 
 			Statement stmt = myConn.createStatement();
 			ResultSet rs = stmt.executeQuery(mySQL);
@@ -178,10 +177,12 @@
 				%>	<script> alert("이 시간에 강의가 있습니다."); window.history.back(); </script>	<%
 			}
 
-
-			myConn.close();
+			myConn.commit();
 		} catch (SQLException ex) {
+			myConn.rollback();
 			out.write(ex.toString());
+		} finally {
+			myConn.close();
 		}
 	%>
 
