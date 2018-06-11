@@ -1,15 +1,17 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
 <%@ include file="session.jsp" %>
 <%@ page import="conn.ConnectionManager" %>
 <html>
-<head><title> 수강신청 사용자 정보 수정 </title></head>
+<head>
+<title>수강신청 사용자 정보 수정</title>
+</head>
 <body>
-<%
-
-String userName = request.getParameter("userName"); 
+<% 
+String userName = request.getParameter("userName");
 String userPassword = request.getParameter("userPassword");
-String userEmail = request.getParameter("userEmail"); 
+String userEmail = request.getParameter("userEmail");
 String userMajor = request.getParameter("userMajor");
 
 ConnectionManager conn_manager = new ConnectionManager();
@@ -19,8 +21,20 @@ Statement stmt = null;
 
 String sMessage = "수정되었습니다.";
 String location = "main.jsp";
-try { 
 String mySQL;
+try {
+	out.write(type + " " + session_id + " " + userPassword + " " + userName + " " + userEmail);
+	if (isManager)
+		mySQL = "update " + type + " set m_pwd='" + userPassword + "', m_name='" + userName + "', m_email='"
+				+ userEmail + "' where m_id = '" + session_id + "'";
+	else if (isStudent)
+		mySQL = "update " + type + " set s_pwd='" + userPassword + "', s_name='" + userName + "', s_email='"
+				+ userEmail + "', s_major='" + userMajor + "' where s_id = '" + session_id + "'";
+	else
+		mySQL = "update " + type + " set p_pwd='" + userPassword + "', p_name='" + userName + "', p_email='"
+				+ userEmail + "', p_major='" + userMajor + "' where p_id = '" + session_id + "'";
+		
+
 if (isManager)
  	mySQL = "update "+ type +" set m_pwd='" +userPassword+"', m_name='"+userName+"', m_email='"+userEmail+"' where m_id = '"+session_id +"'";
 else if (isStudent)
@@ -44,5 +58,6 @@ stmt.executeUpdate(mySQL);
  }
 response.sendRedirect(location);
 %>
+
 </body>
 </html>

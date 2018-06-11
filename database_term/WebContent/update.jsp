@@ -1,14 +1,18 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"  %>
 <%@ page import="conn.ConnectionManager" %>
 
 <html>
-<head><title>수강신청 사용자 정보 수정</title></head>
+<head>
+<title>수강신청 사용자 정보 수정</title>
+</head>
 <body>
 
-<%@ include file="session.jsp" %>
-<% 
-	if (session_id==null||type == null) response.sendRedirect("login.jsp");
+	<%@ include file="session.jsp"%>
+	<%
+		if (session_id == null || type == null)
+			response.sendRedirect("login.jsp");
 
 	ConnectionManager conn_manager = new ConnectionManager();
 	Connection conn = conn_manager.getConnection();
@@ -42,9 +46,37 @@
 %>
 <FORM method="post" action="update_verify.jsp">
 
-  <table width="75%" align="center">   
-
-	<tr>
+<tr>
+<td><div align="center">이름</div></td>
+<td><div align="center">
+<input type="text" name="userName" value=<%=userInfo[0]%>>
+</div></td>
+</tr>
+<tr>
+<td><div align="center">비밀번호</div></td>
+<td><div align="center">
+<input type="text" name="userPassword" value=<%=userInfo[1]%>>
+</div></td>
+</tr>
+<%
+if (!isManager) {
+%>
+<tr>
+<td><div align="center">전공</div></td>
+<td><div align="center">
+<input type="text" name="userMajor" value=<%=userInfo[3]%>>
+</div></td>
+</tr>
+<%
+}
+%>
+<tr>
+<td><div align="center">이메일</div></td>
+<td><div align="center">
+<input type="text" name="userEmail" value=<%=userInfo[2]%>>
+</div></td>
+</tr>							
+<tr>
 	<td><div align="center">이름</div></td>
 	<td><div align="center"><input type="text" name="userName" value=<%=userInfo[0]%>></div></td>
 	</tr>

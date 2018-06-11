@@ -5,8 +5,8 @@
 <head><title>수강신청 사용자 정보 수정</title></head>
 <body>
 <% 
-ConnectionManager conn_manager = new ConnectionManager();
-Connection myConn = conn_manager.getConnection();
+	ConnectionManager conn_manager = new ConnectionManager();
+	Connection myConn = conn_manager.getConnection();
 	String mySQL = "insert into major values (?)" ;
 	PreparedStatement stmt = myConn.prepareStatement(mySQL);
 		

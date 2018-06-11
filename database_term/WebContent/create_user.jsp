@@ -40,6 +40,7 @@
 <% 
 	ConnectionManager conn_manager = new ConnectionManager();
 	Connection myConn = conn_manager.getConnection();
+	
 	String mySQL = "select * from major" ;
 	Statement stmt = myConn.createStatement();
 	ResultSet rs = stmt.executeQuery(mySQL);
