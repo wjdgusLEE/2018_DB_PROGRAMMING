@@ -40,7 +40,7 @@
 		conn.close();
 	}
 %>
-<form method="post" action="update_verify.jsp">
+<FORM method="post" action="update_verify.jsp">
 
   <table width="75%" align="center">   
 
@@ -66,5 +66,5 @@
   </table>
   <input type="submit"  value="update" />
   </FORM>
-  <button type="cancel"  value="cancel" onclick="location.href='main.jsp'"> cancel </button> 
+  <button value="cancel" onclick="location.href='main.jsp'"> cancel </button> 
   </BODY></HTML>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"  %>
 <%@ page import="conn.ConnectionManager" %> 
 <%@ page import="java.io.PrintWriter" %>
@@ -41,7 +41,7 @@
 		stmt.close();
 		conn.close();
 }
-	String location = searchType +"_list.jsp";
+	String location = "location.href="+searchType +"_list.jsp";
 %>
 <form method="post" action="update_verify.jsp">
 
@@ -64,9 +64,10 @@
 	</tr>		
   </table>
 
- 	<button value="cancel" onclick="location.href="+<%=location%>> cancel </button> 
 	<input type="submit"  value="update" />
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
+  
+ 	<button value="cancel" onclick=<%=location%>> cancel </button> 
   </BODY></HTML>

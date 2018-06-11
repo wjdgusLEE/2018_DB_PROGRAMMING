@@ -1,11 +1,14 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
 <%@ page import="conn.ConnectionManager" %>
 <html>
-<head><title> 수강신청 사용자 정보 수정 </title></head>
+<head>
+<title> 수강신청 사용자 정보 수정 </title>
+<META HTTP-EQUIV="contentType" CONTENT="text/html;charset=UTF-8"/>
+</head>
 <body>
 <%
-
+request.setCharacterEncoding("UTF-8");
 String userName = request.getParameter("userName"); 
 String userPassword = request.getParameter("userPassword");
 String userEmail = request.getParameter("userEmail"); 
@@ -20,6 +23,7 @@ Statement stmt = null;
 
 String sMessage = "수정되었습니다.";
 String location = "main.jsp";
+out.write(userName);
 try { 
 String mySQL;
 if (userType.equals("manager"))
@@ -29,11 +33,11 @@ else if (userType.equals("student"))
 else
  	mySQL = "update "+ userType +" set p_pwd='" +userPassword+"', p_name='"+userName+"', p_email='"+userEmail+"', p_major='"+userMajor+"' where p_id = '"+userID +"'";
 
-out.write(mySQL);
+//out.write(mySQL);
 stmt = conn.createStatement();
 stmt.executeUpdate(mySQL);
 String loc_list = "../"+userType+"_list.jsp";
-response.sendRedirect(loc_list);
+//response.sendRedirect(loc_list);
 conn.commit();
  } catch(SQLException ex) {
 	  out.write(ex.toString());

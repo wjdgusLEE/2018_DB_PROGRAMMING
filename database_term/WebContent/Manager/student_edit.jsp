@@ -47,10 +47,15 @@ try {
 	script.println("<script>");
 	script.println("alert(\"학생이없습니다.\")");
 		//script.println("location.href='main.jsp'");
-	script.println("</script>");	 		
+	script.println("</script>");
+	conn.rollback();
 }catch(Exception ex) {
 	System.out.println(ex.toString());
-} %>
+	conn.rollback();
+}finally{
+	stmt.close();
+	conn.close();
+}%>
 
   </table>
   <input type="hidden" name="editType" value="student"/>
