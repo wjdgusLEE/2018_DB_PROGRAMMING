@@ -43,9 +43,10 @@
 		final int DUP_TIME = -3;
 
 		int result;
+		ConnectionManager conn_manager = new ConnectionManager();
+		Connection myConn = conn_manager.getConnection();
+
 		try {
-			ConnectionManager conn_manager = new ConnectionManager();
-			Connection myConn = conn_manager.getConnection();
 			String mySQL = "{? = call checkCourse(?, ?)}";
 			CallableStatement cstmt = myConn.prepareCall(mySQL);
 			cstmt.registerOutParameter(1, Types.INTEGER);
@@ -115,10 +116,12 @@
 				%>	<script> alert("이 시간에 강의가 있습니다."); window.history.back(); </script>	<%
 			}
 
-
-			myConn.close();
+			myConn.commit();
 		} catch (SQLException ex) {
+			myConn.rollback();
 			out.write(ex.toString());
+		} finally {
+			myConn.close();
 		}
 	%>
 
