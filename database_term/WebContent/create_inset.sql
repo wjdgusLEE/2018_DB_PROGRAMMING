@@ -127,7 +127,7 @@ CREATE TABLE teach
 INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4545', 'c12350', 1, 2018, 1, '화,목', '10:30-11:45', '명신309', 30);
 INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4575', 'c12355', 1, 2018, 1,  '월,수', '10:30-11:45', '명신309', 30);
 INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4555', 'c12345', 1, 2018, 1,  '화,목', '12:00-13:15', '명신309', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('pys4600', 'c12390', 1, 2018, 1,  '월', '16:30-19:15', '새힘관B102', 25);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4585', 'c12375', 1, 2018, 1,  '화,목', '13:30-14:45', '명신413', 30);
 
 
 INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4595', 'c12360', 1, 2018, 1,  '화,목', '17:00-19:00', '명신413', 30);
