@@ -33,10 +33,10 @@ if(isStudent){
 <%} else if(isManager) { %>
 
 	<li class="active"><%=log%></li> 
-	<li><a href="update.jsp">개인 정보 수정</a></li> 
-	<li><a href="create_user.jsp">계정 생성</a></li> 
-	<li><a href="student_list.jsp">학생 관리</a></li> 
-	<li><a href="professor_list.jsp">교수 관리</a></li> 
+	<li><a href="account_update.jsp">개인 정보 수정</a></li> 
+	<li><a href="account_create.jsp">계정 생성</a></li> 
+	<li><a href="account_students.jsp">학생 관리</a></li> 
+	<li><a href="account_professors.jsp">교수 관리</a></li> 
 
 <%}else { %>
 	<li class="active"><%=log%></li>

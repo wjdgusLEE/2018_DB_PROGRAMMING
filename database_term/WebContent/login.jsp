@@ -10,7 +10,7 @@
 <BODY>
 <form  class="form-horizontal" method="post" action="login_verify.jsp">
 <div class="content">
-	<div class="container" style="align:center">
+	<div class="container-fluid" style="align:center">
 		<div class="row-fluid">
 					 <div class="span4 offset">
 						<div class="control-group">
@@ -31,11 +31,10 @@
 						</div>
 					</div>
 		</div>
-		<div class="row-fluid">		
-				<div class="span4 offset">
-				 <button type="submit" class="btn">Sign in</button>
-				 </div>
-		</div>
+			<div style="align:center;">
+			<input type="submit" value="Log in" class="btn">
+			</div>
+				 
 	</div>	
 </div>	
 </form>
