@@ -5,6 +5,7 @@
 <title>수강신청 시스템 로그인</title>
 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!--<link href="css/login.css" rel="stylesheet">-->
 </HEAD>
 <BODY>
 <form  class="form-horizontal" method="post" action="login_verify.jsp">
@@ -15,7 +16,7 @@
 						<div class="control-group">
 						    <label class="control-label" for="inputID">ID</label>
 							    <div class="controls">
-					      			<input type="text" id="inputID" name="userID" placeholder="ID">
+					      			<input type="text" id="inputID" name="userID" placeholder="ID" required>
 							    </div>
 						</div>
 					</div>
@@ -25,7 +26,7 @@
 						<div class="control-group">
 						    <label class="control-label" for="inputPassword">Password</label>
 						    <div class="controls">
-						      <input type="password" id="inputPassword" name="userPassword" placeholder="Password">
+						      <input type="password" id="inputPassword" name="userPassword" placeholder="Password" required>
 						    </div>
 						</div>
 					</div>
