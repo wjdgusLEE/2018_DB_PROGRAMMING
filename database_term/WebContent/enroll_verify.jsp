@@ -3,6 +3,7 @@
 <%@ include file="top.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="conn.ConnectionManager"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,12 +23,8 @@
 		Connection myConn = null;
 		Statement stmt = null;
 		String mySQL = null;
-		String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String user = "db1512173";
-		String passwd = "wjdgus12";
-		String dbdriver = "oracle.jdbc.driver.OracleDriver";
-		Class.forName(dbdriver);
-		myConn = DriverManager.getConnection(dburl, user, passwd);
+		ConnectionManager conn_manager = new ConnectionManager();
+		myConn = conn_manager.getConnection();
 		
 		CallableStatement cstmt = myConn.prepareCall("{call InsertEnroll(?,?,?,?)}");
 		cstmt.setString(1, s_id);
