@@ -50,7 +50,7 @@ else
 
 pstmt.executeUpdate();
 out.write(pstmt.toString());
-direction = "../"+userType+"_list.jsp";
+direction = userType+"_list.jsp";
 conn.commit();
 
  } catch(SQLException ex) {

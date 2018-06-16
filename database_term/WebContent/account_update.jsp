@@ -6,7 +6,7 @@
 <html>
 <head><title>수강신청 사용자 정보 수정</title></head>
 <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <body>
 <% 
 	String searchId = request.getParameter("editID");
@@ -68,9 +68,10 @@
   </table>
 
 	<input type="submit"  value="update"/>	
- 	<input type="reset"  value="cancel" onclick="location.href='../main.jsp'">
+ 	<input type="reset"  value="cancel" onclick="location.href='main.jsp'">
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
-  
+  <script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
   </BODY></HTML>

@@ -34,7 +34,7 @@
 	conn.commit();
 	conn.close();
 	script.println("<script>");
-	script.println("location.href='../"+searchType+"_list.jsp'");
+	script.println("location.href='"+searchType+"_list.jsp'");
 	script.println("</script>");
 }
 %>
