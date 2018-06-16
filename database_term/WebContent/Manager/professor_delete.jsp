@@ -27,7 +27,7 @@
 ConnectionManager conn_manager = new ConnectionManager();
 Connection conn = conn_manager.getConnection();
 
-String mySQL = "select p_id, p_name, p_pwd, p_major, p_grade, p_email from professor";
+String mySQL = "select p_id, p_name, p_pwd, p_major, p_room, p_email from professor";
 Statement stmt=conn.createStatement();
 
 ResultSet result = stmt.executeQuery(mySQL);
@@ -37,7 +37,7 @@ try {
 		  <tr>
 		   <td><div align="center"><%=result.getString("p_id") %></div></td><td><div align="center"><%=result.getString("p_name") %></div></td>
 			<td><div align="center"><%=result.getString("p_pwd") %></div></td><td><%=result.getString("p_major") %></div></td>
-			<td><div align="center"><%=result.getString("p_grade") %></div></td><td><div align="center"><%=result.getString("p_email") %></div></td>
+			<td><div align="center"><%=result.getString("p_room") %></div></td><td><div align="center"><%=result.getString("p_email") %></div></td>
 		  	<td><input type="radio" name="deleteID" value=<%=result.getString("p_id") %>/></td>
 		  </tr>
 		  

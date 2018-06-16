@@ -49,10 +49,10 @@ myConn.commit();
   	  else if (ex.getErrorCode() ==20004) sMessage="아이디는 숫자 7자리입니다.";
 	  else sMessage="잠시 후 다시 시도하십시오";
   	  response.sendRedirect("create_user.jsp");
-	  PrintWriter script = response.getWriter();
+ 	  PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert(\""+sMessage+"\")");
-	script.println("</script>");	 	
+	script.println("</script>");  	
 } 
 
 response.sendRedirect("main.jsp");
