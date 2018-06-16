@@ -7,6 +7,8 @@
 <html>
 <head>
 <title>수강신청 사용자 정보 수정</title>
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<%
@@ -43,43 +45,64 @@
 			conn.close();
 		}
 	%>
-	<FORM method="post" action="update_verify.jsp">
+	<FORM class="form-horizontal" method="post" action="update_verify.jsp">
 
-		<tr>
-			<td><div align="center">이름</div></td>
-			<td><div align="center">
-					<input type="text" name="userName" value=<%=userInfo[0]%>>
-				</div></td>
-		</tr>
-		<tr>
-			<td><div align="center">비밀번호</div></td>
-			<td><div align="center">
-					<input type="text" name="userPassword" value=<%=userInfo[1]%>>
-				</div></td>
-		</tr>
-		<%
-			if (!isManager) {
-		%>
-		<tr>
-			<td><div align="center">전공</div></td>
-			<td><div align="center">
-					<input type="text" name="userMajor" value=<%=userInfo[3]%>>
-				</div></td>
-		</tr>
-		<%
-			}
-		%>
-		<tr>
-			<td><div align="center">이메일</div></td>
-			<td><div align="center">
-					<input type="text" name="userEmail" value=<%=userInfo[2]%>>
-				</div></td>
-		</tr>
-
-		</table>
-		<input type="submit" value="update" />
+		<div class="container-fluid">
+		<div class="row-fluid">
+					 <div class="span4 offset 6">
+						<div class="control-group">
+						    <label class="control-label" for="inputName">Name</label>
+							    <div class="controls">
+					      			<input type="text" id="inputName" name="userName" value=<%=userInfo[0]%> placeholder="Name">
+							    </div>
+						</div>
+					</div>
+		</div>
+		
+		<div class="row-fluid">
+					 <div class="span4 offset 4">
+						<div class="control-group">
+						    <label class="control-label" for="inputPassword">Password</label>
+							    <div class="controls">
+					      			<input type="text" id="inputPassword" name="userPassword" value=<%=userInfo[1]%> placeholder="Password">
+							    </div>
+						</div>
+					</div>
+		</div>
+						
+<% if (!isManager) { %>		
+		<div class="row-fluid">
+					 <div class="span4 offset 4">
+						<div class="control-group">
+						    <label class="control-label" for="inputMajor">Major</label>
+							    <div class="controls">
+					      			<input type="text" id="inputMajor" name="userMajor" value=<%=userInfo[3]%> placeholder="Major">
+							    </div>
+						</div>
+					</div>
+		</div>	
+<% } %>
+		
+		<div class="row-fluid">		
+					<div class="span4 offset 4">
+						<div class="control-group">
+						    <label class="control-label" for="inputPassword">Email</label>
+						    <div class="controls">
+						    		<input type="text" id="inputMajor" name="userEmail" value=<%=userInfo[2]%> placeholder="Email">
+ 							</div>
+						</div>
+					</div>
+		</div>	
+		<div class="row-fluid">		
+				<div class="span4 offset 4 ">
+				 <button type="submit" class="btn">Update</button>
+				 <button value="reset" class="btn" onclick="location.href='main.jsp'">cancel</button>
+				 </div>
+		</div>
+	</div>	
 	</FORM>
-	<button value="cancel" onclick="location.href='main.jsp'">
-		cancel</button>
+	
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </BODY>
 </HTML>

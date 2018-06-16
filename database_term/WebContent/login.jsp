@@ -1,38 +1,43 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="top.jsp"%>
 <HTML>
-<head>
+<HEAD>
 <title>수강신청 시스템 로그인</title>
-</head>
+<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+</HEAD>
 <BODY>
-	<table width="75%" align="center" bgcolor="#FFFF99" border>
-		<tr>
-			<td><div align="center">아이디와 패스워드를 입력하세요
-	</table>
-
-	<FORM method="post" action="login_verify.jsp">
-		<table width="75%" align="center" border>
-			<tr>
-				<td>
-					<div align="center">아이디</div>
-				</td>
-				<td><div align="center">
-						<input type="text" name="userID">
-					</div></td>
-			</tr>
-			<tr>
-				<td>
-					<div align="center">비밀번호</div>
-				</td>
-				<td><div align="center">
-						<input type="text" name="userPassword">
-					</div></td>
-			</tr>
-		</table>
-		<div class="clearfix">
-			<input type="submit" value="login"
-				style="width: 100%; margin-top: 10px; height: 3em;">
+<form  class="form-horizontal" method="post" action="login_verify.jsp">
+	<div class="container-fluid">
+		<div class="row-fluid">
+					 <div class="span4 offset">
+						<div class="control-group">
+						    <label class="control-label" for="inputID">ID</label>
+							    <div class="controls">
+					      			<input type="text" id="inputID" name="userID" placeholder="ID">
+							    </div>
+						</div>
+					</div>
 		</div>
-	</FORM>
+		<div class="row-fluid">		
+					<div class="span4 offset">
+						<div class="control-group">
+						    <label class="control-label" for="inputPassword">Password</label>
+						    <div class="controls">
+						      <input type="password" id="inputPassword" name="userPassword" placeholder="Password">
+						    </div>
+						</div>
+					</div>
+		</div>
+		<div class="row-fluid">		
+				<div class="span4 offset">
+				 <button type="submit" class="btn">Sign in</button>
+				 </div>
+		</div>
+	</div>	
+	
+</form>
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </BODY>
 </HTML>

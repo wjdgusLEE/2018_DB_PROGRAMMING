@@ -4,8 +4,9 @@
 <%@ page import="java.io.PrintWriter" %>
 <html>
 <head><title>수강신청 사용자 정보 수정</title></head>
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 <body>
-
 <% 
 	String searchId = request.getParameter("editID");
 
@@ -43,9 +44,9 @@
 		conn.close();
 }
 %>
-<FORM method="post" action="update_verify.jsp">
+<FORM class="form-horizontal" method="post" action="update_verify.jsp">
 
-  <table width="75%" align="center">   
+  <table class="table table-hover" width="75%" align="center">   
 	<tr>
 	<td><div align="center">이름</div></td>
 	<td><div align="center"><input type="text" name="userName" value=<%=userInfo[0]%>></div></td>
@@ -64,10 +65,10 @@
 	</tr>		
   </table>
 
-	<input type="submit"  value="update"/>
+	<input type="submit"  value="update"/>	
+ 	<input type="reset"  value="cancel" onclick="location.href='../main.jsp'">
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
   
- 	<button value="cancel" onclick="'main.jsp'"> cancel </button> 
   </BODY></HTML>
