@@ -8,14 +8,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-</head>
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+ </head>
 <body>
 <button id="cancelBttn" onclick="location.href='../student_list.jsp'">cancel</button> 
 
 <form method="post" action="update.jsp">
 <input type="submit"  value="update" >
-<table width="75%" align="center" border>   
+<table width="75%" align="center" >   
 	<tr>
 	<th><div align="center">아이디</div></th><th><div align="center">이름</div></th>
 	<th><div align="center">비밀번호</div></th><th><div align="center">전공</div></th>

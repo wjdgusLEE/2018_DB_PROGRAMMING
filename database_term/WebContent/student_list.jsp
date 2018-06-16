@@ -12,14 +12,11 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
- <button id="deleteBttn" onclick="location.href='Manager/student_delete.jsp'">삭제</button> 
- <button id="editBttn" onclick="location.href='Manager/student_edit.jsp'">수정</button> 
-
 <table class="table table-hover">
 	<tr>
 	<th>아이디</th><th>이름</th>
 	<th>비밀번호</th><th>전공</th>
-	<th>학년</th><th>이메일</th>
+	<th>학년</th><th>이메일</th><th colspan="2">관리</th>
 	</tr>  
 <%
 ConnectionManager conn_manager = new ConnectionManager();
@@ -36,6 +33,8 @@ try {
 		   <td><%=result.getString("s_id") %></td><td><%=result.getString("s_name") %></td>
 			<td><%=result.getString("s_pwd") %></td><td><%=result.getString("s_major") %></td>
 			<td><%=result.getString("s_grade") %></td><td><%=result.getString("s_email") %></td>
+			<td><a href="Manager/update.jsp?editID=<%=result.getString("s_id")%>&editType=student">수정</a></td>
+			<td><a href="Manager/delete.jsp?deleteID=<%=result.getString("s_id")%>&deleteType=student">삭제</a></td>
 		  </tr>
 		<% }	
 	
@@ -43,14 +42,13 @@ try {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert(\"학생이없습니다.\")");
-		//script.println("location.href='main.jsp'");
+	script.println("location.href='main.jsp'");
 	script.println("</script>");	 		
 }catch(Exception ex) {
 	System.out.println(ex.toString());
 } %>
-  </table>
+</table>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-
 </body>
 </html>
