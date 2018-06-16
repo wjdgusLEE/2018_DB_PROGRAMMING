@@ -15,12 +15,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<title>강의 관리</title>
-</head>
+<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+<title>강의 관리</title></head>
 <body>
 	<%
 		if (session_id == null)
@@ -35,24 +31,23 @@
 		}
 	%>
 	<br><br>
-	<table width="75%" align="center" border>
+	<table class="table table-hover">
 		<tr>
-			<th><div align="center">과목번호</div></th>
-			<th><div align="center">분반</div></th>
-			<th><div align="center">강의명</div></th>
-			<th><div align="center">학점</div></th>
-			<th><div align="center">학년</div></th>
-			<th><div align="center">전공</div></th>
-			<th><div align="center">강의실</div></th>
-			<th><div align="center">연도</div></th>
-			<th><div align="center">학기</div></th>
-			<th><div align="center">요일</div></th>
-			<th><div align="center">시간</div></th>
+			<th>과목번호</th>
+			<th>분반</th>
+			<th>강의명</th>
+			<th>학점</th>
+			<th>학년</th>
+			<th>전공</th>
+			<th>강의실</th>
+			<th>연도</th>
+			<th>학기</th>
+			<th>요일</th>
+			<th>시간</th>
 		</tr>
 		<%
 			ConnectionManager conn_manager = new ConnectionManager();
 			Connection myConn = conn_manager.getConnection();
-
 			CallableStatement cstmt = null;
 			Statement stmt = myConn.createStatement();
 
@@ -70,7 +65,6 @@
 			System.out.println(nSemester);
 			
 			try {
-
 				stmt = myConn.createStatement();
 			} catch (SQLException ex) {
 				System.err.println("SQLException: " + ex.getMessage());
@@ -120,47 +114,48 @@
 				}
 		%>
 		<tr>
-			<td><div align="center">
+			<td>
 					<%=c_id%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=c_id_no%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=c_name%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=c_unit %>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=c_grade%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=c_major%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=t_room%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=t_year%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=t_semester %>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=t_day%>
-				</div></td>
-			<td><div align="center">
+				</td>
+			<td>
 					<%=t_time%>
-				</div></td>
+				</td>
 			
 		</tr>
 		<%
 			}
-
 			stmt.close();
 			myConn.close();
 		%>
 	</table>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

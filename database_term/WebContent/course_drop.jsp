@@ -1,6 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="top.jsp"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.*"%>
@@ -16,12 +15,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<center>¼ö°­»èÁ¦ ½Ã½ºÅÛ</center>
-
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<center>ìˆ˜ê°•ì‚­ì œ ì‹œìŠ¤í…œ</center>
 </head>
 <body>
 
@@ -30,23 +25,22 @@
 			response.sendRedirect("login.jsp");
 	%>
 
-	<table width="75%" align="center" border>
+	<table class="table table-hover">
 		<br>
 		<tr>
-			<th>°ú¸ñ¹øÈ£</th>
-			<th>°ú¸ñ¸í</th>
-			<th>±³¼ö´Ô</th>
-			<th>ÇÐÁ¡</th>
-			<th>°­ÀÇ½Ã°£</th>
-			<th>°­ÀÇÀå¼Ò</th>
-			<th>¼ö°­½ÅÃ»</th>
+			<th>ê³¼ëª©ë²ˆí˜¸</th>
+			<th>ê³¼ëª©ëª…</th>
+			<th>êµìˆ˜ë‹˜</th>
+			<th>í•™ì </th>
+			<th>ê°•ì˜ì‹œê°„</th>
+			<th>ê°•ì˜ìž¥ì†Œ</th>
+			<th>ìˆ˜ê°•ì‹ ì²­</th>
 		</tr>
 		<%
 			ResultSet myResultSet = null;
-
 			int totalEnrolledClass = 0;
 			int totalEnrolledUnit = 0;
-
+			
 			ConnectionManager conn_manager = new ConnectionManager();
 			Connection myConn = conn_manager.getConnection();
 			Statement stmt = null;
@@ -57,31 +51,27 @@
 			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
 			cstmt.execute();
 			int nYear = cstmt.getInt(1);
-
 			sql = "{? = call Date2EnrollSemester(SYSDATE)}";
 			cstmt = myConn.prepareCall(sql);
 			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
 			cstmt.execute();
 			int nSemester = cstmt.getInt(1);
-		%>
+			%>
 
 		<br>
-		<center><%=nYear%>³âµµ<%=nSemester%>ÇÐ±â ¼ö°­½ÅÃ» ÀÔ´Ï´Ù.
+		<center><%=nYear%>ë…„ë„<%=nSemester%>í•™ê¸° ìˆ˜ê°•ì‹ ì²­ ìž…ë‹ˆë‹¤.
 		</center>
 		<br>
 
-		<%
+<%
 			try {
-
 				stmt = myConn.createStatement();
 			} catch (SQLException ex) {
 				System.err.println("SQLException: " + ex.getMessage());
 			}
-
 			String mySQL = "select * from course where c_id in (select c_id from enroll where s_id = '" + session_id
 					+ "')";
 			myResultSet = stmt.executeQuery(mySQL);
-
 			while (myResultSet.next() != false) {
 				
 				String c_id = "", c_id_no = "", c_name = "", c_major = "", p_id = "", p_name = "";
@@ -90,13 +80,10 @@
 				
 				c_id = myResultSet.getString("c_id");
 				c_id_no = myResultSet.getString("c_id_no");
-
 				System.out.println(c_id);
-
 				c_name = myResultSet.getString("c_name");
 				c_unit = myResultSet.getInt("c_unit");
 				c_major = myResultSet.getString("c_major");
-
 				Statement stmt2 = myConn.createStatement();
 				String mySQL2 = "select * from teach where c_id='" + c_id + "' and c_id_no = '" + c_id_no
 						+ "' and t_year = " + nYear + " and t_semester = " + nSemester;
@@ -108,18 +95,14 @@
 					t_room = myResultSet2.getString("t_room");
 					t_max = myResultSet2.getInt("t_max");
 				}
-
 				System.out.println(t_time + " " + t_room);
-
 				mySQL2 = "select * from professor where p_id='" + p_id + "'";
 				myResultSet2 = stmt2.executeQuery(mySQL2);
 				if (myResultSet2.next()) {
 					p_name = myResultSet2.getString("p_name");
 				}
-
 				totalEnrolledClass += 1;
 				totalEnrolledUnit += c_unit;
-
 				mySQL2 = "select COUNT(*) from enroll where c_id = '" + c_id + "' and c_id_no = '" + c_id_no
 						+ "' and e_year = " + nYear + " and e_semester = " + nSemester;
 				myResultSet2 = stmt2.executeQuery(mySQL2);
@@ -141,11 +124,10 @@
 			<td><%=t_room%></td>
 
 			<td align="center"><a
-				href="drop_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">»èÁ¦</a></td>
+				href="drop_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">ì‚­ì œ</a></td>
 		</tr>
 		<%
 			}
-
 			stmt.close();
 			myConn.close();
 		%>
@@ -155,9 +137,12 @@
 	<table>
 		<tr>
 			<td width="65%"></td>
-			<td align="center">ÃÑ¼ö°­°ú¸ñ: <%=totalEnrolledClass%></td>
-			<td align="center">ÃÑ¼ö°­ÇÐÁ¡: <%=totalEnrolledUnit%></td>
+			<td align="center">ì´ ìˆ˜ê°•ê³¼ëª©: <%=totalEnrolledClass%></td>
+			<td align="center">ì´ ìˆ˜ê°•í•™ì : <%=totalEnrolledUnit%></td>
 		</tr>
 	</table>
+
+ <script src="http://code.jquery.com/jquery.js"></script>
+ <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

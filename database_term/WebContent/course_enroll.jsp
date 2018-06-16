@@ -1,6 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="EUC-KR"%>
+   pageEncoding="UTF-8"%>
 <%@ include file="top.jsp"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.*"%>
@@ -12,15 +11,9 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<center>╪Ж╟╜╫ец╩ ╫ц╫╨еш</center>
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<center>Л┬≤Й╟∙ Л▀═Л╡╜</center>
 
 </head>
 <body>
@@ -33,13 +26,13 @@
 		<table width="75%" align="center" border>
 			<br>
 			<tr>
-				<th>╟З╦Я╧Ьхё</th>
-				<th>╟З╦Я╦М</th>
-				<th>╠Ё╪Ж╢т</th>
-				<th>гпа║</th>
-				<th>╟╜юг╫ц╟ё</th>
-				<th>╟╜югюЕ╪р</th>
-				<th>╪Ж╟╜╫ец╩</th>
+				<th>ЙЁ╪К╙╘К╡┬М≤╦</th>
+				<th>ЙЁ╪К╙╘К╙┘</th>
+				<th>Й╣░Л┬≤К▀≤</th>
+				<th>М∙≥Л═░</th>
+				<th>Й╟∙Л²≤Л▀°Й╟└</th>
+				<th>Й╟∙Л²≤Л·╔Л├▄</th>
+				<th>Л┬≤Й╟∙Л▀═Л╡╜</th>
 			</tr>
 			<%
 				ResultSet myResultSet = null;
@@ -62,11 +55,8 @@
 				int nSemester = cstmt.getInt(1);
 			%>
 
-			<br>
-			<center><%=nYear%>ЁБ╣╣<%=nSemester%>гп╠Б ╪Ж╟╜╫ец╩ ют╢о╢ы.
-			</center>
-			<br>
-
+			  	<center><%=nYear%>К┘└К▐└<%=nSemester%>М∙≥Й╦╟ Л┬≤Й╟∙Л▀═Л╡╜ Л·┘К▀┬К▀╓.
+         		</center>			
 			<%
 				try {
 
@@ -128,7 +118,7 @@
 				<td><%=t_room%></td>
 
 			<td align="center"><a
-				href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">╫ец╩</a></td>
+				href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">Л▀═Л╡╜</a></td>
 		</tr>
 			<%
 				}
@@ -138,7 +128,8 @@
 			%>
 		</table>
 	</form>
-	<br>
-	<br>
+
+ <script src="http://code.jquery.com/jquery.js"></script>
+ <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -12,7 +12,6 @@
 </head>
 <body>
 	<%
-
 		String yearStr = request.getParameter("year");
 		String semesterStr = request.getParameter("semester");
 		String c_id = request.getParameter("c_id");
@@ -22,14 +21,11 @@
 		
 		String s_id = session_id;
 		Connection myConn = null;
-		Statement stmt = null;
-		String mySQL = null;
 		ConnectionManager conn_manager = new ConnectionManager();
-		myConn = conn_manager.getConnection();
-		stmt = myConn.createStatement();
-
+		Connection myConn = conn_manager.getConnection();
+		Statement stmt = myConn.createStatement();
 		System.out.println(session_id);
-		mySQL = "DELETE FROM enroll WHERE s_id='" + s_id + "' and c_id='" + c_id + "' and c_id_no='" + c_id_no
+		String mySQL = "DELETE FROM enroll WHERE s_id='" + s_id + "' and c_id='" + c_id + "' and c_id_no='" + c_id_no
 				+ "'";
 		ResultSet myResultSet = stmt.executeQuery(mySQL);
 	%>
@@ -38,9 +34,8 @@
 		alert("수강취소가 완료 되었습니다.");
 		window.location.href = "./course_drop.jsp?year";
 	</script>
-	<%
-		mySQL = "commit";
-		myResultSet = stmt.executeQuery(mySQL);
-	%>
-</body>
-</html>
+		<%
+			myConn.commit();
+			stmt.close();
+			myConn.close();
+		%>
