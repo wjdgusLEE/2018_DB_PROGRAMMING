@@ -1,12 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*" %> 
-<%@ include file="session.jsp" %>
+<%@ include file="top.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>강의 개설</title>
+<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 <%
@@ -18,64 +21,63 @@ else if (!isProfessor) {
 }
 %>
 
-<form method="post" action="course_insert_verify.jsp">
+<form  class="form-horizontal" method="post" action="course_insert_verify.jsp">
 
-  <table width="75%" align="center">   
+  <table class="table table-hover">   
   	<tr>
-	<td><div align="center">과목번호</div></td>
-	<td><div align="center"><input type="text" name="c_id" required></div></td>
+	<td>과목번호</td>
+	<td><input type="text" name="c_id" required></td>
 	</tr>	
 	<tr>
-	<td><div align="center">강의명</div></td>
-	<td><div align="center"><input type="text" name="c_name" required></div></td>
+	<td>강의명</td>
+	<td><input type="text" name="c_name" required></td>
 	</tr>
 	<tr>
-	<td><div align="center">분반</div></td>
-	<td><div align="center"><input type="text" name="c_id_no" required></div></td>
+	<td>분반</td>
+	<td><input type="text" name="c_id_no" required></td>
 	</tr>
 	<tr>
-	<td><div align="center">전공</div></td>
-	<td><div align="center"><input type="text" name="c_major" required></div></td>
+	<td>전공</td>
+	<td><input type="text" name="c_major" required></td>
 	</tr>
 	<tr>
-	<td><div align="center">시간</div></td>
-	<td><div align="center"><input type="text" name="t_time" required></div></td>	
+	<td>시간</td>
+	<td><input type="text" name="t_time" required></td>	
 	</tr>
 	<tr>
-	<td><div align="center">강의실</div></td>
-	<td><div align="center"><input type="text" name="t_room" required></div></td>	
+	<td>강의실</td>
+	<td><input type="text" name="t_room" required></td>	
 	</tr>
 	<tr>
-	<td><div align="center">요일</div></td>
-	<td><div align="center"><input type="text" name="t_day" required></div></td>	
+	<td>요일</td>
+	<td><input type="text" name="t_day" required></td>	
 	</tr>	
 	<tr>
-	<td><div align="center">학년</div></td>
-	<td><div align="center"><input type="text" name="c_grade" required></div></td>
+	<td>학년</td>
+	<td><input type="text" name="c_grade" required></td>
 	</tr>		
 	<tr>
-	<td><div align="center">연도</div></td>
-	<td><div align="center"><input type="text" name="t_year" required></div></td>
+	<td>연도</td>
+	<td><input type="text" name="t_year" required></td>
 	</tr>			
 	<tr>
-	<td><div align="center">학기</div></td>
-	<td><div align="center"><input type="text" name="t_semester" required></div></td>
+	<td>학기</td>
+	<td><input type="text" name="t_semester" required></td>
 	</tr>		
 	<tr>
-	<td><div align="center">학점</div></td>
-	<td><div align="center"><input type="text" name="c_unit" required></div></td>
+	<td>학점</td>
+	<td><input type="text" name="c_unit" required></td>
 	</tr>
 	<tr>
-	<td><div align="center">정원</div></td>
-	<td><div align="center"><input type="text" name="t_max"></div></td>
+	<td>정원</td>
+	<td><input type="text" name="t_max"></td>
 	</tr>
   </table>
-  <div class="clearfix" align="center">
-  <input type="reset" value="취소">
-  <input type="submit"  value="등록">
- 
-  </div>
-  </FORM>
+  <input type="reset" class="btn" value="취소">
+  <input type="submit" class="btn" value="등록">
 
+  </FORM>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

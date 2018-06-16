@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*" %> 
-<%@ include file="session.jsp" %>
+<%@ include file="top.jsp" %>
 <%@ page import="conn.ConnectionManager"%>
 
 <!DOCTYPE html>
@@ -8,6 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>강의 정보 수정</title>
+<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 <%
@@ -35,9 +38,9 @@ try {
 	if (rs!=null && rs.next()) {
 %>
 
-<form method="post" action="course_update_verify.jsp">
+<form  class="form-horizontal"  method="post" action="course_update_verify.jsp">
 
-  <table width="75%" align="center">   
+  <table class="table table-hover">   
 	<tr>
 	<td><div align="center">강의명</div></td>
 	<td><div align="center"><input type="text" name="c_name" value=<%= rs.getString("name") %> required></div></td>
@@ -82,8 +85,8 @@ try {
   <input type="hidden" value=<%= rs.getString("id")%> name="c_id">
   <input type="hidden" name="c_id_no" value=<%= rs.getInt("id_no") %> required>
   <div class="clearfix" align="center">
-  <input type="reset" value="취소">
-  <input type="submit"  value="등록"> 
+  <input type="reset" class="btn" value="취소">
+  <input type="submit" class="btn" value="등록"> 
   </div>
   </FORM>
 <%	}
@@ -95,5 +98,8 @@ try {
 	conn.close();
 }
 %>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>
