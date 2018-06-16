@@ -94,7 +94,7 @@ try {
   <input type="hidden" value=<%= rs.getString("id")%> name="c_id">
   <input type="hidden" name="c_id_no" value=<%= rs.getInt("id_no") %> required>
   <div class="clearfix" align="center">
-  <input type="reset" class="btn" value="취소">
+  <input type="reset" class="btn" onclick="location.href='professor_all.jsp'" value="취소">
   <input type="submit" class="btn" value="등록"> 
   </div>
   </FORM>
