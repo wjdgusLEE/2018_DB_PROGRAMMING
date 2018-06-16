@@ -51,19 +51,19 @@
   <table class="table table-hover" width="75%" align="center">   
 	<tr>
 	<td>이름</td>
-	<td><input type="text" name="userName" value=<%=userInfo[0]%>></td>
+	<td><input type="text" name="userName" value=<%=userInfo[0]%> required></td>
 	</tr>
 	<tr>
 	<td>비밀번호</td>
-	<td><input type="text" name="userPassword" value=<%=userInfo[1]%>></td>
+	<td><input type="text" name="userPassword" value=<%=userInfo[1]%> required></td>
 	</tr>	
 	<tr>
 	<td>전공</td>
-	<td><input type="text" name="userMajor" value=<%=userInfo[3]%>></td>
+	<td><input type="text" name="userMajor" value=<%=userInfo[3]%> required></td>
 	</tr>
 	<tr>
 	<td>이메일</td>
-	<td><input type="text" name="userEmail" value=<%=userInfo[2]%>></td>
+	<td><input type="text" name="userEmail" value=<%=userInfo[2]%> required></td>
 	</tr>		
   </table>
 
