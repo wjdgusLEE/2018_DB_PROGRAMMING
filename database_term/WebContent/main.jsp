@@ -4,7 +4,7 @@
 <head>
 <title>데이터베이스를 활용한 수강신청 시스템입니다.</title>
 <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<%@ include file="top.jsp"%>

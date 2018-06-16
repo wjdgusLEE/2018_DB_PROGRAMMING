@@ -620,6 +620,11 @@ a:focus {
   *zoom: 1;
 }
 
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 .container:before,
 .container:after {
   display: table;
