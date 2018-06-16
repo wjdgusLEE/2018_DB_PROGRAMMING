@@ -66,7 +66,7 @@
   </table>
 
 	<input type="submit"  value="update"/>	
- 	<input type="reset"  value="cancel" onclick="location.href='main.jsp'">
+ 	<input type="reset"  value="cancel" onclick="location.href='../main.jsp'">
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
