@@ -2,16 +2,18 @@
 <%@ page import="java.sql.*"  %>
 <%@ page import="conn.ConnectionManager" %> 
 <%@ page import="java.io.PrintWriter" %>
+<%@ include file="../top.jsp"%>
 <html>
 <head><title>수강신청 사용자 정보 수정</title></head>
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 <body>
-
 <% 
 	String searchId = request.getParameter("editID");
-
 	String searchType = request.getParameter("editType");
-	searchId = searchId.substring(0, searchId.length()-1);
-
+	searchId = searchId.substring(0, searchId.length());
+	
+	
 	ConnectionManager conn_manager = new ConnectionManager();
 	Connection conn = conn_manager.getConnection();
 	
@@ -34,6 +36,7 @@
 			userInfo[2] = result.getString(3);
 			userInfo[3] = result.getString(4);
 		} 
+		out.write(userInfo[0]);
 	}catch(Exception ex) {
 		conn.rollback();
 		System.out.println(ex.toString());
@@ -43,31 +46,31 @@
 		conn.close();
 }
 %>
-<FORM method="post" action="update_verify.jsp">
+<FORM class="form-horizontal" method="post" action="update_verify.jsp">
 
-  <table width="75%" align="center">   
+  <table class="table table-hover" width="75%" align="center">   
 	<tr>
-	<td><div align="center">이름</div></td>
-	<td><div align="center"><input type="text" name="userName" value=<%=userInfo[0]%>></div></td>
+	<td>이름</td>
+	<td><input type="text" name="userName" value=<%=userInfo[0]%>></td>
 	</tr>
 	<tr>
-	<td><div align="center">비밀번호</div></td>
-	<td><div align="center"><input type="text" name="userPassword" value=<%=userInfo[1]%>></div></td>
+	<td>비밀번호</td>
+	<td><input type="text" name="userPassword" value=<%=userInfo[1]%>></td>
 	</tr>	
 	<tr>
-	<td><div align="center">전공</div></td>
-	<td><div align="center"><input type="text" name="userMajor" value=<%=userInfo[3]%>></div></td>
+	<td>전공</td>
+	<td><input type="text" name="userMajor" value=<%=userInfo[3]%>></td>
 	</tr>
 	<tr>
-	<td><div align="center">이메일</div></td>
-	<td><div align="center"><input type="text" name="userEmail" value=<%=userInfo[2]%>></div></td>
+	<td>이메일</td>
+	<td><input type="text" name="userEmail" value=<%=userInfo[2]%>></td>
 	</tr>		
   </table>
 
-	<input type="submit"  value="update"/>
+	<input type="submit"  value="update"/>	
+ 	<input type="reset"  value="cancel" onclick="location.href='../main.jsp'">
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
   
- 	<button value="cancel" onclick="'main.jsp'"> cancel </button> 
   </BODY></HTML>
