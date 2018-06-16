@@ -5,21 +5,23 @@ p_cid_no IN NUMBER
 )
 RETURN NUMBER
 IS
-duplicate_course EXCEPTION; /*과목번호 분반 다 겹침*/
-v_count NUMBER;
-result NUMBER;
+  CURSOR course_list(v_cid course.c_id%TYPE) IS
+        SELECT c_id_no
+        FROM course
+        WHERE c_id = v_cid;
+
+  duplicate_course EXCEPTION; /*과목번호 분반 다 겹침*/
+  v_count NUMBER;
+  result NUMBER;
 
 BEGIN
 result := 0;
 
-SELECT COUNT(*)
-INTO v_count
-FROM course
-WHERE c_id = p_cid AND c_id_no = p_cid_no;
-
-IF v_count > 0 THEN
-  RAISE duplicate_course;
-END IF;
+FOR courses IN course_list(p_cid) LOOP
+  IF (courses.c_id_no=p_cid_no) THEN
+    RAISE duplicate_course;
+  END IF;
+END LOOP;
 
 result := 1;
 RETURN result;
