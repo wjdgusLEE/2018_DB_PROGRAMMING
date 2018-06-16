@@ -48,7 +48,16 @@ try {
 	</tr>
 	<tr>
 	<td><div align="center">시간</div></td>
-	<td><div align="center"><input type="text" name="t_time" value=<%= rs.getString("time") %> required></div></td>	
+	<td><div align="center"><select name="t_time">
+    <option value="">시간 선택</option>
+    <option value="9:00-10:15">9:00-10:15</option>
+    <option value="10:30-11:45">10:30-11:45</option>
+    <option value="12:00-13:15">12:00-13:15</option>
+    <option value="13:30-14:45">13:30-14:45</option>
+ 	<option value="15:00-16:15">15:00-16:15</option>
+ 	<option value="17:00-18:15">17:00-18:15</option>
+	</select></div>
+	</td>	
 	</tr>
 	<tr>
 	<td><div align="center">강의실</div></td>
