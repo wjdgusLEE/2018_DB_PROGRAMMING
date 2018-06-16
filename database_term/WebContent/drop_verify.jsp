@@ -11,16 +11,34 @@
 <body>
 
 	<%
-		String yearStr = request.getParameter("year");
-		String semesterStr = request.getParameter("semester");
+		ResultSet myResultSet = null;
+
+		int totalEnrolledClass = 0;
+		int totalEnrolledUnit = 0;
+
+		ConnectionManager conn_manager = new ConnectionManager();
+		Connection myConn = conn_manager.getConnection();
+		Statement stmt = null;
+		CallableStatement cstmt = null;
+
+		String sql = "{? = call Date2EnrollYear(SYSDATE)}";
+		cstmt = myConn.prepareCall(sql);
+		cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+		cstmt.execute();
+		int nYear = cstmt.getInt(1);
+
+		sql = "{? = call Date2EnrollSemester(SYSDATE)}";
+		cstmt = myConn.prepareCall(sql);
+		cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+		cstmt.execute();
+		int nSemester = cstmt.getInt(1);
+
 		String c_id = request.getParameter("c_id");
 		String c_id_no = request.getParameter("c_id_no");
-		int year = Integer.parseInt(yearStr);
-		int semester = Integer.parseInt(semesterStr);
+		
 		String session_id = (String) session.getAttribute("userID");
 		String s_id = session_id;
-		Connection myConn = null;
-		Statement stmt = null;
+
 		String mySQL = null;
 		String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
 		String user = "db1512173";
@@ -31,7 +49,7 @@
 		stmt = myConn.createStatement();
 		mySQL = "DELETE FROM enroll WHERE s_id='" + s_id + "' and c_id='" + c_id + "' and c_id_no='" + c_id_no
 				+ "'";
-		ResultSet myResultSet = stmt.executeQuery(mySQL);
+		myResultSet = stmt.executeQuery(mySQL);
 	%>
 
 	<script>

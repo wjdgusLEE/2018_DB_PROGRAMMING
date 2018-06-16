@@ -11,8 +11,6 @@
 </head>
 <body>
 	<%
-		if (session_id == null)
-			response.sendRedirect("login.jsp");
 
 		String s_id = (String) session.getAttribute("user");
 		String c_id = request.getParameter("c_id");
