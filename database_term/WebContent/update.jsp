@@ -17,7 +17,7 @@
 		Connection conn = conn_manager.getConnection();
 		Statement stmt = conn.createStatement();
 		String mySQL;
-		out.write(type);
+		//out.write(type);
 		if (isManager)
 			mySQL = "select m_name, m_pwd, m_email from " + type + " where m_id='" + session_id + "'";
 		else if (isStudent)
@@ -45,36 +45,6 @@
 	%>
 	<FORM method="post" action="update_verify.jsp">
 
-		<tr>
-			<td><div align="center">이름</div></td>
-			<td><div align="center">
-					<input type="text" name="userName" value=<%=userInfo[0]%>>
-				</div></td>
-		</tr>
-		<tr>
-			<td><div align="center">비밀번호</div></td>
-			<td><div align="center">
-					<input type="text" name="userPassword" value=<%=userInfo[1]%>>
-				</div></td>
-		</tr>
-		<%
-			if (!isManager) {
-		%>
-		<tr>
-			<td><div align="center">전공</div></td>
-			<td><div align="center">
-					<input type="text" name="userMajor" value=<%=userInfo[3]%>>
-				</div></td>
-		</tr>
-		<%
-			}
-		%>
-		<tr>
-			<td><div align="center">이메일</div></td>
-			<td><div align="center">
-					<input type="text" name="userEmail" value=<%=userInfo[2]%>>
-				</div></td>
-		</tr>
 		<tr>
 			<td><div align="center">이름</div></td>
 			<td><div align="center">
