@@ -40,10 +40,12 @@
 			ResultSet myResultSet = null;
 			int totalEnrolledClass = 0;
 			int totalEnrolledUnit = 0;
+			
 			ConnectionManager conn_manager = new ConnectionManager();
 			Connection myConn = conn_manager.getConnection();
 			Statement stmt = null;
 			CallableStatement cstmt = null;
+
 			String sql = "{? = call Date2EnrollYear(SYSDATE)}";
 			cstmt = myConn.prepareCall(sql);
 			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
@@ -54,14 +56,14 @@
 			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
 			cstmt.execute();
 			int nSemester = cstmt.getInt(1);
-		%>
+			%>
 
 		<br>
 		<center><%=nYear%>년도<%=nSemester%>학기 수강신청 입니다.
 		</center>
 		<br>
 
-		<%
+<%
 			try {
 				stmt = myConn.createStatement();
 			} catch (SQLException ex) {
@@ -135,8 +137,8 @@
 	<table>
 		<tr>
 			<td width="65%"></td>
-			<td align="center">총수강과목: <%=totalEnrolledClass%></td>
-			<td align="center">총수강학점: <%=totalEnrolledUnit%></td>
+			<td align="center">총 수강과목: <%=totalEnrolledClass%></td>
+			<td align="center">총 수강학점: <%=totalEnrolledUnit%></td>
 		</tr>
 	</table>
 
