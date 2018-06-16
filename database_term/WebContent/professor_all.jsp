@@ -67,12 +67,8 @@ try {
 			<td><%=result.getString("day")%></td>
 			<td><%=result.getString("time")%></td>
 			<td><%=result.getInt("max")%></td>
-			<td>
-			<a href="course_delete.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">삭제</a>
-			</td>
-			<td>
-			<a href="course_update.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">수정</a>
-			</td>
+			<td><a href="course_delete.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">삭제</a></td>
+			<td><a href="course_update.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">수정</a></td>
 		</tr>
 		<% }	
 	
