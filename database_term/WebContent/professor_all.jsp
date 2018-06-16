@@ -1,55 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<li><%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="EUC-KR"%>
 <%@ include file="top.jsp"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="conn.ConnectionManager"%>
-
-<!doctype html>
-<html lang="en">
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<title>강의 관리</title>
-  </head>
-  <body>
-    	<%
-		if (session_id == null)
+<%
+if (session_id == null)
 			response.sendRedirect("login.jsp");
-		else if (!isProfessor) {
-	%>
+else if (!isProfessor) {
+%>
 	<script>
 		alert("권한이 없습니다.");
 		location.href = "main.jsp";
 	</script>
-	<%
-		}
-  %>
-  
-<table width="75%" align="center" border>   
+<% } %>
+<html>
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<title>강의 관리</title>
+</head>
+<body>
+<table class="table table-hover">   
 	<tr>
-		<th><div align="center">과목번호</div></th>
-		<th><div align="center">분반</div></th>
-		<th><div align="center">강의명</div></th>
-		<th><div align="center">강의실</div></th>
-		<th><div align="center">전공</div></th>
-		<th><div align="center">학점</div></th>
-		<th><div align="center">연도</div></th>
-		<th><div align="center">학년</div></th>
-		<th><div align="center">학기</div></th>
-		<th><div align="center">요일</div></th>
-		<th><div align="center">시간</div></th>
-		<th><div align="center">정원</div></th>
-		<th colspan="2"><div align="center">관리</div></th>
+		<th>과목번호</th>
+		<th>분반</th>
+		<th>강의명</th>
+		<th>강의실</th>
+		<th>전공</th>
+		<th>학점</th>
+		<th>연도</th>
+		<th>학년</th>
+		<th>학기</th>
+		<th>요일</th>
+		<th>시간</th>
+		<th>정원</th>
+		<th colspan="2">관리</th>
 	</tr>  
 <%
 ConnectionManager conn_manager = new ConnectionManager();
@@ -66,48 +55,20 @@ try {
 	while (result != null && result.next())  {
 		%>
 			<tr>
-			<td><div align="center">
-					<%=result.getString("id")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getInt("id_no")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getString("name")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getString("room")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getString("major")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getInt("unit")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getInt("year")%>
-				</div></td>				
-			<td><div align="center">
-					<%=result.getInt("grade")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getInt("semester")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getString("day")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getString("time")%>
-				</div></td>
-			<td><div align="center">
-					<%=result.getInt("max")%>
-				</div></td>
-			<td><div align="center">
-			<a href="course_delete.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">삭제</a>
-			</td>
-			<td><div align="center">
-			<a href="course_update.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">수정</a>
-			</td>
+			<td><%=result.getString("id")%></td>
+			<td><%=result.getInt("id_no")%></td>
+			<td><%=result.getString("name")%></td>
+			<td><%=result.getString("room")%></td>
+			<td><%=result.getString("major")%></td>
+			<td><%=result.getInt("unit")%></td>
+			<td><%=result.getInt("year")%></td>				
+			<td><%=result.getInt("grade")%></td>
+			<td><%=result.getInt("semester")%></td>
+			<td><%=result.getString("day")%></td>
+			<td><%=result.getString("time")%></td>
+			<td><%=result.getInt("max")%></td>
+			<td><a href="course_delete.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">삭제</a></td>
+			<td><a href="course_update.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">수정</a></td>
 		</tr>
 		<% }	
 	
@@ -127,5 +88,8 @@ try {
 
 %>
   </table>
+  	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
+
 </html>
