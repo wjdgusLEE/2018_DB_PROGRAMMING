@@ -20,18 +20,18 @@ END;
 
 
 CREATE OR REPLACE FUNCTION Date2EnrollSemester(dDate IN DATE)
-	RETURN NUMBER
-	IS
-	currentMonth NUMBER;
-	semester NUMBER;
-	BEGIN
-	SELECT to_number(to_char(dDate, 'MM')) INTO currentMonth FROM DUAL;
-	if currentMonth >= 5 and currentMonth <= 10 then
-	   semester := 2;
-	else
-	   semester := 1;
-	end if;
-	return semester;
+   RETURN NUMBER
+   IS
+   currentMonth NUMBER;
+   semester NUMBER;
+   BEGIN
+   SELECT to_number(to_char(dDate, 'MM')) INTO currentMonth FROM DUAL;
+   if currentMonth >= 9 and currentMonth <= 2 then
+      semester := 2;
+   else
+      semester := 1;
+   end if;
+   return semester;
 END;
 /
 
