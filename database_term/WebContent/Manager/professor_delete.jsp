@@ -9,7 +9,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <button id="cancelBttn" onclick="location.href='../professor_list.jsp'">cancel</button> 
@@ -55,5 +56,7 @@ try {
 </table>
 <input type="hidden" name="deleteType" value="professor"/>
 </form>
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

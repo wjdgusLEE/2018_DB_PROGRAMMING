@@ -1,11 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <title>데이터베이스를 활용한 수강신청 시스템입니다.</title>
+<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<%@ include file="top.jsp"%>
-	<table width="75%" align="center" height="100%">
+	<table class="table table-striped">
 		<%
 			if (session_id != null) {
 		%>
@@ -22,5 +25,7 @@
 			}
 		%>
 	</table> 
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body> 
 </html>
