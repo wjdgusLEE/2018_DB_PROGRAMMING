@@ -5,6 +5,7 @@
 <title>수강신청 시스템 로그인</title>
 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!--<link href="css/login.css" rel="stylesheet">-->
 </HEAD>
 <BODY>
 <form  class="form-horizontal" method="post" action="login_verify.jsp">
