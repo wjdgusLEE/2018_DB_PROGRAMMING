@@ -1,11 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.sql.*" %> 
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="top.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 <title>강의 개설</title>
 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -54,12 +53,12 @@ else if (!isProfessor) {
 	</td>	
 	</tr>
 	<tr>
-	<td><div align="center">강의실</div></td>
-	<td><div align="center"><input type="text" placeholder="명신413" name="t_room" required></div></td>	
+	<td>강의실</td>
+	<td><input type="text" placeholder="명신413" name="t_room" required></td>	
 	</tr>
 	<tr>
-	<td><div align="center">요일</div></td>
-	<td><div align="center"><input type="text" placeholder="월,수" name="t_day" required></div></td>	
+	<td>요일</td>
+	<td><input type="text" placeholder="월,수" name="t_day" required></td>	
 	</tr>	
 	<tr>
 	<td>학년</td>
