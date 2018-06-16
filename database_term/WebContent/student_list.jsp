@@ -8,17 +8,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
  <button id="deleteBttn" onclick="location.href='Manager/student_delete.jsp'">삭제</button> 
  <button id="editBttn" onclick="location.href='Manager/student_edit.jsp'">수정</button> 
 
-<table width="75%" align="center" border>   
+<table class="table table-hover">
 	<tr>
-	<th><div align="center">아이디</div></th><th><div align="center">이름</div></th>
-	<th><div align="center">비밀번호</div></th><th><div align="center">전공</div></th>
-	<th><div align="center">학년</div></th><th><div align="center">이메일</div></th>
+	<th>아이디</th><th>이름</th>
+	<th>비밀번호</th><th>전공</th>
+	<th>학년</th><th>이메일</th>
 	</tr>  
 <%
 ConnectionManager conn_manager = new ConnectionManager();
@@ -32,9 +33,9 @@ try {
 	while (result != null && result.next())  {
 		%>
 		  <tr>
-		   <td><div align="center"><%=result.getString("s_id") %></div></td><td><div align="center"><%=result.getString("s_name") %></div></td>
-			<td><div align="center"><%=result.getString("s_pwd") %></div></td><td><%=result.getString("s_major") %></div></td>
-			<td><div align="center"><%=result.getString("s_grade") %></div></td><td><div align="center"><%=result.getString("s_email") %></div></td>
+		   <td><%=result.getString("s_id") %></td><td><%=result.getString("s_name") %></td>
+			<td><%=result.getString("s_pwd") %></td><td><%=result.getString("s_major") %></td>
+			<td><%=result.getString("s_grade") %></td><td><%=result.getString("s_email") %></td>
 		  </tr>
 		<% }	
 	
@@ -48,6 +49,8 @@ try {
 	System.out.println(ex.toString());
 } %>
   </table>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>
