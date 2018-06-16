@@ -34,7 +34,7 @@ try {
 			<td><%=result.getString("s_pwd") %></td><td><%=result.getString("s_major") %></td>
 			<td><%=result.getString("s_grade") %></td><td><%=result.getString("s_email") %></td>
 			<td><a href="Manager/update.jsp?editID=<%=result.getString("s_id")%>&editType=student">수정</a></td>
-			<td><a href="Manager/delete.jsp?deleteID=<%=result.getString("s_id")%>&deleteType=student">삭제</a></td>
+			<td><a href="Manager/delete_verify.jsp?deleteID=<%=result.getString("s_id")%>&deleteType=student">삭제</a></td>
 		  </tr>
 		<% }	
 	

@@ -8,7 +8,8 @@
 </HEAD>
 <BODY>
 <form  class="form-horizontal" method="post" action="login_verify.jsp">
-	<div class="container-fluid">
+<div class="content">
+	<div class="container" style="align:center">
 		<div class="row-fluid">
 					 <div class="span4 offset">
 						<div class="control-group">
@@ -35,7 +36,7 @@
 				 </div>
 		</div>
 	</div>	
-	
+</div>	
 </form>
 	<script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
