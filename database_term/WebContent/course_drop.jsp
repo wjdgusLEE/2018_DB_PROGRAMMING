@@ -126,6 +126,7 @@
 				if (myResultSet2.next()) {
 					studentNum = myResultSet2.getInt(1);
 				}
+				System.out.println("course : " + c_id);
 		%>
 
 
@@ -140,7 +141,7 @@
 			<td><%=t_room%></td>
 
 			<td align="center"><a
-				href="/drop_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>">삭제</a></td>
+				href="drop_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>">삭제</a></td>
 		</tr>
 		<%
 			}
