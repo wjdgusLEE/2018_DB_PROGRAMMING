@@ -1,42 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="top.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="conn.ConnectionManager"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>수강신청</title>
 </head>
 <body>
 	<%
-
-		String s_id = (String) session.getAttribute("user");
+		String yearStr = request.getParameter("year");
+		String semesterStr = request.getParameter("semester");
 		String c_id = request.getParameter("c_id");
-		String c_id_no = request.getParameter("c_id_no");
-		
-		String myResultSet = null;
-
-		ConnectionManager conn_manager = new ConnectionManager();
-		Connection myConn = conn_manager.getConnection();
+		int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
+		int year = Integer.parseInt(yearStr);
+		int semester = Integer.parseInt(semesterStr);
+		String s_id = session_id;
+		String result = null;
+		Connection myConn = null;
 		Statement stmt = null;
-		CallableStatement cstmt = null;
-
-		cstmt = myConn.prepareCall("{call InsertEnroll(?,?,?,?)}");
+		String mySQL = null;
+		String dburl = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String user = "db1512173";
+		String passwd = "wjdgus12";
+		String dbdriver = "oracle.jdbc.driver.OracleDriver";
+		Class.forName(dbdriver);
+		myConn = DriverManager.getConnection(dburl, user, passwd);
+		
+		CallableStatement cstmt = myConn.prepareCall("{call InsertEnroll(?,?,?,?)}");
 		cstmt.setString(1, s_id);
 		cstmt.setString(2, c_id);
-		cstmt.setString(3, c_id_no);
+		cstmt.setInt(3, c_id_no);
 		cstmt.registerOutParameter(4, java.sql.Types.VARCHAR);
 		try {
 			cstmt.execute();
-			myResultSet = cstmt.getString(4);
+			result = cstmt.getString(4);
 	%>
-	<script>	
-		alert("<%=myResultSet%>");
-		location.href = "/course_enroll.jsp";
+	<script>
+	alert("<%=result%>");
+		location.href = "course_enroll.jsp";
 	</script>
-	
 	<%
 		} catch (SQLException ex) {
 			System.err.println("SQLException: " + ex.getMessage());

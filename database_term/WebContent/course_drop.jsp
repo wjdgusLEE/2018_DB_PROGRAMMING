@@ -141,7 +141,7 @@
 			<td><%=t_room%></td>
 
 			<td align="center"><a
-				href="drop_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>">삭제</a></td>
+				href="drop_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">삭제</a></td>
 		</tr>
 		<%
 			}

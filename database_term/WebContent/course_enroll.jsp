@@ -127,9 +127,9 @@
 				<td><%=t_time%></td>
 				<td><%=t_room%></td>
 
-				<td align="center"><a
-					href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>">신청</a></td>
-			</tr>
+			<td align="center"><a
+				href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">신청</a></td>
+		</tr>
 			<%
 				}
 
