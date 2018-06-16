@@ -41,9 +41,8 @@ else if (!isProfessor) {
 	<td><input type="text" name="c_major" required></td>
 	</tr>
 	<tr>
-<<<<<<< HEAD
-	<td><div align="center">시간</div></td>
-	<td><div align="center"><select name="t_time">
+	<td>시간</td>
+	<td><select name="t_time">
     <option value="">시간 선택</option>
     <option value="9:00-10:15">9:00-10:15</option>
     <option value="10:30-11:45">10:30-11:45</option>
@@ -51,7 +50,7 @@ else if (!isProfessor) {
     <option value="13:30-14:45">13:30-14:45</option>
  	<option value="15:00-16:15">15:00-16:15</option>
  	<option value="17:00-18:15">17:00-18:15</option>
-	</select></div>
+	</select>
 	</td>	
 	</tr>
 	<tr>
@@ -61,18 +60,6 @@ else if (!isProfessor) {
 	<tr>
 	<td><div align="center">요일</div></td>
 	<td><div align="center"><input type="text" placeholder="월,수" name="t_day" required></div></td>	
-=======
-	<td>시간</td>
-	<td><input type="text" name="t_time" required></td>	
-	</tr>
-	<tr>
-	<td>강의실</td>
-	<td><input type="text" name="t_room" required></td>	
-	</tr>
-	<tr>
-	<td>요일</td>
-	<td><input type="text" name="t_day" required></td>	
->>>>>>> herin
 	</tr>	
 	<tr>
 	<td>학년</td>
