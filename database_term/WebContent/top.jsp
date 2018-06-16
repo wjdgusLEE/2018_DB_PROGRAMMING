@@ -18,7 +18,7 @@
 if(isStudent){
 %>
 	<li class="active"><%=log%></li>
-	<li><a href="update.jsp">개인 정보 수정></a></li> 
+	<li><a href="update.jsp">개인 정보 수정</a></li> 
 	<li><a href="course_enroll.jsp">수강신청 입력</a></li> 
 	<li><a href="course_drop.jsp">수강신청 삭제</a></li> 
 	<li><a href="student_all.jsp">수강신청 조회</a></li> 
