@@ -37,7 +37,7 @@ else if (!isProfessor) {
 		<th>학기</th>
 		<th>요일</th>
 		<th>시간</th>
-		<th>정원</th>
+		<th>신청&nbsp;/&nbsp;정원</th>
 		<th colspan="2">관리</th>
 	</tr>  
 <%
@@ -52,6 +52,17 @@ Statement stmt = conn.createStatement();
 ResultSet result = stmt.executeQuery(mySQL);
 try { 
 	while (result != null && result.next())  {
+		int count=0;
+		String s = "select COUNT(*) as count from enroll where c_id='"+result.getString("id")+"' AND c_id_no="+result.getInt("id_no");
+		Statement st = conn.createStatement();
+		ResultSet re = st.executeQuery(s);
+		if (re != null && re.next()) {
+			count = re.getInt("count");
+		}
+		re.close();
+		st.close();
+		
+		
 		%>
 			<tr>
 			<td><%=result.getString("id")%></td>
@@ -65,7 +76,7 @@ try {
 			<td><%=result.getInt("semester")%></td>
 			<td><%=result.getString("day")%></td>
 			<td><%=result.getString("time")%></td>
-			<td><%=result.getInt("max")%></td>
+			<td><%= count %> &nbsp; / &nbsp; <%=result.getInt("max")%></td>
 			<td><a href="course_delete.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">삭제</a></td>
 			<td><a href="course_update.jsp?c_id=<%=result.getString("id")%>&c_id_no=<%=result.getInt("id_no")%>">수정</a></td>
 		</tr>
