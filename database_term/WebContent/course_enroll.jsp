@@ -36,19 +36,19 @@
 	   int nSemester = cstmt.getInt(1);
    %>
    
-<h1>수강 신청 <%=nYear%> 년도 <%=nSemester%> 학기 수강신청 입니다.</h1>
+<h3 align="center">  <%=nYear%> 년도 <%=nSemester%> 학기</h3>
    <form method="post" action="enroll_verify.jsp">
       <table class="table table-hover">
          <br>
          <tr>
-            <th>과목번호</th>
-            <th>과목명</th>
-            <th>교수님</th>
-            <th>학점</th>
-            <th>요일</th>
-            <th>강의시간</th>
-            <th>강의장소</th>
-            <th>수강신청</th>
+           <th>과목 번호</th>
+			<th>과목명</th>
+			<th>교수명</th>
+			<th>학점</th>
+			<th>요일</th>
+			<th>시간</th>
+			<th>장소</th>
+			<th>관리</th>
          </tr>
  <%
     try {
@@ -102,6 +102,19 @@
          
          <%
             }
+            String countClass = "SELECT COUNT(*), SUM(C.C_UNIT) FROM ENROLL E, COURSE C WHERE S_ID="+session_id + "AND E.C_ID = C.C_ID AND E.C_ID_NO = C.C_ID_NO" ;		
+        	Statement stmt2 = myConn.createStatement();
+        	ResultSet rs2 =  stmt2.executeQuery(countClass);
+        	int total_unit = 0, total_enroll = 0;
+        	if(rs2!=null && rs2.next()) {
+        		total_enroll = rs2.getInt(1);
+        		total_unit = rs2.getInt(1);%>
+        	<tr align="center">
+        			<td colspan="4" style="text-align:right">총 수강 과목 : <%=total_enroll%> </td>
+        			<td colspan="4">총 수강 학점 : <%=total_unit%> </td>
+        	</tr>	
+        	
+        	<% }
 } catch (SQLException ex) {
      System.err.println("SQLException: " + ex.getMessage());
 } finally {

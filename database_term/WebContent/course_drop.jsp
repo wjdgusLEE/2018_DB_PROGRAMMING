@@ -16,57 +16,46 @@
 
 <!-- Bootstrap CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<center>수강삭제 시스템</center>
 </head>
 <body>
 
 	<%
-		if (session_id == null)
+	if (session_id == null)
 			response.sendRedirect("login.jsp");
+	ResultSet myResultSet = null;
+	int totalEnrolledClass = 0;
+	int totalEnrolledUnit = 0;
+	ConnectionManager conn_manager = new ConnectionManager();
+	Connection myConn = conn_manager.getConnection();
+	String sql = "{? = call Date2EnrollYear(SYSDATE)}";
+	CallableStatement cstmt = myConn.prepareCall(sql);
+	cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+	cstmt.execute();
+	int nYear = cstmt.getInt(1);
+	sql = "{? = call Date2EnrollSemester(SYSDATE)}";
+	cstmt = myConn.prepareCall(sql);
+	cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+	cstmt.execute();
+	int nSemester = cstmt.getInt(1);
 	%>
 
+<h3 align="center"> <%=nYear%>년도 <%=nSemester%>학기</h3>
 	<table class="table table-hover">
-		<br>
 		<tr>
-			<th>과목번호</th>
+			<th>과목 번호</th>
 			<th>과목명</th>
-			<th>교수님</th>
+			<th>교수명</th>
 			<th>학점</th>
-			<th>강의시간</th>
-			<th>강의장소</th>
-			<th>수강신청</th>
+			<th>요일</th>
+			<th>시간</th>
+			<th>장소</th>
+			<th>관리</th>
 		</tr>
 		<%
-			ResultSet myResultSet = null;
-			int totalEnrolledClass = 0;
-			int totalEnrolledUnit = 0;
-			ConnectionManager conn_manager = new ConnectionManager();
-			Connection myConn = conn_manager.getConnection();
-			Statement stmt = null;
-			CallableStatement cstmt = null;
-			String sql = "{? = call Date2EnrollYear(SYSDATE)}";
-			cstmt = myConn.prepareCall(sql);
-			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-			cstmt.execute();
-			int nYear = cstmt.getInt(1);
-			sql = "{? = call Date2EnrollSemester(SYSDATE)}";
-			cstmt = myConn.prepareCall(sql);
-			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-			cstmt.execute();
-			int nSemester = cstmt.getInt(1);
-		%>
-
-		<br>
-		<center><%=nYear%>년도<%=nSemester%>학기 수강신청 입니다.
-		</center>
-		<br>
-
-		<%
+		Statement stmt = null;
 			try {
 				stmt = myConn.createStatement();
-			} catch (SQLException ex) {
-				System.err.println("SQLException: " + ex.getMessage());
-			}
+			
 			String mySQL = "select * from course where c_id in (select c_id from enroll where s_id = '" + session_id
 					+ "')";
 			myResultSet = stmt.executeQuery(mySQL);
@@ -110,9 +99,7 @@
 				System.out.println("course : " + c_id);
 		%>
 
-
 		<tr>
-
 			<td><%=c_id%></td>
 			<td><%=c_name%></td>
 			<td><%=p_name%></td>
@@ -126,18 +113,19 @@
 		</tr>
 		<%
 			}
-			stmt.close();
-			myConn.close();
+			} catch (SQLException ex) {
+				System.err.println("SQLException: " + ex.getMessage());
+			} finally {
+				cstmt.close();
+				myConn.commit();
+				stmt.close();
+				myConn.close();			
+			}
 		%>
-	</table>
-	<br>
-	<br>
-	<table>
-		<tr>
-			<td width="65%"></td>
-			<td align="center">총수강과목: <%=totalEnrolledClass%></td>
-			<td align="center">총수강학점: <%=totalEnrolledUnit%></td>
-		</tr>
+	<tr align="center">
+			<td colspan="4" style="text-align:right">총 수강 과목 : <%=totalEnrolledClass%> </td>
+			<td colspan="4">총 수강 학점 : <%=totalEnrolledUnit%> </td>
+	</tr>
 	</table>
 
  <script src="http://code.jquery.com/jquery.js"></script>

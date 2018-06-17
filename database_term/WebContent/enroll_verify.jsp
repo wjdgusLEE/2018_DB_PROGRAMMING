@@ -20,7 +20,6 @@
 		int semester = Integer.parseInt(semesterStr);
 		String s_id = session_id;
 		String result = null;
-		String mySQL = null;
 		ConnectionManager conn_manager = new ConnectionManager();
 		Connection myConn = conn_manager.getConnection();
 		
