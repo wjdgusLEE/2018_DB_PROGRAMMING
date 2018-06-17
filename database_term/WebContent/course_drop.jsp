@@ -146,7 +146,7 @@
 	<table>
 		<tr>
 			<td width="65%"></td>
-			<td align="center">총 수강과목: <%=totalEnrolledClass%></td>
+			<td align="center">총 수강과목: <%=totalEnrolledClass%> &nbsp</td>
 			<td align="center">총 수강학점: <%=totalEnrolledUnit%></td>
 		</tr>
 	</table>
