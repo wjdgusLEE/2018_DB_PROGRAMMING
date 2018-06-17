@@ -15,22 +15,18 @@
 		String yearStr = request.getParameter("year");
 		String semesterStr = request.getParameter("semester");
 		String c_id = request.getParameter("c_id");
-		String c_id_no = request.getParameter("c_id_no");
-	
+		int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
 		int year = Integer.parseInt(yearStr);
 		int semester = Integer.parseInt(semesterStr);
 		String s_id = session_id;
 		String result = null;
-		Connection myConn = null;
-		Statement stmt = null;
-		String mySQL = null;
 		ConnectionManager conn_manager = new ConnectionManager();
-		myConn = conn_manager.getConnection();
+		Connection myConn = conn_manager.getConnection();
 		
 		CallableStatement cstmt = myConn.prepareCall("{call InsertEnroll(?,?,?,?)}");
 		cstmt.setString(1, s_id);
 		cstmt.setString(2, c_id);
-		cstmt.setString(3, c_id_no);
+		cstmt.setInt(3, c_id_no);
 		cstmt.registerOutParameter(4, java.sql.Types.VARCHAR);
 		try {
 			cstmt.execute();

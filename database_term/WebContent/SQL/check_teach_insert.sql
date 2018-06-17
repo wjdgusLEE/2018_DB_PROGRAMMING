@@ -14,7 +14,10 @@ RETURN NUMBER
 IS
 duplicate_time EXCEPTION; /*같은 pid에 시간 겹침 tsemester tday tyear ttime pid*/
 duplicate_room EXCEPTION; /*시간 강의실 겹침 tsemester tday tyear ttime troom*/
+<<<<<<< HEAD
 duplicate_course EXCEPTION; /* 연도 학기 과목번호 분반  tsemester tyear cid cidno*/
+=======
+>>>>>>> dfcfdc40e04c7ca670b5bd32bf65354f78ce67ba
 
 v_count NUMBER;
 result NUMBER;

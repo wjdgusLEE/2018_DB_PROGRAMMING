@@ -3,7 +3,7 @@
 <%@ include file="top.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="conn.ConnectionManager" %>
+<%@ page import="conn.ConnectionManager"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,17 +18,14 @@
 		String c_id_no = request.getParameter("c_id_no");
 		int year = Integer.parseInt(yearStr);
 		int semester = Integer.parseInt(semesterStr);
-		
+
 		String s_id = session_id;
-		Connection myConn = null;
-		Statement stmt = null;
-		String mySQL = null;
 		ConnectionManager conn_manager = new ConnectionManager();
-		myConn = conn_manager.getConnection();
-		stmt = myConn.createStatement();
+		Connection myConn = conn_manager.getConnection();
+		Statement stmt = myConn.createStatement();
 		System.out.println(session_id);
-		mySQL = "DELETE FROM enroll WHERE s_id='" + s_id + "' and c_id='" + c_id + "' and c_id_no='" + c_id_no
-				+ "'";
+		String mySQL = "DELETE FROM enroll WHERE s_id='" + s_id + "' and c_id='" + c_id + "' and c_id_no='"
+				+ c_id_no + "'";
 		ResultSet myResultSet = stmt.executeQuery(mySQL);
 	%>
 
@@ -37,8 +34,7 @@
 		window.location.href = "./course_drop.jsp?year";
 	</script>
 	<%
-		mySQL = "commit";
-		myResultSet = stmt.executeQuery(mySQL);
+		myConn.commit();
+		stmt.close();
+		myConn.close();
 	%>
-</body>
-</html>

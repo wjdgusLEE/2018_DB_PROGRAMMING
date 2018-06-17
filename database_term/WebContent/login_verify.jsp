@@ -8,10 +8,8 @@ String userID = request.getParameter("userID");
 String userPassword = request.getParameter("userPassword");
 ConnectionManager conn_manager = new ConnectionManager();
 Connection myConn = conn_manager.getConnection();
-
 String [] sql = {"{ ? = call CheckStudent(?,?)}","{ ? = call CheckProfessor(?,?)}", "{ ? = call CheckManager(?,?)}"};
 int [] type = {-1,-1,-1};
-
 String [] category = {"student", "professor", "manager"};
 int  NOTMEMBER = -1;
 int isExist = NOTMEMBER;
@@ -28,7 +26,6 @@ for(int i=0; i<3; i++){
 			break;
 		}
 	}
-
 if(isExist != NOTMEMBER) {
 	session.setAttribute("user", userID);
 	session.setAttribute("type", category[isExist]);
@@ -39,7 +36,6 @@ if(isExist != NOTMEMBER) {
 	</script>
 	<%
 }
-
 cstmt.close(); 
 myConn.close();
 %>

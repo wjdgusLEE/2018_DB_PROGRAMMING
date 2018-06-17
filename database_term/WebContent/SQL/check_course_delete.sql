@@ -18,12 +18,20 @@ IF (p_cid_no = 1) THEN
 
   DELETE course
   WHERE c_id = p_cid;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dfcfdc40e04c7ca670b5bd32bf65354f78ce67ba
 ELSE
   DELETE teach
   WHERE c_id = p_cid AND c_id_no=p_cid_no;
 
   DELETE course
   WHERE c_id = p_cid AND c_id_no=p_cid_no;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dfcfdc40e04c7ca670b5bd32bf65354f78ce67ba
 END IF;
 
 COMMIT;

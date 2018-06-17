@@ -222,7 +222,11 @@ textarea {
 }
 
 body {
+<<<<<<< HEAD
   margin: 0;
+=======
+  margin: 0 auto;
+>>>>>>> dfcfdc40e04c7ca670b5bd32bf65354f78ce67ba
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;

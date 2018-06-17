@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../top.jsp"%>
+<%@ include file="top.jsp"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 <!-- Bootstrap -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<table class="table table-hover">
@@ -26,10 +26,8 @@
 		<%
 			ConnectionManager conn_manager = new ConnectionManager();
 			Connection conn = conn_manager.getConnection();
-
 			String mySQL = "select s_id, s_name, s_pwd, s_major, s_grade, s_email from student";
 			Statement stmt = conn.createStatement();
-
 			ResultSet result = stmt.executeQuery(mySQL);
 			try {
 				while (result != null && result.next()) {
@@ -42,9 +40,9 @@
 			<td><%=result.getString("s_grade")%></td>
 			<td><%=result.getString("s_email")%></td>
 			<td><a
-				href="Manager/update.jsp?editID=<%=result.getString("s_id")%>&editType=student">수정</a></td>
+				href="account_update.jsp?editID=<%=result.getString("s_id")%>&editType=student">수정</a></td>
 			<td><a
-				href="Manager/delete_verify.jsp?deleteID=<%=result.getString("s_id")%>&deleteType=student">삭제</a></td>
+				href="account_delete.jsp?deleteID=<%=result.getString("s_id")%>&deleteType=student">삭제</a></td>
 		</tr>
 		<%
 			}
@@ -61,6 +59,6 @@
 		%>
 	</table>
 	<script src="http://code.jquery.com/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,13 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="session.jsp"%>
+<%@ include file="top.jsp"%>
 <%@ page import="conn.ConnectionManager"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>강의 정보 수정</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 	<%
@@ -21,170 +24,122 @@
 	</script>
 	<%
 		}
-
+		ConnectionManager conn_manager = new ConnectionManager();
+		Connection conn = conn_manager.getConnection();
 		String c_id = request.getParameter("c_id");
 		int c_id_no = Integer.parseInt(request.getParameter("c_id_no"));
-		String c_name = request.getParameter("c_name");
-		int c_unit = Integer.parseInt(request.getParameter("c_unit"));
-		int c_grade = Integer.parseInt(request.getParameter("c_grade"));
-		String c_major = request.getParameter("c_major");
-
-		String p_id = session_id;
-		int t_year = Integer.parseInt(request.getParameter("t_year"));
-		int t_semester = Integer.parseInt(request.getParameter("t_semester"));
-		String t_day = request.getParameter("t_day");
-		String t_room = request.getParameter("t_room");
-		String t_time = request.getParameter("t_time");
-		int t_max = Integer.parseInt(request.getParameter("t_max"));
-
-        int prevUnit = 0, prevGrade = 0, prevYear = 0, prevSem = 0, prevMax = 0;
-        String prevName = "", prevMajor = "", prevDay = "", prevRoom = "", prevTime = "";
-		
-		final int OK = 1;
-		final int DUP_COURSE = -1;
-		final int DUP_ROOM = -2;
-		final int DUP_TIME = -3;
-
-		int result;
-		ConnectionManager conn_manager = new ConnectionManager();
-		Connection myConn = conn_manager.getConnection();
-		try {			
-			String mySQL = "select c.c_name as name, c.c_unit as unit, c.c_grade as grade, c.c_major as major, t.t_year as year, t.t_semester as semester, t.t_day as day, t.t_room as room, t.t_time as time, t.t_max as max ";
-			mySQL += "from course c, teach t ";
-			mySQL += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no AND c.c_id='"+c_id+"' AND c.c_id_no="+c_id_no;
-
-			Statement stmt = myConn.createStatement();
-			ResultSet rs = stmt.executeQuery(mySQL);
+		String sql = "select t.c_id as id, t.c_id_no as id_no, c.c_name as name, c.c_unit as unit, c.c_grade as grade, c.c_major as major, t.t_year as year, t.t_semester as semester, t.t_day as day, t.t_room as room, t.t_time as time, t.t_max as max ";
+		sql += "from course c, teach t ";
+		sql += "where t.p_id='" + session_id + "' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no AND c.c_id='" + c_id
+				+ "' AND c.c_id_no=" + c_id_no;
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		try {
 			if (rs != null && rs.next()) {
-                    prevUnit = rs.getInt("unit");
-                    prevGrade = rs.getInt("grade");
-                    prevYear = rs.getInt("year");
-                    prevSem = rs.getInt("semester");
-                    prevMax = rs.getInt("max");
-                    prevName = rs.getString("name");
-                    prevMajor = rs.getString("major");
-                    prevDay = rs.getString("day");
-                    prevRoom = rs.getString("room");
-                    prevTime = rs.getString("time");
-			}
+	%>
+
+	<form class="form-horizontal" method="post"
+		action="course_update_verify.jsp">
+
+		<table class="table table-hover">
+			<tr>
+				<td><div align="center">강의명</div></td>
+				<td><div align="center">
+						<input type="text" name="c_name" value=<%=rs.getString("name")%>
+							required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">전공</div></td>
+				<td><div align="center">
+						<input type="text" name="c_major" value=<%=rs.getString("major")%>
+							required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">시간</div></td>
+				<td><div align="center">
+						<select name="t_time">
+							<option value="<%=rs.getString("time")%>"><%=rs.getString("time")%></option>
+							<option value="9:00-10:15">9:00-10:15</option>
+							<option value="10:30-11:45">10:30-11:45</option>
+							<option value="12:00-13:15">12:00-13:15</option>
+							<option value="13:30-14:45">13:30-14:45</option>
+							<option value="15:00-16:15">15:00-16:15</option>
+							<option value="17:00-18:15">17:00-18:15</option>
+						</select>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">강의실</div></td>
+				<td><div align="center">
+						<input type="text" name="t_room" value=<%=rs.getString("room")%>
+							required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">요일</div></td>
+				<td><div align="center">
+						<input type="text" name="t_day" value=<%=rs.getString("day")%>
+							required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">학년</div></td>
+				<td><div align="center">
+						<input type="text" name="c_grade" value=<%=rs.getInt("grade")%>
+							required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">연도</div></td>
+				<td><div align="center">
+						<input type="text" name="t_year" value=<%=rs.getInt("year")%>
+							required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">학기</div></td>
+				<td><div align="center">
+						<input type="text" name="t_semester"
+							value=<%=rs.getString("semester")%> required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">학점</div></td>
+				<td><div align="center">
+						<input type="text" name="c_unit" value=<%=rs.getInt("unit")%>
+							required>
+					</div></td>
+			</tr>
+			<tr>
+				<td><div align="center">정원</div></td>
+				<td><div align="center">
+						<input type="text" value=<%=rs.getInt("max")%> name="t_max">
+					</div></td>
+			</tr>
+		</table>
+		<input type="hidden" value=<%=rs.getString("id")%> name="c_id">
+		<input type="hidden" name="c_id_no" value=<%=rs.getInt("id_no")%>
+			required>
+		<div class="clearfix" align="center">
+			<input type="reset" class="btn"
+				onclick="location.href='professor_all.jsp'" value="취소"> <input
+				type="submit" class="btn" value="등록">
+		</div>
+	</FORM>
+	<%
+		}
+		} catch (SQLException ex) {
+			System.out.print(ex);
+		} finally {
 			rs.close();
 			stmt.close();
-			
-			String sql = "delete teach where c_id='"+c_id+"' AND c_id_no='"+c_id_no+"'";
-			stmt = myConn.createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-			sql = "delete course where c_id='"+c_id+"' AND c_id_no='"+c_id_no+"'";
-			stmt = myConn.createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-			
-			mySQL = "{? = call checkTeach(?, ?, ?, ?, ?, ?, ?, ?)}";
-			CallableStatement cstmt = myConn.prepareCall(mySQL);
-			cstmt.registerOutParameter(1, Types.INTEGER);
-			cstmt.setString(2, p_id);
-			cstmt.setString(3, c_id);
-			cstmt.setInt(4, c_id_no);
-			cstmt.setInt(5, t_year);
-			cstmt.setInt(6, t_semester);
-			cstmt.setString(7, t_day);
-			cstmt.setString(8, t_room);
-			cstmt.setString(9, t_time);
-			cstmt.execute();
-			result = cstmt.getInt(1);
-			cstmt.close();
-
-			if (result == OK) {
-				sql = "insert into course values(?, ?, ?, ?, ?, ?)";
-				PreparedStatement pstmt = myConn.prepareStatement(sql);
-				pstmt.setString(1, c_id);
-				pstmt.setInt(2, c_id_no);
-				pstmt.setString(3, c_name);
-				pstmt.setInt(4, c_unit);
-				pstmt.setInt(5, c_grade);
-				pstmt.setString(6, c_major);
-				pstmt.executeUpdate();
-				pstmt.close();
-				
-				sql = "insert into teach values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				pstmt = myConn.prepareStatement(sql);
-				pstmt.setString(1, p_id);
-				pstmt.setString(2, c_id);
-				pstmt.setInt(3, c_id_no);
-				pstmt.setInt(4, t_year);
-				pstmt.setInt(5, t_semester);
-				pstmt.setString(6, t_day);
-				pstmt.setString(7, t_room);
-				pstmt.setString(8, t_time);
-				pstmt.setInt(9, t_max);
-				pstmt.executeUpdate();
-				pstmt.close();
-				%>	<script> alert("수정이 완료되었습니다."); </script>	<%
-				response.sendRedirect("professor_all.jsp");
-			}
-			else if (result == DUP_ROOM) {
-				sql = "insert into course values(?, ?, ?, ?, ?, ?)";
-				PreparedStatement pstmt = myConn.prepareStatement(sql);
-				pstmt.setString(1, c_id);
-				pstmt.setInt(2, c_id_no);
-				pstmt.setString(3, prevName);
-				pstmt.setInt(4, prevUnit);
-				pstmt.setInt(5, prevGrade);
-				pstmt.setString(6, prevMajor);
-				pstmt.executeUpdate();
-				pstmt.close();
-				
-				sql = "insert into teach values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				pstmt = myConn.prepareStatement(sql);
-				pstmt.setString(1, p_id);
-				pstmt.setString(2, c_id);
-				pstmt.setInt(3, c_id_no);
-				pstmt.setInt(4, prevYear);
-				pstmt.setInt(5, prevSem);
-				pstmt.setString(6, prevDay);
-				pstmt.setString(7, prevRoom);
-				pstmt.setString(8, prevTime);
-				pstmt.setInt(9, prevMax);
-				pstmt.executeUpdate();
-				pstmt.close();
-				%>	<script> alert("사용되고 있는 강의실입니다."); window.history.back(); </script>	<%
-			}
-			else if (result == DUP_TIME) {
-				sql = "insert into course values(?, ?, ?, ?, ?, ?)";
-				PreparedStatement pstmt = myConn.prepareStatement(sql);
-				pstmt.setString(1, c_id);
-				pstmt.setInt(2, c_id_no);
-				pstmt.setString(3, prevName);
-				pstmt.setInt(4, prevUnit);
-				pstmt.setInt(5, prevGrade);
-				pstmt.setString(6, prevMajor);
-				pstmt.executeUpdate();
-				pstmt.close();
-				
-				sql = "insert into teach values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				pstmt = myConn.prepareStatement(sql);
-				pstmt.setString(1, p_id);
-				pstmt.setString(2, c_id);
-				pstmt.setInt(3, c_id_no);
-				pstmt.setInt(4, prevYear);
-				pstmt.setInt(5, prevSem);
-				pstmt.setString(6, prevDay);
-				pstmt.setString(7, prevRoom);
-				pstmt.setString(8, prevTime);
-				pstmt.setInt(9, prevMax);
-				pstmt.executeUpdate();
-				pstmt.close();
-				%>	<script> alert("이 시간에 강의가 있습니다."); window.history.back(); </script>	<%
-			}
-
-			myConn.commit();
-		} catch (SQLException ex) {
-			myConn.rollback();
-			out.write(ex.toString());
-		} finally {
-			myConn.close();
+			conn.close();
 		}
 	%>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

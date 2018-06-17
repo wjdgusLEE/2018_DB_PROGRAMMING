@@ -19,7 +19,6 @@
 		String user = "db1512173";
 		String passwd = "wjdgus12";
 		String dbdriver = "oracle.jdbc.driver.OracleDriver";
-
 		try {
 			Class.forName(dbdriver);
 			myConn = DriverManager.getConnection(dburl, user, passwd);
