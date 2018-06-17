@@ -69,8 +69,8 @@
 			} catch (SQLException ex) {
 				System.err.println("SQLException: " + ex.getMessage());
 			}
-			String mySQL = "select * from course where c_id in (select c_id from enroll where s_id = '" + session_id
-					+ "')";
+
+			String mySQL = "select c_id, c_id_no from enroll where s_id = '" + session_id+"'";
 			myResultSet = stmt.executeQuery(mySQL);
 			while (myResultSet.next() != false) {
 				
@@ -80,11 +80,20 @@
 				
 				c_id = myResultSet.getString("c_id");
 				c_id_no = myResultSet.getString("c_id_no");
-				System.out.println(c_id);
-				c_name = myResultSet.getString("c_name");
-				c_unit = myResultSet.getInt("c_unit");
-				c_major = myResultSet.getString("c_major");
+
 				Statement stmt2 = myConn.createStatement();
+				sql = "select c_name, c_unit, c_major from course where c_id='"+c_id+"' and c_id_no="+c_id_no;
+				ResultSet rs = stmt2.executeQuery(sql);
+				
+				if (rs.next()) {
+					c_name = rs.getString("c_name");
+					c_unit = rs.getInt("c_unit");
+					c_major = rs.getString("c_major");
+				}
+				rs.close();
+				stmt2.close();
+
+				stmt2 = myConn.createStatement();
 				String mySQL2 = "select * from teach where c_id='" + c_id + "' and c_id_no = '" + c_id_no
 						+ "' and t_year = " + nYear + " and t_semester = " + nSemester;
 				ResultSet myResultSet2 = stmt2.executeQuery(mySQL2);
@@ -137,7 +146,7 @@
 	<table>
 		<tr>
 			<td width="65%"></td>
-			<td align="center">총 수강과목: <%=totalEnrolledClass%></td>
+			<td align="center">총 수강과목: <%=totalEnrolledClass%> &nbsp</td>
 			<td align="center">총 수강학점: <%=totalEnrolledUnit%></td>
 		</tr>
 	</table>
