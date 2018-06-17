@@ -10,7 +10,6 @@ DECLARE
     nBlank NUMBER;
     nLength NUMBER;
 BEGIN
-
   SELECT LENGTH(:new.s_pwd)
   INTO pwd_length
   FROM dual;
@@ -87,7 +86,7 @@ BEGIN
   	RAISE blank_exception;
   END IF;
   
-   select INSTR(:new.p_pid,' ', 1, 1)
+   select INSTR(:new.p_id,' ', 1, 1)
   INTO nBlank
   FROM DUAL;
   
