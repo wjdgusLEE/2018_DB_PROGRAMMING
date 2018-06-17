@@ -46,7 +46,7 @@
 		conn.close();
 }
 %>
-<FORM class="form-horizontal" method="post" action="update_verify.jsp">
+<FORM class="form-horizontal" method="post" action="account_update_verify.jsp">
 
   <table class="table table-hover" width="75%" align="center">   
 	<tr>
@@ -67,7 +67,7 @@
 	</tr>		
   </table>
 
-	<input type="submit"  value="update"/>	
+	<input type="submit"  value="update">	
  	<input type="reset"  value="cancel" onclick="location.href='main.jsp'">
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
