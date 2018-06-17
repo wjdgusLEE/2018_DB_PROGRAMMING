@@ -6,14 +6,14 @@ drop table course;
 
 CREATE TABLE student
 (
-    s_id		VARCHAR2(10),
-    s_pwd		VARCHAR2(10)   not null,
-    s_name		VARCHAR2(50)   not null,
-    s_addr		VARCHAR2(200),
-    s_email		VARCHAR2(100),
-    s_phone      VARCHAR2(100),
-    s_grade	NUMBER(1)   not null,
-    s_major	VARCHAR2(50)   not null,
+    s_id VARCHAR2(10),
+    s_pwd VARCHAR2(10)   not null,
+    s_name VARCHAR2(50)   not null,
+    s_addr VARCHAR2(200),
+    s_email VARCHAR2(100),
+    s_phone VARCHAR2(100),
+    s_grade NUMBER(1) not null,
+    s_major VARCHAR2(50) not null,
     CONSTRAINT s_pk PRIMARY KEY (s_id)
 );
 
@@ -29,12 +29,12 @@ INSERT INTO student(s_id, s_pwd, s_name, s_addr, s_email, s_phone, s_grade, s_ma
 
 CREATE TABLE course
 (
-    c_id		VARCHAR2(10),
-    c_id_no	NUMBER(1),
-    c_name	VARCHAR2(50),
-    c_unit	NUMBER(1),
-    c_grade	NUMBER(1),
-    c_major	VARCHAR2(50),
+    c_id VARCHAR2(10),
+    c_id_no NUMBER(1),
+    c_name VARCHAR2(50),
+    c_unit NUMBER(1),
+    c_grade NUMBER(1),
+    c_major VARCHAR2(50),
     CONSTRAINT c_pk PRIMARY KEY (c_id, c_id_no));
 
 INSERT INTO course(c_id, c_id_no, c_name, c_unit, c_grade, c_major ) VALUES ('c12345', 1, '데이터베이스', 3, 4, '전공') ;
@@ -54,12 +54,12 @@ INSERT INTO course(c_id, c_id_no, c_name, c_unit, c_grade, c_major ) VALUES ('c1
 
 CREATE TABLE professor
 (
-    p_id		VARCHAR2(10),
-    p_pwd	VARCHAR2(10)   not null,
-    p_name	VARCHAR2(50)   not null,
-    p_major	VARCHAR2(50)   not null,
-    p_room	VARCHAR2(50)   not null,
-    p_email	VARCHAR2(100),
+    p_id VARCHAR2(10),
+    p_pwd VARCHAR2(10)   not null,
+    p_name VARCHAR2(50)   not null,
+    p_major VARCHAR2(50)   not null,
+    p_room VARCHAR2(50)   not null,
+    p_email VARCHAR2(100),
     CONSTRAINT p_pk PRIMARY KEY (p_id)
 );
 
@@ -71,11 +71,11 @@ INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('18
 
 INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814590', '4590', '이기용', '컴퓨터과학과', '새힘관406', ' kiyonglee@sm.ac.kr');
 INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814595', '4595', '김윤진', '컴퓨터과학과', '새힘관403', ' ykim@sm.ac.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4530', '4530', '유석종', '컴퓨터과학과', '새힘관405', ' sjyu@sm.ac.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814530', '4530', '유석종', '컴퓨터과학과', '새힘관405', ' sjyu@sm.ac.kr');
 
 INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814535', '4535', '박숙영', '컴퓨터과학과', '새힘관 404', ' blue@sm.ac.kr');
 INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814585', '4585', '김주균', '컴퓨터과학과', '새힘관412', ' jgkim@sm.ac.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4525', '4525', '최종원', '컴퓨터과학과', '새힘관411', ' choejn@sm.ac.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814525', '4525', '최종원', '컴퓨터과학과', '새힘관411', ' choejn@sm.ac.kr');
 
 
 
