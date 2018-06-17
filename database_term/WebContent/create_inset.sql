@@ -63,18 +63,18 @@ CREATE TABLE professor
     CONSTRAINT p_pk PRIMARY KEY (p_id)
 );
 
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4580', '4580', '문봉희', '컴퓨터과학과', '새힘관414', 'moon@sm.co.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4545', '4545', '이상규', '컴퓨터과학과', '새힘관408', 'sanglee@sm.co.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4550', '4550', '창병모', '컴퓨터과학과', '새힘관410', 'chang@sm.co.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4575', '4575', '최영우', '컴퓨터과학과', '새힘관409', 'ywchoi@sm.co.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4555', '4555', '이현자', '컴퓨터과학과', '수련교수회관205', 'hyunjalee@sm.co.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814580', '4580', '문봉희', '컴퓨터과학과', '새힘관414', 'moon@sm.co.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814545', '4545', '이상규', '컴퓨터과학과', '새힘관408', 'sanglee@sm.co.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814550', '4550', '창병모', '컴퓨터과학과', '새힘관410', 'chang@sm.co.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814575', '4575', '최영우', '컴퓨터과학과', '새힘관409', 'ywchoi@sm.co.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814555', '4555', '이현자', '컴퓨터과학과', '수련교수회관205', 'hyunjalee@sm.co.kr');
 
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4590', '4590', '이기용', '컴퓨터과학과', '새힘관406', ' kiyonglee@sm.ac.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4595', '4595', '김윤진', '컴퓨터과학과', '새힘관403', ' ykim@sm.ac.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814590', '4590', '이기용', '컴퓨터과학과', '새힘관406', ' kiyonglee@sm.ac.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814595', '4595', '김윤진', '컴퓨터과학과', '새힘관403', ' ykim@sm.ac.kr');
 INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4530', '4530', '유석종', '컴퓨터과학과', '새힘관405', ' sjyu@sm.ac.kr');
 
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4535', '4535', '박숙영', '컴퓨터과학과', '새힘관 404', ' blue@sm.ac.kr');
-INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4585', '4585', '김주균', '컴퓨터과학과', '새힘관412', ' jgkim@sm.ac.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814535', '4535', '박숙영', '컴퓨터과학과', '새힘관 404', ' blue@sm.ac.kr');
+INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('1814585', '4585', '김주균', '컴퓨터과학과', '새힘관412', ' jgkim@sm.ac.kr');
 INSERT INTO professor(p_id, p_pwd, p_name, p_major, p_room, p_email) VALUES ('cs4525', '4525', '최종원', '컴퓨터과학과', '새힘관411', ' choejn@sm.ac.kr');
 
 
@@ -124,29 +124,29 @@ CREATE TABLE teach
 );
 
 
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4545', 'c12350', 1, 2018, 1, '화,목', '10:30-11:45', '명신309', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4575', 'c12355', 1, 2018, 1,  '월,수', '10:30-11:45', '명신309', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4555', 'c12345', 1, 2018, 1,  '화,목', '12:00-13:15', '명신309', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4585', 'c12375', 1, 2018, 1,  '화,목', '13:30-14:45', '명신413', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814545', 'c12350', 1, 2018, 1, '화,목', '10:30-11:45', '명신309', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814575', 'c12355', 1, 2018, 1,  '월,수', '10:30-11:45', '명신309', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814555', 'c12345', 1, 2018, 1,  '화,목', '12:00-13:15', '명신309', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814585', 'c12375', 1, 2018, 1,  '화,목', '13:30-14:45', '명신413', 30);
 
 
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4595', 'c12360', 1, 2018, 1,  '화,목', '17:00-19:00', '명신413', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4550', 'c12370', 1, 2018, 1,  '월,수', '10:30-11:45', '명신413', 40);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4575', 'c12385', 1, 2018, 1,  '월,수', '17:00-18:45', '명신413', 40);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('1814595', 'c12360', 1, 2018, 1,  '화,목', '17:00-19:00', '명신413', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('1814550', 'c12370', 1, 2018, 1,  '월,수', '10:30-11:45', '명신413', 40);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('1814575', 'c12385', 1, 2018, 1,  '월,수', '17:00-18:45', '명신413', 40);
 
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4535', 'c12365', 1, 2018, 1, '화,목', '10:30-11:45', '명신414', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4585', 'c12380', 1, 2018, 1,  '화,목', '12:00-13:15', '명신413', 55);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4590', 'c12315', 1, 2018, 1,  '화,목', '15:00-16:15', '명신309', 60);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814535', 'c12365', 1, 2018, 1, '화,목', '10:30-11:45', '명신414', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814585', 'c12380', 1, 2018, 1,  '화,목', '12:00-13:15', '명신413', 55);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814590', 'c12315', 1, 2018, 1,  '화,목', '15:00-16:15', '명신309', 60);
 
 
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4545', 'c12350', 1, 2018, 2, '화,목', '10:30-11:45', '명신309', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4575', 'c12355', 1, 2018, 2,  '월,수', '10:30-11:45', '명신309', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4555', 'c12345', 1, 2018, 2,  '화,목', '12:00-13:15', '명신309', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814545', 'c12350', 1, 2018, 2, '화,목', '10:30-11:45', '명신309', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814575', 'c12355', 1, 2018, 2,  '월,수', '10:30-11:45', '명신309', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814555', 'c12345', 1, 2018, 2,  '화,목', '12:00-13:15', '명신309', 30);
 
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4595', 'c12360', 1, 2018, 2,  '화,목', '17:00-19:00', '명신413', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4550', 'c12370', 1, 2018, 2,  '월,수', '10:30-11:45', '명신413', 40);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4575', 'c12385', 1, 2018, 2,  '월,수', '17:00-18:45', '명신413', 40);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('1814595', 'c12360', 1, 2018, 2,  '화,목', '17:00-19:00', '명신413', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('1814550', 'c12370', 1, 2018, 2,  '월,수', '10:30-11:45', '명신413', 40);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('1814575', 'c12385', 1, 2018, 2,  '월,수', '17:00-18:45', '명신413', 40);
 
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max)VALUES ('cs4535', 'c12365', 1, 2018, 2, '화,목', '10:30-11:45', '명신414', 30);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('cs4585', 'c12380', 1, 2018, 2,  '화,목', '12:00-13:15', '명신413', 55);
-INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('cs4590', 'c12315', 1, 2018, 2,  '화,목', '15:00-16:15', '명신309', 60);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max)VALUES ('1814535', 'c12365', 1, 2018, 2, '화,목', '10:30-11:45', '명신414', 30);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time, t_room, t_max) VALUES ('1814585', 'c12380', 1, 2018, 2,  '화,목', '12:00-13:15', '명신413', 55);
+INSERT INTO teach(p_id, c_id, c_id_no, t_year, t_semester, t_day, t_time,  t_room, t_max) VALUES ('1814590', 'c12315', 1, 2018, 2,  '화,목', '15:00-16:15', '명신309', 60);
