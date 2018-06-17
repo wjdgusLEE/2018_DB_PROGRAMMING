@@ -63,10 +63,35 @@ String mySQL = "select * from course where c_id in ( ";
 	mySQL += "(select c_id from teach where t_semester = "+ nSemester +" and t_year = "+ nYear+ ")";
 	mySQL += "	minus ";
 	mySQL += "(select c_id from enroll where s_id = '"+session_id+"'))";
-	System.out.println(mySQL);
+	out.write(mySQL);
                myResultSet = stmt.executeQuery(mySQL);
                while (myResultSet.next()) {
-                 System.out.println(myResultSet.getString(1));
+            	   String c_id = "", c_id_no = "", c_name = "", c_major = "", p_id = "", p_name = "";
+                   String t_day = "", t_time = "", t_room = "";
+                   int t_max = 0, c_unit = 0, studentNum = 0;
+                   c_id = myResultSet.getString("c_id");
+                   c_id_no = myResultSet.getString("c_id_no");
+                   c_name = myResultSet.getString("c_name");
+                   c_unit = myResultSet.getInt("c_unit");
+                   c_major = myResultSet.getString("c_major");
+                   out.write( c_id);
+                 Statement stmt2 = myConn.createStatement();
+                 String mySQL2 = "select * from teach where c_id='" + c_id + "' and c_id_no = '" + c_id_no
+                         + "' and t_year = " + nYear + " and t_semester = " + nSemester;
+                 ResultSet myResultSet2 = stmt2.executeQuery(mySQL2);
+                 if (myResultSet2.next()) {
+                    p_id = myResultSet2.getString("p_id");
+                    t_day = myResultSet2.getString("t_day");
+                    t_time = myResultSet2.getString("t_time");
+                    t_room = myResultSet2.getString("t_room");
+                    t_max = myResultSet2.getInt("t_max");
+                 }
+                 mySQL2 = "select * from professor where p_id='" + p_id + "'";
+                 myResultSet2 = stmt2.executeQuery(mySQL2);
+                	 if (myResultSet2.next()) {
+                     p_name = myResultSet2.getString("p_name");
+                 	 }
+                	 out.write(p_name);
                   }
             } catch (SQLException ex) {
             System.out.println(ex.toString());
