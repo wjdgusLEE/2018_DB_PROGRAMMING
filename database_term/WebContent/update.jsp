@@ -8,7 +8,7 @@
 <head>
 <title>수강신청 사용자 정보 수정</title>
 <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<%
@@ -93,16 +93,13 @@
 						</div>
 					</div>
 		</div>	
-		<div class="row-fluid">		
-				<div class="span4 offset 4 ">
-				 <button type="submit" class="btn">Update</button>
-				 <button value="reset" class="btn" onclick="location.href='main.jsp'">cancel</button>
-				 </div>
-		</div>
+		
 	</div>	
+	<input type="reset" class="btn"  onclick="location.href='main.jsp'" value="cancel"/>
+	<input type="reset" class="btn" value="update"/>
 	</FORM>
 	
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </BODY>
 </HTML>
