@@ -3,7 +3,7 @@
 <%@ include file="top.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="conn.ConnectionManager"%>
+<%@ page import="conn.ConnectionManager" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,8 +33,8 @@
 		alert("수강취소가 완료 되었습니다.");
 		window.location.href = "./course_drop.jsp?year";
 	</script>
-	<%
-		myConn.commit();
-	stmt.close();
-	myConn.close();
-	%>
+		<%
+			myConn.commit();
+			stmt.close();
+			myConn.close();
+		%>
