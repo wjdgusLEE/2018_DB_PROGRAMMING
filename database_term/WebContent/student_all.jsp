@@ -15,10 +15,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-
-<link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<title>강의 관리</title>
-</head>
+<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+<title>강의 관리</title></head>
 <body>
 	<%
 		if (session_id == null)
@@ -31,22 +29,8 @@
 	</script>
 	<%
 		}
-	int totalEnrolledClass = 0;
-	int totalEnrolledUnit = 0;
-	ConnectionManager conn_manager = new ConnectionManager();
-	Connection myConn = conn_manager.getConnection();
-	String sql = "{? = call Date2EnrollYear(SYSDATE)}";
-	CallableStatement cstmt = myConn.prepareCall(sql);
-	cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-	cstmt.execute();
-	int nYear = cstmt.getInt(1);
-	sql = "{? = call Date2EnrollSemester(SYSDATE)}";
-	cstmt = myConn.prepareCall(sql);
-	cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-	cstmt.execute();
-	int nSemester = cstmt.getInt(1);
 	%>
-	<h3 align="center"> <%=nYear%> 년도 <%=nSemester%>학기</h3>
+	<br><br>
 	<table class="table table-hover">
 		<tr>
 			<th>과목번호</th>
@@ -62,26 +46,36 @@
 			<th>시간</th>
 		</tr>
 		<%
-		Statement stmt = null;
-		try {
-			stmt = myConn.createStatement();
+			ConnectionManager conn_manager = new ConnectionManager();
+			Connection myConn = conn_manager.getConnection();
+			CallableStatement cstmt = null;
+			Statement stmt = myConn.createStatement();
+			String sql = "{? = call Date2EnrollYear(SYSDATE)}";
+			cstmt = myConn.prepareCall(sql);
+			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+			cstmt.execute();
+			int nYear = cstmt.getInt(1);
+			sql = "{? = call Date2EnrollSemester(SYSDATE)}";
+			cstmt = myConn.prepareCall(sql);
+			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+			cstmt.execute();
+			int nSemester = cstmt.getInt(1);
 			System.out.println(nSemester);
-		
+			
+			try {
+				stmt = myConn.createStatement();
+			} catch (SQLException ex) {
+				System.err.println("SQLException: " + ex.getMessage());
+			}
+			
 			String mySQL = "select c_id, c_id_no from enroll where s_id = '" + session_id+"'";
-
-			mySQL = "select * from course where c_id in (select c_id from enroll where s_id = '" + session_id + "')";
-
 			ResultSet myResultSet = stmt.executeQuery(mySQL);
-
 			while (myResultSet.next() != false) {
-
 				String c_id = "", c_name = "", c_major = "", p_id = "", p_name = "";
 				String t_day = "", t_time = "", t_room = "";
 				int c_id_no=0, t_max = 0, c_unit = 0, c_grade = 0, studentNum = 0, t_year = 0, t_semester = 0;
-
 				c_id = myResultSet.getString("c_id");
 				c_id_no = myResultSet.getInt("c_id_no");
-
 				Statement stmt2 = myConn.createStatement();
 				sql = "select * from course where c_id='"+c_id+"' and c_id_no="+c_id_no;
 				ResultSet rs = stmt2.executeQuery(sql);
@@ -94,7 +88,6 @@
 				}
 				rs.close();
 				stmt2.close();
-
 				stmt2 = myConn.createStatement();
 				String mySQL2 = "select * from teach where c_id='" + c_id + "' and c_id_no = " + c_id_no
 						+ " and t_year = " + nYear + " and t_semester = " + nSemester;
@@ -108,60 +101,61 @@
 					t_semester = myResultSet2.getInt("t_semester");
 					t_max = myResultSet2.getInt("t_max");
 				}
-
 				mySQL2 = "select * from professor where p_id='" + p_id + "'";
 				myResultSet2 = stmt2.executeQuery(mySQL2);
 				if (myResultSet2.next()) {
 					p_name = myResultSet2.getString("p_name");
 				}
-
 				mySQL2 = "select COUNT(*) from enroll where c_id = '" + c_id + "' and c_id_no = '" + c_id_no
 						+ "' and e_year = " + nYear + " and e_semester = " + nSemester;
 				myResultSet2 = stmt2.executeQuery(mySQL2);
 				if (myResultSet2.next()) {
 					studentNum = myResultSet2.getInt(1);
 				}
-				
 		%>
 		<tr>
-			<td><%=c_id%></td>
-			<td><%=c_id_no%></td>
-			<td><%=c_name%></td>
-			<td><%=c_unit %></td>
-			<td><%=c_grade%></td>
-			<td><%=c_major%></td>
-			<td><%=t_room%></td>
-			<td><%=t_year%></td>
-			<td><%=t_semester %></td>
-			<td><%=t_day%></td>
-			<td><%=t_time%></td>
+			<td>
+					<%=c_id%>
+				</td>
+			<td>
+					<%=c_id_no%>
+				</td>
+			<td>
+					<%=c_name%>
+				</td>
+			<td>
+					<%=c_unit %>
+				</td>
+			<td>
+					<%=c_grade%>
+				</td>
+			<td>
+					<%=c_major%>
+				</td>
+			<td>
+					<%=t_room%>
+				</td>
+			<td>
+					<%=t_year%>
+				</td>
+			<td>
+					<%=t_semester %>
+				</td>
+			<td>
+					<%=t_day%>
+				</td>
+			<td>
+					<%=t_time%>
+				</td>
+			
 		</tr>
 		<%
-	}
-	String countClass = "SELECT COUNT(*), SUM(C.C_UNIT) FROM ENROLL E, COURSE C WHERE S_ID="+session_id + "AND E.C_ID = C.C_ID AND E.C_ID_NO = C.C_ID_NO" ;		
-	Statement stmt2 = myConn.createStatement();
-	ResultSet rs2 =  stmt2.executeQuery(countClass);
-	int total_unit = 0, total_enroll = 0;
-	if(rs2!=null && rs2.next()) {
-		total_enroll = rs2.getInt(1);
-		total_unit = rs2.getInt(1);%>
-	<tr align="center">
-			<td colspan="4" style="text-align:right">총 수강 과목 : <%=total_enroll%> </td>
-			<td colspan="4">총 수강 학점 : <%=total_unit%> </td>
-	</tr>	
-	
-	<% }
-	
-} catch (SQLException ex) {
-	System.err.println("SQLException: " + ex.getMessage());
-}finally {
-	cstmt.close();
-	stmt.close();
-	myConn.close();		
-}
+			}
+			stmt.close();
+			myConn.close();
 		%>
 	</table>
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
