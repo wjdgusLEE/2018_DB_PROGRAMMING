@@ -1,15 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*"  %>
-<%@ page import="conn.ConnectionManager"%>
+<%@ page import="conn.ConnectionManager" %>
 <html>
 <head><title>수강신청 사용자 정보 수정</title></head>
 <body>
-
-<%@ include file="session.jsp" %>
 <% 
 	ConnectionManager conn_manager = new ConnectionManager();
 	Connection myConn = conn_manager.getConnection();
-
 	String mySQL = "insert into major values (?)" ;
 	PreparedStatement stmt = myConn.prepareStatement(mySQL);
 		

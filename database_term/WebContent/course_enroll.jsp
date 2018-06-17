@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="EUC-KR"%>
 <%@ include file="top.jsp"%>
@@ -16,10 +15,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
+<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 <center>수강신청 시스템</center>
 
 </head>
@@ -43,18 +39,15 @@
 			</tr>
 			<%
 				ResultSet myResultSet = null;
-
 				ConnectionManager conn_manager = new ConnectionManager();
 				Connection myConn = conn_manager.getConnection();
 				Statement stmt = null;
 				CallableStatement cstmt = null;
-
 				String sql = "{? = call Date2EnrollYear(SYSDATE)}";
 				cstmt = myConn.prepareCall(sql);
 				cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
 				cstmt.execute();
 				int nYear = cstmt.getInt(1);
-
 				sql = "{? = call Date2EnrollSemester(SYSDATE)}";
 				cstmt = myConn.prepareCall(sql);
 				cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
@@ -69,7 +62,6 @@
 
 			<%
 				try {
-
 					stmt = myConn.createStatement();
 				} catch (SQLException ex) {
 					System.err.println("SQLException: " + ex.getMessage());
@@ -77,20 +69,17 @@
 
 				String mySQL = "select * from course where c_id not in (select c_id from enroll where s_id = '" + session_id
 						+ "')";
+
 				myResultSet = stmt.executeQuery(mySQL);
-
 				while (myResultSet.next() != false) {
-
 					String c_id = "", c_id_no = "", c_name = "", c_major = "", p_id = "", p_name = "";
 					String t_day = "", t_time = "", t_room = "";
 					int t_max = 0, c_unit = 0, studentNum = 0;
-
 					c_id = myResultSet.getString("c_id");
 					c_id_no = myResultSet.getString("c_id_no");
 					c_name = myResultSet.getString("c_name");
 					c_unit = myResultSet.getInt("c_unit");
 					c_major = myResultSet.getString("c_major");
-
 					Statement stmt2 = myConn.createStatement();
 					String mySQL2 = "select * from teach where c_id='" + c_id + "' and c_id_no = '" + c_id_no
 							+ "' and t_year = " + nYear + " and t_semester = " + nSemester;
@@ -102,13 +91,11 @@
 						t_room = myResultSet2.getString("t_room");
 						t_max = myResultSet2.getInt("t_max");
 					}
-
 					mySQL2 = "select * from professor where p_id='" + p_id + "'";
 					myResultSet2 = stmt2.executeQuery(mySQL2);
 					if (myResultSet2.next()) {
 						p_name = myResultSet2.getString("p_name");
 					}
-
 					mySQL2 = "select COUNT(*) from enroll where c_id = '" + c_id + "' and c_id_no = '" + c_id_no
 							+ "' and e_year = " + nYear + " and e_semester = " + nSemester;
 					myResultSet2 = stmt2.executeQuery(mySQL2);
@@ -127,16 +114,17 @@
 				<td><%=t_time%></td>
 				<td><%=t_room%></td>
 
-			<td align="center"><a
-				href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">신청</a></td>
-		</tr>
+				<td align="center"><a
+					href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">신청</a></td>
+			</tr>
 			<%
 				}
-
 				stmt.close();
 				myConn.close();
 			%>
 		</table>
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
 	</form>
 	<br>
 	<br>

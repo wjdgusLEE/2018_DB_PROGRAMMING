@@ -14,6 +14,7 @@ CREATE OR REPLACE FUNCTION Date2EnrollYear(dDate IN DATE)
 	end if;
 	return year;
 END;
+<<<<<<< HEAD
 /
 
 CREATE OR REPLACE FUNCTION Date2EnrollSemester(dDate IN DATE)
@@ -30,4 +31,6 @@ CREATE OR REPLACE FUNCTION Date2EnrollSemester(dDate IN DATE)
    end if;
    return semester;
 END;
+=======
+>>>>>>> be2f3169c208568eb3707284f91cd590c95f8752
 /
