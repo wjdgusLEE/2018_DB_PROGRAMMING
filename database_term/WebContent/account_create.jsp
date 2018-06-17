@@ -70,7 +70,7 @@
 
 <input type="submit" value="create" class="btn">
 
-<button type="reset" class="btn" onclick="location.href='main.jsp'">cancel</button> 
+<input type="reset" value="cancel" class="btn" onclick="location.href='main.jsp'">
 </form>
 <script>
 function doDisplay(radio) {

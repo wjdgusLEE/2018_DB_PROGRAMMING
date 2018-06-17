@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
 <!-- Bootstrap -->
-    <link href="=css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <table class="table table-hover">
