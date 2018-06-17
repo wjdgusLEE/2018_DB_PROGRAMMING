@@ -53,7 +53,7 @@
 						<div class="control-group">
 						    <label class="control-label" for="inputName">Name</label>
 							    <div class="controls">
-					      			<input type="text" id="inputName" name="userName" value=<%=userInfo[0]%> placeholder="Name">
+					      			<input type="text" id="inputName" name="userName" value=<%=userInfo[0]%> placeholder="Name" required>
 							    </div>
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 						<div class="control-group">
 						    <label class="control-label" for="inputPassword">Password</label>
 							    <div class="controls">
-					      			<input type="text" id="inputPassword" name="userPassword" value=<%=userInfo[1]%> placeholder="Password">
+					      			<input type="text" id="inputPassword" name="userPassword" value=<%=userInfo[1]%> placeholder="Password" required>
 							    </div>
 						</div>
 					</div>
@@ -76,7 +76,7 @@
 						<div class="control-group">
 						    <label class="control-label" for="inputMajor">Major</label>
 							    <div class="controls">
-					      			<input type="text" id="inputMajor" name="userMajor" value=<%=userInfo[3]%> placeholder="Major">
+					      			<input type="text" id="inputMajor" name="userMajor" value=<%=userInfo[3]%> placeholder="Major" required>
 							    </div>
 						</div>
 					</div>

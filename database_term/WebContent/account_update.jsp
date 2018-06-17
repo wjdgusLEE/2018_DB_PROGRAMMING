@@ -6,7 +6,7 @@
 <html>
 <head><title>수강신청 사용자 정보 수정</title></head>
 <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <body>
 <% 
 	String searchId = request.getParameter("editID");
@@ -51,26 +51,27 @@
   <table class="table table-hover" width="75%" align="center">   
 	<tr>
 	<td>이름</td>
-	<td><input type="text" name="userName" value=<%=userInfo[0]%>></td>
+	<td><input type="text" name="userName" value=<%=userInfo[0]%> required></td>
 	</tr>
 	<tr>
 	<td>비밀번호</td>
-	<td><input type="text" name="userPassword" value=<%=userInfo[1]%>></td>
+	<td><input type="text" name="userPassword" value=<%=userInfo[1]%> required></td>
 	</tr>	
 	<tr>
 	<td>전공</td>
-	<td><input type="text" name="userMajor" value=<%=userInfo[3]%>></td>
+	<td><input type="text" name="userMajor" value=<%=userInfo[3]%> required></td>
 	</tr>
 	<tr>
 	<td>이메일</td>
-	<td><input type="text" name="userEmail" value=<%=userInfo[2]%>></td>
+	<td><input type="text" name="userEmail" value=<%=userInfo[2]%> required></td>
 	</tr>		
   </table>
 
 	<input type="submit"  value="update"/>	
- 	<input type="reset"  value="cancel" onclick="location.href='../main.jsp'">
+ 	<input type="reset"  value="cancel" onclick="location.href='main.jsp'">
 	<input type="hidden" name="userType" value=<%=searchType%>>
 	<input type="hidden" name="userID" value=<%=searchId%>>
   </FORM>
-  
+  <script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
   </BODY></HTML>
