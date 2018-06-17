@@ -182,6 +182,21 @@ END;
 select * 
 from course
 where c_id in (
-select c_id from enroll where e_semester = 1 and e_year = 2018
+select c_id from teach where t_semester = 1 and t_year = 2018
 minus
 select c_id from enroll where s_id = '1522222');
+
+--
+select * 
+from course
+where c_id in (
+select c_id from teach where t_semester = 1 and t_year = 2018);
+--
+select count(*) 
+from course
+where c_id in (
+select c_id from teach where t_semester = 1 and t_year = 2018);
+--
+select count(*) from course
+where c_id in 
+(select c_id from enroll where s_id = '1522222');
