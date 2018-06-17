@@ -52,7 +52,7 @@ try {
 	<tr>
 	<td><div align="center">시간</div></td>
 	<td><div align="center"><select name="t_time">
-    <option value="">시간 선택</option>
+    <option value="<%= rs.getString("time") %>"><%= rs.getString("time") %></option>
     <option value="9:00-10:15">9:00-10:15</option>
     <option value="10:30-11:45">10:30-11:45</option>
     <option value="12:00-13:15">12:00-13:15</option>
@@ -94,7 +94,7 @@ try {
   <input type="hidden" value=<%= rs.getString("id")%> name="c_id">
   <input type="hidden" name="c_id_no" value=<%= rs.getInt("id_no") %> required>
   <div class="clearfix" align="center">
-  <input type="reset" class="btn" value="취소">
+  <input type="reset" class="btn" onclick="location.href='professor_all.jsp'" value="취소">
   <input type="submit" class="btn" value="등록"> 
   </div>
   </FORM>

@@ -120,6 +120,7 @@
 		} catch (SQLException ex) {
 			myConn.rollback();
 			out.write(ex.toString());
+			%>	<script> alert("오류가 발생했습니다."); window.history.back(); </script>	<%
 		} finally {
 			myConn.close();
 		}
