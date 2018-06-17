@@ -9,7 +9,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-<form  class="form-horizontal" method="post" action="create_user_verify.jsp">
+<form  class="form-horizontal" method="post" action="account_create_verify.jsp">
 <table class="table">  
 <tr><td>이름</td><td><input type="text" name="userName" placeholder="이름" required></td></tr>
 <tr><td>아이디</td><td><input type="text" name="userID" placeholder="아이디" required></td></tr>

@@ -59,7 +59,7 @@ conn.commit();
 	  else if (ex.getErrorCode() == 20003) sMessage="암호에 공란은 입력되지 않습니다.";
 	  else sMessage="잠시 후 다시 시도하십시오";
    	  conn.rollback();
-   	  direction = "update.jsp";
+   	  direction = "account_create.jsp";
 } finally{
 	pstmt.close();
 	conn.close();
