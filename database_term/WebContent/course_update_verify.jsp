@@ -74,10 +74,13 @@
 			stmt = myConn.createStatement();
 			stmt.executeUpdate(sql);
 			stmt.close();
+			myConn.commit();
+			
 			sql = "delete course where c_id='"+c_id+"' AND c_id_no='"+c_id_no+"'";
 			stmt = myConn.createStatement();
 			stmt.executeUpdate(sql);
 			stmt.close();
+			myConn.commit();
 			
 			mySQL = "{? = call checkTeach(?, ?, ?, ?, ?, ?, ?, ?)}";
 			CallableStatement cstmt = myConn.prepareCall(mySQL);
@@ -119,6 +122,7 @@
 				pstmt.setInt(9, t_max);
 				pstmt.executeUpdate();
 				pstmt.close();
+				myConn.commit();
 				%>	<script> alert("수정이 완료되었습니다."); </script>	<%
 				response.sendRedirect("professor_all.jsp");
 			}
@@ -147,6 +151,7 @@
 				pstmt.setInt(9, prevMax);
 				pstmt.executeUpdate();
 				pstmt.close();
+				myConn.commit();
 				%>	<script> alert("사용되고 있는 강의실입니다."); window.history.back(); </script>	<%
 			}
 			else if (result == DUP_TIME) {
@@ -174,13 +179,39 @@
 				pstmt.setInt(9, prevMax);
 				pstmt.executeUpdate();
 				pstmt.close();
+				myConn.commit();
 				%>	<script> alert("이 시간에 강의가 있습니다."); window.history.back(); </script>	<%
 			}
 
-			myConn.commit();
 		} catch (SQLException ex) {
 			myConn.rollback();
+			String sql = "insert into course values(?, ?, ?, ?, ?, ?)";
+			PreparedStatement pstmt = myConn.prepareStatement(sql);
+			pstmt.setString(1, c_id);
+			pstmt.setInt(2, c_id_no);
+			pstmt.setString(3, prevName);
+			pstmt.setInt(4, prevUnit);
+			pstmt.setInt(5, prevGrade);
+			pstmt.setString(6, prevMajor);
+			pstmt.executeUpdate();
+			pstmt.close();
+
+			sql = "insert into teach values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = myConn.prepareStatement(sql);
+			pstmt.setString(1, p_id);
+			pstmt.setString(2, c_id);
+			pstmt.setInt(3, c_id_no);
+			pstmt.setInt(4, prevYear);
+			pstmt.setInt(5, prevSem);
+			pstmt.setString(6, prevDay);
+			pstmt.setString(7, prevRoom);
+			pstmt.setString(8, prevTime);
+			pstmt.setInt(9, prevMax);
+			pstmt.executeUpdate();
+			pstmt.close();
+			myConn.commit();
 			out.write(ex.toString());
+			%>	<script> alert("오류가 발생했습니다."); window.history.back(); </script>	<%
 		} finally {
 			myConn.close();
 		}
