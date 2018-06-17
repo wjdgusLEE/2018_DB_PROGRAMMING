@@ -45,10 +45,20 @@
 		final int DUP_ROOM = -2;
 		final int DUP_TIME = -3;
 
+		int count = 0;
 		int result;
 		ConnectionManager conn_manager = new ConnectionManager();
 		Connection myConn = conn_manager.getConnection();
-		try {			
+		try {
+			String s = "select COUNT(*) as count from enroll where c_id='"+c_id+"' AND c_id_no="+c_id_no;
+			Statement st = myConn.createStatement();
+			ResultSet re = st.executeQuery(s);
+			if (re != null && re.next()) {
+				count = re.getInt("count");
+			}
+			re.close();
+			st.close();
+			
 			String mySQL = "select c.c_name as name, c.c_unit as unit, c.c_grade as grade, c.c_major as major, t.t_year as year, t.t_semester as semester, t.t_day as day, t.t_room as room, t.t_time as time, t.t_max as max ";
 			mySQL += "from course c, teach t ";
 			mySQL += "where t.p_id='"+session_id+"' AND c.c_id=t.c_id AND c.c_id_no=t.c_id_no AND c.c_id='"+c_id+"' AND c.c_id_no="+c_id_no;
@@ -69,6 +79,12 @@
 			}
 			rs.close();
 			stmt.close();
+			
+			if (count>0 && (prevUnit!=c_unit || prevYear!=t_year || prevSem!=t_semester || prevDay!=t_day || prevTime!=t_time ) ) {
+				%>	<script> alert("신청자가 있는 과목은 이 항목을 수정할 수 없습니다."); window.history.back() </script>	<%
+				return;
+			}
+			
 			
 			String sql = "delete teach where c_id='"+c_id+"' AND c_id_no='"+c_id_no+"'";
 			stmt = myConn.createStatement();
@@ -123,8 +139,7 @@
 				pstmt.executeUpdate();
 				pstmt.close();
 				myConn.commit();
-				%>	<script> alert("수정이 완료되었습니다."); </script>	<%
-				response.sendRedirect("professor_all.jsp");
+				%>	<script> alert("수정이 완료되었습니다."); window.location = "professor_all.jsp" </script>	<%
 			}
 			else if (result == DUP_ROOM) {
 				sql = "insert into course values(?, ?, ?, ?, ?, ?)";
