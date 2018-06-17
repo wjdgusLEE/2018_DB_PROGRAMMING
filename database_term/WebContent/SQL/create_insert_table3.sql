@@ -12,8 +12,8 @@ CREATE TABLE student
     s_addr VARCHAR2(200),
     s_email VARCHAR2(100),
     s_phone VARCHAR2(100),
-    s_grade	NUMBER(1) not null,
-    s_major	VARCHAR2(50) not null,
+    s_grade NUMBER(1) not null,
+    s_major VARCHAR2(50) not null,
     CONSTRAINT s_pk PRIMARY KEY (s_id)
 );
 
