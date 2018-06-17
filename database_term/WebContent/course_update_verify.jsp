@@ -55,6 +55,10 @@
 			ResultSet re = st.executeQuery(s);
 			if (re != null && re.next()) {
 				count = re.getInt("count");
+				if (count>0) {
+					%>	<script> alert("신청자가 있는 과목은 수정할 수 없습니다."); window.history.back(); </script>	<%
+					return;
+				}
 			}
 			re.close();
 			st.close();
@@ -78,13 +82,7 @@
                     prevTime = rs.getString("time");
 			}
 			rs.close();
-			stmt.close();
-			
-			if (count>0 && (prevUnit!=c_unit || prevYear!=t_year || prevSem!=t_semester || !prevDay.equals(t_day) || !prevTime.equals(t_time)) ) {
-				%>	<script> alert("신청자가 있는 과목은 이 항목을 수정할 수 없습니다."); window.history.back(); </script>	<%
-				return;
-			}
-			
+			stmt.close();			
 			
 			String sql = "delete teach where c_id='"+c_id+"' AND c_id_no='"+c_id_no+"'";
 			stmt = myConn.createStatement();
