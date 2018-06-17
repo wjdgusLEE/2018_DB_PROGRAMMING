@@ -52,7 +52,7 @@ try {
 	<tr>
 	<td><div align="center">시간</div></td>
 	<td><div align="center"><select name="t_time">
-    <option value="">시간 선택</option>
+    <option value="<%= rs.getString("time") %>"><%= rs.getString("time") %></option>
     <option value="9:00-10:15">9:00-10:15</option>
     <option value="10:30-11:45">10:30-11:45</option>
     <option value="12:00-13:15">12:00-13:15</option>
