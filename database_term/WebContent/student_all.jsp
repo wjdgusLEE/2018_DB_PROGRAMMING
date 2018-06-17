@@ -15,14 +15,10 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<<<<<<< HEAD
-<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-<title>碍狼 包府</title></head>
-=======
+
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 <title>碍狼 包府</title>
 </head>
->>>>>>> hotfix
 <body>
 	<%
 		if (session_id == null)
