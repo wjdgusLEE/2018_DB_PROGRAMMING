@@ -20,11 +20,8 @@
 		int semester = Integer.parseInt(semesterStr);
 		String s_id = session_id;
 		String result = null;
-		Connection myConn = null;
-		Statement stmt = null;
-		String mySQL = null;
 		ConnectionManager conn_manager = new ConnectionManager();
-		myConn = conn_manager.getConnection();
+		Connection myConn = conn_manager.getConnection();
 		
 		CallableStatement cstmt = myConn.prepareCall("{call InsertEnroll(?,?,?,?)}");
 		cstmt.setString(1, s_id);

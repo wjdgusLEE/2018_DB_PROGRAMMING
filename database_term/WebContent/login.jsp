@@ -4,13 +4,14 @@
 <HEAD>
 <title>수강신청 시스템 로그인</title>
 <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
     <!--<link href="css/login.css" rel="stylesheet">-->
 </HEAD>
 <BODY>
 <form  class="form-horizontal" method="post" action="login_verify.jsp">
 <div class="content">
-	<div class="container" style="align:center">
+	<div class="container-fluid" style="align:center">
 		<div class="row-fluid">
 					 <div class="span4 offset">
 						<div class="control-group">
@@ -31,11 +32,7 @@
 						</div>
 					</div>
 		</div>
-		<div class="row-fluid">		
-				<div class="span4 offset">
-				 <button type="submit" class="btn">Sign in</button>
-				 </div>
-		</div>
+			<input type="submit" value="Log in" class="btn">
 	</div>	
 </div>	
 </form>

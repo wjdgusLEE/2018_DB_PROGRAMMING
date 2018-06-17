@@ -8,7 +8,7 @@
 <head>
 <title>수강신청 사용자 정보 수정</title>
 <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<%
@@ -18,7 +18,7 @@
 		ConnectionManager conn_manager = new ConnectionManager();
 		Connection conn = conn_manager.getConnection();
 		Statement stmt = conn.createStatement();
-		String mySQL;
+		String mySQL = null;
 		//out.write(type);
 		if (isManager)
 			mySQL = "select m_name, m_pwd, m_email from " + type + " where m_id='" + session_id + "'";
@@ -93,16 +93,13 @@
 						</div>
 					</div>
 		</div>	
-		<div class="row-fluid">		
-				<div class="span4 offset 4 ">
-				 <button type="submit" class="btn">Update</button>
-				 <button value="reset" class="btn" onclick="location.href='main.jsp'">cancel</button>
-				 </div>
-		</div>
+		
 	</div>	
+	<input type="reset" class="btn"  onclick="location.href='main.jsp'" value="cancel"/>
+	<input type="submit" class="btn" value="update">
 	</FORM>
 	
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </BODY>
 </HTML>
