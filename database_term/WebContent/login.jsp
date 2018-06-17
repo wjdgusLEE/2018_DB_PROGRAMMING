@@ -4,7 +4,8 @@
 <HEAD>
 <title>수강신청 시스템 로그인</title>
 <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
     <!--<link href="css/login.css" rel="stylesheet">-->
 </HEAD>
 <BODY>
@@ -31,10 +32,7 @@
 						</div>
 					</div>
 		</div>
-			<div style="align:center;">
 			<input type="submit" value="Log in" class="btn">
-			</div>
-				 
 	</div>	
 </div>	
 </form>

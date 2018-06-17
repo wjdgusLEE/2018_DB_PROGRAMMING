@@ -13,15 +13,30 @@
 <meta charset="utf-8">
 <!-- Bootstrap CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<center>수강 신청</center>
-
 </head>
 <body>
 
    <%
       if (session_id == null)
          response.sendRedirect("login.jsp");
+	   ResultSet myResultSet = null;
+	   ConnectionManager conn_manager = new ConnectionManager();
+	   Connection myConn = conn_manager.getConnection();
+	   Statement stmt = null;
+	   CallableStatement cstmt = null;
+	   String sql = "{? = call Date2EnrollYear(SYSDATE)}";
+	   cstmt = myConn.prepareCall(sql);
+	   cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+	   cstmt.execute();
+	   int nYear = cstmt.getInt(1);
+	   sql = "{? = call Date2EnrollSemester(SYSDATE)}";
+	   cstmt = myConn.prepareCall(sql);
+	   cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+	   cstmt.execute();
+	   int nSemester = cstmt.getInt(1);
    %>
+   
+<h1>수강 신청 <%=nYear%> 년도 <%=nSemester%> 학기 수강신청 입니다.</h1>
    <form method="post" action="enroll_verify.jsp">
       <table class="table table-hover">
          <br>
@@ -30,40 +45,16 @@
             <th>과목명</th>
             <th>교수님</th>
             <th>학점</th>
+            <th>요일</th>
             <th>강의시간</th>
             <th>강의장소</th>
             <th>수강신청</th>
          </tr>
-         <%
-            ResultSet myResultSet = null;
-            ConnectionManager conn_manager = new ConnectionManager();
-            Connection myConn = conn_manager.getConnection();
-            Statement stmt = null;
-            CallableStatement cstmt = null;
-            String sql = "{? = call Date2EnrollYear(SYSDATE)}";
-            cstmt = myConn.prepareCall(sql);
-            cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cstmt.execute();
-            int nYear = cstmt.getInt(1);
-            sql = "{? = call Date2EnrollSemester(SYSDATE)}";
-            cstmt = myConn.prepareCall(sql);
-            cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cstmt.execute();
-            int nSemester = cstmt.getInt(1);
-         %>
-
-  
-         <center><%=nYear%>년도<%=nSemester%>학기 수강신청 입니다.
-         </center>
-
-         <%
-            try {
-               stmt = myConn.createStatement();
-            } catch (SQLException ex) {
-               System.err.println("SQLException: " + ex.getMessage());
-            }
-            String mySQL = "select * from course where c_id not in (select c_id from enroll where s_id = '" + session_id
-                  + "')";
+ <%
+    try {
+         stmt = myConn.createStatement();
+           
+          String mySQL = "select * from course where c_id not in (select c_id from enroll where s_id = '" + session_id + "')";
             myResultSet = stmt.executeQuery(mySQL);
             while (myResultSet.next() != false) {
                String c_id = "", c_id_no = "", c_name = "", c_major = "", p_id = "", p_name = "";
@@ -99,7 +90,6 @@
          %>
 
          <tr>
-
             <td><%=c_id%></td>
             <td><%=c_name%></td>
             <td><%=p_name%></td>
@@ -107,15 +97,17 @@
             <td><%=t_day%></td>
             <td><%=t_time%></td>
             <td><%=t_room%></td>
-
-         <td align="center"><a
-            href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">신청</a></td>
-      </tr>
+         	<td><a href="enroll_verify.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>&year=<%=nYear%>&semester=<%=nSemester%>">신청</a></td>
+       </tr>     
+         
          <%
             }
-            stmt.close();
-            myConn.close();
-         %>
+} catch (SQLException ex) {
+     System.err.println("SQLException: " + ex.getMessage());
+} finally {
+	stmt.close();
+    myConn.close();        
+ }  %>
       </table>
    </form>
 
