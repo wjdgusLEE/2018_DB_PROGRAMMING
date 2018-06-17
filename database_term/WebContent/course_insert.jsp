@@ -54,18 +54,7 @@ else if (!isProfessor) {
 	</tr>
 	<tr>
 	<td>강의실</td>
-	<td> 
-	<select name="userLab" name="t_room" required>
-			<option value="새힘관 403">새힘관 403</option>
-			<option value="새힘관 404">새힘관 404</option>
-			<option value="새힘관 405">새힘관 405</option>
-			<option value="새힘관 406">새힘관 406</option>
-			<option value="새힘관 406">새힘관 406</option>
-			<option value="순헌관 406">순헌관 406</option>
-			<option value="순헌관 406">순헌관 407</option>
-			<option value="음악대학206">음악대학206</option>
-	</select>
-	</td>
+	<td><input type="text" placeholder="명신413" name="t_room" required></td>
 	</tr>
 	<tr>
 	<td>요일</td>
