@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../top.jsp" %>    
+<%@ include file="top.jsp" %>    
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
@@ -10,7 +10,7 @@
   <head>
     <meta charset="utf-8">
 <!-- Bootstrap -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <table class="table table-hover" width="75%" align="center">   
@@ -35,8 +35,8 @@ try {
 		   <td><div align="center"><%=result.getString("p_id") %></div></td><td><div align="center"><%=result.getString("p_name") %></div></td>
 		   <td><div align="center"><%=result.getString("p_pwd") %></div></td><td><%=result.getString("p_major") %></div></td>
 		   <td><div align="center"><%=result.getString("p_room") %></div></td><td><div align="center"><%=result.getString("p_email") %></div></td>
-		  <td><a href="Manager/update.jsp?editID=<%=result.getString("p_id")%>&editType=professor">수정</a></td>
-		 <td><a href="Manager/delete_verify.jsp?deleteID=<%=result.getString("p_id")%>&deleteType=professor">삭제</a></td>
+		  <td><a href="account_update.jsp?editID=<%=result.getString("p_id")%>&editType=professor">수정</a></td>
+		 <td><a href="account_delete.jsp?deleteID=<%=result.getString("p_id")%>&deleteType=professor">삭제</a></td>
 		  </tr>
 		<% }	
 	
@@ -50,6 +50,6 @@ try {
 } %>
   </table>
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

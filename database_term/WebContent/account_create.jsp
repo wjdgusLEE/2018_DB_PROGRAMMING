@@ -1,15 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"  %>
 <%@ include file="top.jsp" %> 
 <%@ page import="conn.ConnectionManager" %>
-
+<% request.setCharacterEncoding("utf-8"); %>
 <html>
 <head><title>계정 생성</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-<form  class="form-horizontal" method="post" action="create_user_verify.jsp">
+<form  class="form-horizontal" method="post" action="account_create_verify.jsp">
 <table class="table">  
 <tr><td>이름</td><td><input type="text" name="userName" placeholder="이름" required></td></tr>
 <tr><td>아이디</td><td><input type="text" name="userID" placeholder="아이디" required></td></tr>
@@ -70,7 +71,7 @@
 
 <input type="submit" value="create" class="btn">
 
-<button type="reset" class="btn" onclick="location.href='main.jsp'">cancel</button> 
+<input type="reset" value="cancel" class="btn" onclick="location.href='main.jsp'">
 </form>
 <script>
 function doDisplay(radio) {
