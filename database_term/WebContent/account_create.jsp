@@ -2,9 +2,10 @@
 <%@ page import="java.sql.*"  %>
 <%@ include file="top.jsp" %> 
 <%@ page import="conn.ConnectionManager" %>
-
+<% request.setCharacterEncoding("utf-8"); %>
 <html>
 <head><title>계정 생성</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>

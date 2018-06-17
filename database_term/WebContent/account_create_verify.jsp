@@ -3,6 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="conn.ConnectionManager"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <% 
 String userName = request.getParameter("userName"); 
 String userID = request.getParameter("userID"); 
