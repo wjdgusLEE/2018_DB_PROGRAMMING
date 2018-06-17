@@ -26,6 +26,8 @@ INSERT INTO student(s_id, s_pwd, s_name, s_addr, s_email, s_phone, s_grade, s_ma
 INSERT INTO student(s_id, s_pwd, s_name, s_addr, s_email, s_phone, s_grade, s_major) VALUES
 ('1533333', '3333', '김학수', '경기도', 'dddd@gmail.com', '010-3333-3333', 4, '컴퓨터과학과');
 
+INSERT INTO student(s_id, s_pwd, s_name, s_addr, s_email, s_phone, s_grade, s_major) VALUES
+('1512as2', '00', '깔루아', '경기도', 'aaaa@gmail.com', '010-0000-0000', 4, '컴퓨터과학과');
 
 CREATE TABLE course
 (
