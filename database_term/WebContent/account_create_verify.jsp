@@ -26,7 +26,7 @@ String sql = "INSERT INTO " + userType;
 
 
  PrintWriter script = response.getWriter();
- String redirection = "account_students";
+ String redirection = "account_students.jsp";
 try{
 if(userType.equals("professor"))
 	sql += " (p_id, p_pwd, p_name, p_major, p_email, p_room) VALUES ( ?, ?, ?, ?, ?, ?)";
