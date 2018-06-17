@@ -174,3 +174,14 @@ BEGIN
    result := SQLCODE;
 END;
 /
+
+
+
+
+--
+select * 
+from course
+where c_id in (
+select c_id from enroll where e_semester = 1 and e_year = 2018
+minus
+select c_id from enroll where s_id = '1522222');

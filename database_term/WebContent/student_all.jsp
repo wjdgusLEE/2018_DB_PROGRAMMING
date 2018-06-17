@@ -15,7 +15,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <title>강의 관리</title></head>
 <body>
 	<%
@@ -156,6 +156,6 @@
 		%>
 	</table>
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

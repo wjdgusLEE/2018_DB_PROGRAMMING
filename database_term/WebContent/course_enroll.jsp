@@ -59,8 +59,11 @@
             try {
                stmt = myConn.createStatement();
 
-               String mySQL = "select * from course where c_id not in (select c_id from enroll where s_id = '"
-                     + session_id + "')";
+String mySQL = "select * from course where c_id in ( ";
+	mySQL += "(select c_id from enroll where e_semester = "+ nSemester +" and e_year = "+ nYear+ ")";
+	mySQL += "	minus ";
+	mySQL += "(select c_id from enroll where s_id = '"+session_id+"'))";
+	 System.out.println(mySQL);
                myResultSet = stmt.executeQuery(mySQL);
                while (myResultSet.next() != false) {
                   String c_id = "", c_id_no = "", c_name = "", c_major = "", p_id = "", p_name = "";
@@ -112,6 +115,7 @@
          <%
             }
             } catch (SQLException ex) {
+            System.out.println(ex.toString());
                System.err.println("SQLException: " + ex.getMessage());
             } finally {
                stmt.close();
