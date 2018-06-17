@@ -80,7 +80,7 @@
 			rs.close();
 			stmt.close();
 			
-			if (count>0 && (prevUnit!=c_unit || prevYear!=t_year || prevSem!=t_semester || prevDay!=t_day || prevTime!=t_time ) ) {
+			if (count>0 && (prevUnit!=c_unit || prevYear!=t_year || prevSem!=t_semester || !prevDay.equals(t_day) || !prevTime.equals(t_time)) ) {
 				%>	<script> alert("신청자가 있는 과목은 이 항목을 수정할 수 없습니다."); window.history.back(); </script>	<%
 				return;
 			}
