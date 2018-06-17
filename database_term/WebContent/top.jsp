@@ -19,9 +19,9 @@ if(isStudent){
 %>
 	<li class="active" onclick="changeState(this)"><%=log%></li>
 	<li><a href="update.jsp" onclick="changeState(this)">개인 정보 수정</a></li> 
-	<li><a href="course_enroll.jsp" onclick="changeState(this)">수강신청 입력</a></li> 
-	<li><a href="course_drop.jsp" onclick="changeState(this)">수강신청 삭제</a></li> 
-	<li><a href="student_all.jsp" onclick="changeState(this)">수강신청 조회</a></li> 
+	<li><a href="course_enroll.jsp" onclick="changeState(this)">수강신청</a></li> 
+	<li><a href="course_drop.jsp" onclick="changeState(this)">수강포기</a></li> 
+	<li><a href="student_all.jsp" onclick="changeState(this)">수강내역 조회</a></li> 
 	
 <%} else if (isProfessor) { %>
 	
