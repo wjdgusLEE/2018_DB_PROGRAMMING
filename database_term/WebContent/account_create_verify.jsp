@@ -26,6 +26,7 @@ String sql = "INSERT INTO " + userType;
 
 
  PrintWriter script = response.getWriter();
+ String redirection = "account_students";
 try{
 if(userType.equals("professor"))
 	sql += " (p_id, p_pwd, p_name, p_major, p_email, p_room) VALUES ( ?, ?, ?, ?, ?, ?)";
@@ -55,14 +56,14 @@ script.println("</script>");
 	  else if (ex.getErrorCode() == 20003) sMessage="암호에 공란은 입력되지 않습니다.";
   	  else if (ex.getErrorCode() ==20004) sMessage="아이디는 숫자 7자리입니다.";
 	  else sMessage="잠시 후 다시 시도하십시오";
-  	  response.sendRedirect("create_user.jsp");
 	script.println("<script>");
 	script.println("alert(\""+sMessage+"\")");
 	script.println("</script>");  	
+	redirection = "account_create.jsp";
 } 
 
 script.println("<script>");
-script.println("location.href='main.jsp'");
+script.println("location.href='"+redirection+"'");
 script.println("</script>");
 %>
 </body>
