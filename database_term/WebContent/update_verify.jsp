@@ -42,7 +42,7 @@ else if (isStudent)
 else
  	mySQL = "update "+ type +" set p_pwd='" +userPassword+"', p_name='"+userName+"', p_email='"+userEmail+"', p_major='"+userMajor+"' where p_id = '"+session_id +"'";
 
-// out.write(mySQL);
+ out.write(mySQL);
 stmt = myConn.createStatement();
 stmt.executeUpdate(mySQL);
  } catch(SQLException ex) {

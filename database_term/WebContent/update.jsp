@@ -18,7 +18,7 @@
 		ConnectionManager conn_manager = new ConnectionManager();
 		Connection conn = conn_manager.getConnection();
 		Statement stmt = conn.createStatement();
-		String mySQL;
+		String mySQL = null;
 		//out.write(type);
 		if (isManager)
 			mySQL = "select m_name, m_pwd, m_email from " + type + " where m_id='" + session_id + "'";
@@ -96,7 +96,7 @@
 		
 	</div>	
 	<input type="reset" class="btn"  onclick="location.href='main.jsp'" value="cancel"/>
-	<input type="reset" class="btn" value="update"/>
+	<input type="submit" class="btn" value="update">
 	</FORM>
 	
 <script src="http://code.jquery.com/jquery.js"></script>
