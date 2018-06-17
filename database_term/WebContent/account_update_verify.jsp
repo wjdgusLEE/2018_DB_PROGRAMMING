@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
 <%@ page import="conn.ConnectionManager" %>
+
+<%@ page import="java.io.PrintWriter" %>
 <html>
 <head>
 <title> 수강신청 사용자 정보 수정 </title>
@@ -23,7 +25,7 @@ PreparedStatement pstmt = null;
 
 String sMessage = "수정되었습니다.";
 String direction = null; 
-
+PrintWriter script = response.getWriter();
 
 try { 
 String mySQL = null;
@@ -52,7 +54,9 @@ pstmt.executeUpdate();
 out.write(pstmt.toString());
 direction = "account_"+userType+"s.jsp";
 conn.commit();
-
+script.println("<script>");
+script.println("alert(\"성공적으로 처리되었습니다.\")");
+script.println("</script>"); 
  } catch(SQLException ex) {
 	  out.write(ex.toString());
    	  if (ex.getErrorCode() == 20002) sMessage="암호는 4자리 이상이어야 합니다.";
@@ -60,10 +64,15 @@ conn.commit();
 	  else sMessage="잠시 후 다시 시도하십시오";
    	  conn.rollback();
    	  direction = "account_update.jsp";
+   	script.println("<script>");
+	script.println("alert("+ sMessage+")");
+	script.println("</script>"); 
 } finally{
 	pstmt.close();
 	conn.close();
-	response.sendRedirect(direction);
+	script.println("<script>");
+	script.println("location.href='"+direction+"'");
+	script.println("</script>");
  }
 %>
 </body></html>

@@ -23,6 +23,9 @@ Connection myConn = conn_manager.getConnection();
 
 String sMessage = "";
 String sql = "INSERT INTO " + userType;
+
+
+ PrintWriter script = response.getWriter();
 try{
 if(userType.equals("professor"))
 	sql += " (p_id, p_pwd, p_name, p_major, p_email, p_room) VALUES ( ?, ?, ?, ?, ?, ?)";
@@ -43,6 +46,9 @@ else
 
 stmt.executeUpdate();
 myConn.commit();
+script.println("<script>");
+script.println("alert(\"성공적으로 생성되었습니다.\")");
+script.println("</script>");
 } catch (SQLException ex) {
 	 out.write(ex.toString());
   	  if (ex.getErrorCode() == 20002) sMessage="암호는 4자리 이상이어야 합니다.";
@@ -50,13 +56,14 @@ myConn.commit();
   	  else if (ex.getErrorCode() ==20004) sMessage="아이디는 숫자 7자리입니다.";
 	  else sMessage="잠시 후 다시 시도하십시오";
   	  response.sendRedirect("create_user.jsp");
- 	  PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert(\""+sMessage+"\")");
 	script.println("</script>");  	
 } 
 
-response.sendRedirect("main.jsp");
+script.println("<script>");
+script.println("location.href='main.jsp'");
+script.println("</script>");
 %>
 </body>
 </html>
