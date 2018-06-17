@@ -19,7 +19,15 @@ BEGIN
       RAISE underflow_pwd;
   END IF;
   
-  select INSTR(:new.s_id, ' ', 1)
+  select INSTR(:new.s_pwd,' ', 1, 1)
+  INTO nBlank
+  FROM DUAL;
+  
+  IF nBlank > 0 THEN 
+  	RAISE blank_exception;
+  END IF;
+  
+   select INSTR(:new.s_id,' ', 1, 1)
   INTO nBlank
   FROM DUAL;
   
@@ -42,7 +50,7 @@ EXCEPTION
   WHEN underflow_pwd THEN
     RAISE_APPLICATION_ERROR(-20003, '비밀번호 4자리 이상');
   WHEN blank_exception THEN
-    RAISE_APPLICATION_ERROR(-20002, '암호에 공란은 입력되지 않습니다.');
+    RAISE_APPLICATION_ERROR(-20002, '공란은 입력되지 않습니다.');
   WHEN underflow_id THEN
   	RAISE_APPLICATION_ERROR(-20004, '아이디는 숫자 7자리입니다.');
   WHEN OTHERS THEN
@@ -71,7 +79,15 @@ BEGIN
       RAISE underflow_pwd;
   END IF;
   
-  select INSTR(:new.p_id, ' ', 1)
+  select INSTR(:new.p_pwd,' ', 1, 1)
+  INTO nBlank
+  FROM DUAL;
+  
+  IF nBlank > 0 THEN 
+  	RAISE blank_exception;
+  END IF;
+  
+   select INSTR(:new.p_pid,' ', 1, 1)
   INTO nBlank
   FROM DUAL;
   
@@ -94,7 +110,7 @@ EXCEPTION
   WHEN underflow_pwd THEN
     RAISE_APPLICATION_ERROR(-20003, '비밀번호 4자리 이상');
   WHEN blank_exception THEN
-    RAISE_APPLICATION_ERROR(-20002, '암호에 공란은 입력되지 않습니다.');
+    RAISE_APPLICATION_ERROR(-20002, '공란은 입력되지 않습니다.');
   WHEN underflow_id THEN
   	RAISE_APPLICATION_ERROR(-20004, '아이디는 숫자 7자리입니다.');
   WHEN OTHERS THEN
@@ -120,6 +136,14 @@ BEGIN
       RAISE underflow_length;
   END IF;
   
+  select INSTR(:new.m_pwd, ' ', 1)
+  INTO nBlank
+  FROM DUAL;
+  
+  IF nBlank > 0 THEN 
+  	RAISE blank_exception;
+  END IF;
+  
   select INSTR(:new.m_id, ' ', 1)
   INTO nBlank
   FROM DUAL;
@@ -128,7 +152,6 @@ BEGIN
   	RAISE blank_exception;
   END IF;
   
-  
   UPDATE manager
       SET m_pwd = :new.m_pwd, m_email = :new.m_email;
   
@@ -136,7 +159,7 @@ EXCEPTION
   WHEN underflow_length THEN
     RAISE_APPLICATION_ERROR(-20003, '비밀번호 4자리 이상');
   WHEN  blank_exception THEN
-    RAISE_APPLICATION_ERROR(-20002, '암호에 공란은 입력되지 않습니다.');
+    RAISE_APPLICATION_ERROR(-20002, '공란은 입력되지 않습니다.');
   WHEN OTHERS THEN
      DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQLCODE) || SQLERRM);
 END;
